@@ -1,0 +1,65 @@
+class AppIcons {
+  static final address = 'assets/icons/Address.svg';
+  static final applePay = 'assets/icons/apple-pay.svg';
+
+  static final arrow = 'assets/icons/Arrow.svg';
+  static final arrowRight = 'assets/icons/arrow-right.svg';
+  static final backArrow = 'assets/icons/back-arrow.svg';
+  static final bag = 'assets/icons/Bag.svg';
+  static final bell = 'assets/icons/Bell.svg';
+  static final bellDuotone = 'assets/icons/Bell-duotone.svg';
+  static final box = 'assets/icons/Box.svg';
+  static final boxDuotone = 'assets/icons/Box-duotone.svg';
+  static final visa = 'assets/icons/bxl-visa.svg';
+  static final cancel = 'assets/icons/Cancel.svg';
+  static final cancelCircle = 'assets/icons/Cancel-circle.svg';
+  static final cardDuotone = 'assets/icons/Card-duotone.svg';
+  static final cart = 'assets/icons/Cart.svg';
+  static final cartDuotone = 'assets/icons/Cart-Duotone.svg';
+  static final cash = 'assets/icons/Cash.svg';
+  static final check = 'assets/icons/Check.svg';
+  static final chevron = 'assets/icons/Chevron.svg';
+  static final correct = 'assets/icons/correct.svg';
+  static final details = 'assets/icons/Details.svg';
+  static final disCountDuotone = 'assets/icons/Discount-duotone.svg';
+  static final edit = 'assets/icons/Edit.svg';
+  static final eye = 'assets/icons/Eye.svg';
+  static final eyeOff = 'assets/icons/eye-off.svg';
+  static final facebook = 'assets/icons/Facebook.svg';
+  static final filter = 'assets/icons/Filter.svg';
+  static final google = 'assets/icons/google.svg';
+
+  static final headPhones = 'assets/icons/Headphones.svg';
+  static final heart = 'assets/icons/Heart.svg';
+  static final heartDuotone = 'assets/icons/Heart-duotone.svg';
+  static final home = 'assets/icons/Home.svg';
+  static final image = 'assets/icons/Image.svg';
+  static final instagram = 'assets/icons/Instagram.svg';
+  static final like = 'assets/icons/like.svg';
+  static final location = 'assets/icons/Location.svg';
+  static final locationsDuotone = 'assets/icons/Location-duotone.svg';
+  static final logo = 'assets/icons/logo.svg';
+  static final logoFacebook = 'assets/icons/logo_facebook.svg';
+  static final logout = 'assets/icons/Logout.svg';
+  static final masterCard = 'assets/icons/mastercard.svg';
+
+  static final mic = 'assets/icons/Mic.svg';
+  static final minus = 'assets/icons/Minus.svg';
+  static final phone = 'assets/icons/Phone.svg';
+  static final plus = 'assets/icons/Plus.svg';
+  static final question = 'assets/icons/Question.svg';
+  static final search = 'assets/icons/Search.svg';
+  static final searchDuotone = 'assets/icons/Search-duotone.svg';
+  static final star = 'assets/icons/Star.svg';
+  static final trash = 'assets/icons/Trash.svg';
+  static final twitter = 'assets/icons/Twitter.svg';
+  static final user = 'assets/icons/User.svg';
+  static final userDuotone = 'assets/icons/User-duotone.svg';
+  static final walletDuotone = 'assets/icons/Wallet-duotone.svg';
+  static final warningCircle = 'assets/icons/WarningCircle.svg';
+  static final web = 'assets/icons/Web.svg';
+  static final whatsapp = 'assets/icons/Whatsapp.svg';
+  static final elementPng = 'assets/Element.png';
+  static final element2Png = 'assets/Element2.png';
+  static final broPng = 'assets/bro.png';
+}
