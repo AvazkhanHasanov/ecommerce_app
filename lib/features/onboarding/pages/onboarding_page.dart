@@ -1,17 +1,19 @@
-import 'package:ecommerce_app/core/routing/routes.dart';
-import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/features/onboarding/pages/text_button_with_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+
+import '../../../core/routing/routes.dart';
+import '../../../core/utils/colors.dart';
 
 class OnboardingPage extends StatelessWidget {
   const OnboardingPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext _context) {
     return Scaffold(
       body: SizedBox(
         height: 844.h,
@@ -24,7 +26,17 @@ class OnboardingPage extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.only(left: 24.w, top: 40.h),
-              child: Text('Define yourself in your unique way.', style: AppStyle.h1.copyWith(height: 0.8)),
+              child: Text(
+                'Define yourself in your unique way.',
+                style: AppStyle.h1.copyWith(height: 0.8),
+              ),
+            ),
+            Positioned(
+              top: 2,
+              child: Image.asset(
+                AppIcons.broPng,
+                color: Colors.red,
+              ),
             ),
             Align(
               alignment: Alignment.bottomRight,
@@ -37,7 +49,7 @@ class OnboardingPage extends StatelessWidget {
                     width: 358.w,
                     height: 687.h,
                     fit: BoxFit.cover,
-                    color: Colors.grey.withAlpha((255 / 12).toInt()),
+                    color: Colors.grey.withAlpha((255 / 20).toInt()),
                   ),
                 ),
               ),
@@ -65,29 +77,12 @@ class OnboardingPage extends StatelessWidget {
         width: double.infinity,
         height: 107.h,
         color: AppColors.primary0,
-        child: SizedBox(
-          width: 341.w,
-          height: 54,
-          child: TextButton(
-            onPressed: () {
-              context.go(Routes.signUpPage);
-            },
-            style: TextButton.styleFrom(
-              backgroundColor: AppColors.primary900,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
-            ),
-            child: Row(
-              spacing: 10.w,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'Get Started',
-                  style: AppStyle.b1Medium.copyWith(color: AppColors.primary0),
-                ),
-                SvgPicture.asset(AppIcons.arrowRight),
-              ],
-            ),
-          ),
+        child: TextButtonWithRow(
+          children: [
+            Text('Get Started', style: AppStyle.b1Medium.copyWith(color: AppColors.primary0)),
+            SvgPicture.asset(AppIcons.arrowRight),
+          ],
+          onPressed: () => _context.go(Routes.signUpPage),
         ),
       ),
     );

@@ -13,4 +13,5 @@ static const primary100=Color(0xFFE6E6E6);
 static const primary0=Color(0xFFFFFFFF);
 static const green=Color(0xFF0C9409);
 static const red=Color(0xFFED1010);
+static const blue=Color(0xFF1877F2);
 }

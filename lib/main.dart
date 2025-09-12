@@ -15,13 +15,16 @@ class EcommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      designSize: Size(390, 844),
-      builder:(context, child) =>  MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme().lightTheme,
-        themeMode: ThemeMode.light,
-        routerConfig: router,
+    return MultiProvider(
+      providers: dependencies,
+      builder: (context, child) => ScreenUtilInit(
+        designSize: Size(390, 844),
+        builder: (context, child) => MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          theme: AppTheme().lightTheme,
+          themeMode: ThemeMode.light,
+          routerConfig: router,
+        ),
       ),
     );
   }
