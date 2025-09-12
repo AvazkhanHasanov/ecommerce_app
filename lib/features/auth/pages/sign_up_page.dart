@@ -1,15 +1,18 @@
+import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/features/auth/widgets/once_rich_text.dart';
+import 'package:ecommerce_app/features/auth/widgets/auth_top_text.dart';
 import 'package:ecommerce_app/features/auth/widgets/auth_rich_text.dart';
 import 'package:ecommerce_app/features/auth/widgets/auth_text_form_field.dart';
+import 'package:ecommerce_app/features/auth/widgets/once_rich_text.dart';
 import 'package:ecommerce_app/features/common/widgets/app_text_form_field.dart';
-import 'package:ecommerce_app/features/common/widgets/auth_up_divider.dart';
+import 'package:ecommerce_app/features/auth/widgets/auth_up_divider.dart';
 import 'package:ecommerce_app/features/onboarding/pages/text_button_with_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -38,11 +41,8 @@ class _SignUpPageState extends State<SignUpPage> {
               spacing: 12.h,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Create an account', style: AppStyle.h2),
-                Text(
-                  'Let’s create your account.',
-                  style: AppStyle.b1Regular.copyWith(color: AppColors.primary500, height: 0.5),
-                ),
+                const AuthTopText(text: 'Create an account', subtext: 'Let’s create your account.'),
+
                 SizedBox(height: 4.h),
 
                 AuthTextFormField(
@@ -139,7 +139,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 OnceRichText(
                   text: 'Already have an account? ',
                   subtext: 'Log In',
-                  onTap: () {},
+                  onTap: () => context.go(Routes.login),
                 ),
               ],
             ),
