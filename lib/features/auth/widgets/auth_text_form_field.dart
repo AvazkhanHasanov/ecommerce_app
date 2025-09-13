@@ -38,12 +38,14 @@ class _AuthTextFormFieldState extends State<AuthTextFormField> {
       children: [
         Text(widget.label, style: AppStyle.b1Medium),
         TextFormField(
+
           obscureText: isSelected,
           obscuringCharacter: '*',
           controller: widget.controller,
           validator: widget.validator,
-          autovalidateMode: AutovalidateMode.always,
           style: AppStyle.b1Medium,
+          keyboardType: widget.isPassword?TextInputType.number:TextInputType.name,
+          textInputAction: TextInputAction.next,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(10.r),

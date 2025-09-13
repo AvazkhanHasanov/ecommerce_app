@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/styles.dart';
 
-class AppTextFormField extends StatelessWidget {
-  const AppTextFormField({
+class AppTextButton extends StatelessWidget {
+  const AppTextButton({
     super.key,
     this.backgroundColor = AppColors.primary200,
     required this.text,
@@ -17,7 +17,7 @@ class AppTextFormField extends StatelessWidget {
   final Color backgroundColor;
   final String text;
   final Color textColor, borderColor;
-  final VoidCallback onPressed;
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +36,5 @@ class AppTextFormField extends StatelessWidget {
         child: Text(text, style: AppStyle.b1Medium.copyWith(color: textColor)),
       ),
     );
-
   }
 }

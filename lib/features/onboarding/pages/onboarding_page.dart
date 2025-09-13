@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/features/onboarding/pages/text_button_with_row.dart';
+import 'package:ecommerce_app/features/common/widgets/app_text_button_with_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
@@ -77,7 +77,7 @@ class OnboardingPage extends StatelessWidget {
         width: double.infinity,
         height: 107.h,
         color: AppColors.primary0,
-        child: TextButtonWithRow(
+        child: AppTextButtonWithRow(
           children: [
             Text('Get Started', style: AppStyle.b1Medium.copyWith(color: AppColors.primary0)),
             SvgPicture.asset(AppIcons.arrowRight),

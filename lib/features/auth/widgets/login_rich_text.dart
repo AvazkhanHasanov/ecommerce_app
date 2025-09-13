@@ -1,6 +1,8 @@
+import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginRichText extends StatelessWidget {
   const LoginRichText({
@@ -19,7 +21,10 @@ class LoginRichText extends StatelessWidget {
             style: AppStyle.b2Medium.copyWith(
               decoration: TextDecoration.underline,
             ),
-            recognizer: TapGestureRecognizer()..onTap = () {},
+            recognizer: TapGestureRecognizer()
+              ..onTap = () {
+                context.push(Routes.forgotPassword);
+              },
           ),
         ],
       ),

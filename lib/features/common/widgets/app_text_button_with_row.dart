@@ -2,8 +2,8 @@ import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class TextButtonWithRow extends StatelessWidget {
-  const TextButtonWithRow({
+class AppTextButtonWithRow extends StatelessWidget {
+  const AppTextButtonWithRow({
     this.backgroundColor = AppColors.primary900,
     required this.children,
     required this.onPressed,

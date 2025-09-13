@@ -16,13 +16,16 @@ class AuthIconButton extends StatelessWidget {
   final String icon;
 
   @override
-  Widget build(BuildContext _context) {
+  Widget build(BuildContext context) {
     return IconButton(
       onPressed: onPressed,
       style: IconButton.styleFrom(
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
         iconSize: iconSize,
+        splashFactory: NoSplash.splashFactory,
+        overlayColor: Colors.transparent
+
       ),
       icon: Padding(
         padding: padding,
