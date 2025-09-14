@@ -1,3 +1,5 @@
+import 'package:flutter/cupertino.dart';
+
 class Validators {
   static final _emailRegExp = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
   static final _passwordRegExp = RegExp(r'^[0-9]+$');
@@ -16,6 +18,17 @@ class Validators {
       return 'Please password kiriting';
     } else if (!_passwordRegExp.hasMatch(value)) {
       return 'Faqat raqam kiritilsin';
+    }
+    return null;
+  }
+
+  static String? confirmPassword(String? value, TextEditingController? controller) {
+    if (value == null || value.isEmpty) {
+      return 'Please password kiriting';
+    } else if (!_passwordRegExp.hasMatch(value)) {
+      return 'Faqat raqam kiritilsin';
+    } else if (value != controller!.text) {
+      return 'parol mos emas';
     }
     return null;
   }

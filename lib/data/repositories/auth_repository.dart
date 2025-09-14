@@ -49,9 +49,9 @@ class AuthRepository {
     return response.fold((error) => Result.error(error), (value) => Result.ok(value));
   }
 
-  Future<Result<String>> verifyCode({required EnterModel enterData}) async {
+  Future<Result<bool>> verifyCode({required EnterModel enterData}) async {
     final response = await _client.post('/auth/reset-password/verify', data: enterData.toJson());
-    return response.fold((error) => Result.error(error), (value) => Result.ok(value));
+    return response.fold((error) => Result.error(error), (value) =>Result.ok(value as bool));
   }
 
   Future<Result<String>> resetPassword({required ResetModel resetData}) async {

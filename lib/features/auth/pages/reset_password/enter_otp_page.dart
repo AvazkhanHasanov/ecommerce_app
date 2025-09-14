@@ -1,10 +1,15 @@
+import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/validators.dart';
+import 'package:ecommerce_app/data/models/auth_model/reset_password_model.dart';
+import 'package:ecommerce_app/features/auth/managers/reset_password_view_model.dart';
 import 'package:ecommerce_app/features/auth/widgets/once_rich_text.dart';
 import 'package:ecommerce_app/features/auth/widgets/otp_text_form_field.dart';
 import 'package:ecommerce_app/features/common/widgets/app_text_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import '../../widgets/reset_top_text.dart';
 
@@ -23,10 +28,9 @@ class _EnterOtpPageState extends State<EnterOtpPage> {
   final focusNode = List.generate(otpLength, (index) => FocusNode());
 
   void _validateForm() {
-
     final allController = controller.every((element) => element.text.isNotEmpty);
     setState(() {
-      isActive =  allController;
+      isActive = allController;
     });
   }
 
@@ -53,46 +57,62 @@ class _EnterOtpPageState extends State<EnterOtpPage> {
       appBar: AppBar(),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.w),
-        child: Column(
-          spacing: 16.h,
-          children: [
-            ResetTopText(
-              text: 'Enter 4 Digit Code',
-              subtext: 'Enter 4 digit code that your receive on your email (cody.fisher45@example.com).',
-            ),
-
-            Form(
-              key: _formKey,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                spacing: 12.w,
-                children: [
-                  ...List.generate(
-                    4,
-                    (index) => OtpTextFormField(
-                      validator: (value) =>Validators.otp(value),
-                      focusNode: focusNode[index],
-                      controller: controller[index],
-                      onChanged: (value) {
-                        if (value.length == 1 && index < otpLength - 1) {
-                          focusNode[index + 1].requestFocus();
-                        }
-                      },
-                    ),
-                  ),
-                ],
+        child: Consumer<ResetPasswordViewModel>(
+          builder: (context, vm, child) => Column(
+            spacing: 16.h,
+            children: [
+              ResetTopText(
+                text: 'Enter 4 Digit Code',
+                subtext: 'Enter 4 digit code that your receive on your email (${vm.email}).',
               ),
-            ),
-            OnceRichText(text: 'Email not received? ', subtext: "Resend code"),
-            Spacer(),
-            AppTextButton(
-              textColor: AppColors.primary0,
-              text: 'Continue',
-              onPressed: isActive ? () {} : null,
-              backgroundColor: isActive ? AppColors.primary900 : AppColors.primary200,
-            ),
-            SizedBox(height: 15.h)
-          ],
+
+              Form(
+                key: _formKey,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  spacing: 12.w,
+                  children: [
+                    ...List.generate(
+                      4,
+                      (index) => OtpTextFormField(
+                        validator: (value) => Validators.otp(value),
+                        focusNode: focusNode[index],
+                        controller: controller[index],
+                        onChanged: (value) {
+                          if (value.length == 1 && index < otpLength - 1) {
+                            focusNode[index + 1].requestFocus();
+                          }
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              OnceRichText(text: 'Email not received? ', subtext: "Resend code"),
+              Spacer(),
+              AppTextButton(
+                textColor: AppColors.primary0,
+                text: 'Continue',
+                onPressed: isActive
+                    ? () async {
+                        final otpCode = controller.map((c) => c.text).join();
+                        final email = vm.email!;
+                        vm.setCode(otpCode);
+                        final EnterModel model = EnterModel(email: email, code: otpCode);
+                        await vm.enter(enterData: model);
+                        if (vm.errorEnter != null) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(vm.errorEnter!)));
+                        } else {
+                          context.push(Routes.resetPassword);
+                        }
+                      }
+                    : null,
+                isLoading: vm.isEnterLoading,
+                backgroundColor: isActive ? AppColors.primary900 : AppColors.primary200,
+              ),
+              SizedBox(height: 15.h),
+            ],
+          ),
         ),
       ),
     );

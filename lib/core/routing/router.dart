@@ -19,7 +19,7 @@ final router = GoRouter(
     GoRoute(path: Routes.signUpPage, builder: (context, state) => SignUpPage()),
     ShellRoute(
       builder: (context, state, child) =>
-          ChangeNotifierProvider(create: (context) => ResetPasswordViewModel(), child: child),
+          ChangeNotifierProvider(create: (context) => ResetPasswordViewModel(authRepo: context.read(),secureStorage: context.read()), child: child),
       routes: [
         GoRoute(path: Routes.enterPage, builder: (context, state) => EnterOtpPage()),
         GoRoute(path: Routes.forgotPassword, builder: (context, state) => ForgotPasswordPage()),

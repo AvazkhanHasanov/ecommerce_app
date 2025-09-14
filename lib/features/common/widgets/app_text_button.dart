@@ -6,6 +6,7 @@ import '../../../core/utils/styles.dart';
 
 class AppTextButton extends StatelessWidget {
   const AppTextButton({
+    this.isLoading = false,
     super.key,
     this.backgroundColor = AppColors.primary200,
     required this.text,
@@ -14,6 +15,7 @@ class AppTextButton extends StatelessWidget {
     this.borderColor = AppColors.primary900,
   });
 
+  final bool isLoading;
   final Color backgroundColor;
   final String text;
   final Color textColor, borderColor;
@@ -33,7 +35,11 @@ class AppTextButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.r),
           ),
         ),
-        child: Text(text, style: AppStyle.b1Medium.copyWith(color: textColor)),
+        child: isLoading
+            ? Center(
+                child: CircularProgressIndicator(color: AppColors.primary500),
+              )
+            : Text(text, style: AppStyle.b1Medium.copyWith(color: textColor)),
       ),
     );
   }

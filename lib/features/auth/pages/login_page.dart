@@ -1,5 +1,7 @@
 import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/core/utils/validators.dart';
+import 'package:ecommerce_app/data/models/auth_model/login_model.dart';
+import 'package:ecommerce_app/features/auth/managers/login_view_model.dart';
 import 'package:ecommerce_app/features/auth/widgets/auth_text_form_field.dart';
 import 'package:ecommerce_app/features/auth/widgets/auth_top_text.dart';
 import 'package:ecommerce_app/features/auth/widgets/auth_up_divider.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/icons.dart';
@@ -59,87 +62,107 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.only(left: 24.w, right: 24.w,top: 12.h),
-          child: Column(
-            spacing: 10.h,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              AuthTopText(
-                text: 'Login to your account',
-                subtext: 'It’s great to see you again.',
-              ),
-              SizedBox(height: 14.h),
-              Form(
-                key: _formKey,
-                autovalidateMode: AutovalidateMode.always,
-                child: Column(
-                  spacing: 14.h,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      body: ChangeNotifierProvider(
+        create: (context) => LoginViewModel(authRepo: context.read()),
+        builder: (context, child) => SafeArea(
+          child: Padding(
+            padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 12.h),
+            child: Column(
+              spacing: 10.h,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                AuthTopText(
+                  text: 'Login to your account',
+                  subtext: 'It’s great to see you again.',
+                ),
+                SizedBox(height: 14.h),
+                Form(
+                  key: _formKey,
+                  autovalidateMode: AutovalidateMode.always,
+                  child: Column(
+                    spacing: 14.h,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AuthTextFormField(
+                        hasError: hasErrorEmail,
+                        hintText: 'Enter your email address',
+                        label: 'Email',
+                        controller: emailController,
+                        validator: (value) => Validators.email(value),
+                      ),
+                      AuthTextFormField(
+                        isPassword: true,
+                        hintText: 'Enter your password',
+                        label: 'Password',
+                        controller: passwordController,
+                        validator: (value) => Validators.password(value),
+                      ),
+                    ],
+                  ),
+                ),
+                LoginRichText(),
+                AppTextButton(
+                  text: 'Login',
+                  onPressed: isActive
+                      ? () async {
+                          if (_formKey.currentState!.validate()) {
+                            final viewModel = context.read<LoginViewModel>();
+                            LoginModel loginData = LoginModel(
+                              login: emailController.text,
+                              password: passwordController.text,
+                            );
+
+                            final result = await viewModel.login(loginData: loginData);
+                            if (result) {
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Muvaffaqiyatli')));
+                              // context.go(context.home);
+                            }
+                          }
+                        }
+                      : null,
+                  isLoading: context.read<LoginViewModel>().isLoginLoading,
+                  borderColor: AppColors.primary200,
+                  textColor: AppColors.primary0,
+                  backgroundColor: isActive ? AppColors.primary900 : AppColors.primary200,
+                ),
+                AuthUpDivider(),
+                AppTextButtonWithRow(
+                  backgroundColor: AppColors.primary0,
+                  borderColor: AppColors.primary200,
                   children: [
-                    AuthTextFormField(
-                      hasError: hasErrorEmail,
-                      hintText: 'Enter your email address',
-                      label: 'Email',
-                      controller: emailController,
-                      validator: (value) => Validators.email(value),
-                    ),
-                    AuthTextFormField(
-                      isPassword: true,
-                      hintText: 'Enter your password',
-                      label: 'Password',
-                      controller: passwordController,
-                      validator: (value) => Validators.password(value),
+                    SvgPicture.asset(AppIcons.google),
+                    Text(
+                      'Login with Google',
+                      style: AppStyle.b1Medium.copyWith(
+                        color: AppColors.primary900,
+                      ),
                     ),
                   ],
+                  onPressed: () {},
                 ),
-              ),
-              LoginRichText(),
-              AppTextButton(
-                text: 'Login',
-                onPressed: isActive ? () {} : null,
-                borderColor: AppColors.primary200,
-                textColor: AppColors.primary0,
-                backgroundColor: isActive ? AppColors.primary900 : AppColors.primary200,
-              ),
-              AuthUpDivider(),
-              AppTextButtonWithRow(
-                backgroundColor: AppColors.primary0,
-                borderColor: AppColors.primary200,
-                children: [
-                  SvgPicture.asset(AppIcons.google),
-                  Text(
-                    'Login with Google',
-                    style: AppStyle.b1Medium.copyWith(
-                      color: AppColors.primary900,
+                AppTextButtonWithRow(
+                  backgroundColor: AppColors.blue,
+                  borderColor: AppColors.primary200,
+                  children: [
+                    SvgPicture.asset(AppIcons.facebook),
+                    Text(
+                      'Login with Facebook',
+                      style: AppStyle.b1Medium.copyWith(
+                        color: AppColors.primary0,
+                      ),
                     ),
-                  ),
-                ],
-                onPressed: () {},
-              ),
-              AppTextButtonWithRow(
-                backgroundColor: AppColors.blue,
-                borderColor: AppColors.primary200,
-                children: [
-                  SvgPicture.asset(AppIcons.facebook),
-                  Text(
-                    'Login with Facebook',
-                    style: AppStyle.b1Medium.copyWith(
-                      color: AppColors.primary0,
-                    ),
-                  ),
-                ],
-                onPressed: () {},
-              ),
-              Spacer(),
-              OnceRichText(
-                text: 'Don\'t have an account? ',
-                subtext: 'Join',
-                onTap: () => context.go(Routes.signUpPage),
-              ),
-              SizedBox(height: 20),
-            ],
+                  ],
+                  onPressed: () {},
+                ),
+                Spacer(),
+                OnceRichText(
+                  text: 'Don\'t have an account? ',
+                  subtext: 'Join',
+                  onTap: () => context.go(Routes.signUpPage),
+                ),
+                SizedBox(height: 20),
+              ],
+            ),
           ),
         ),
       ),
