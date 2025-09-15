@@ -21,7 +21,7 @@ class AppStyle {
     fontWeight: FontWeight.w600,
     color: AppColors.primary900,
   );
-  static final h4 = TextStyle(
+  static final h4SemiBold = TextStyle(
     fontSize: 20.sp,
     fontFamily: 'General',
     fontWeight: FontWeight.w600,

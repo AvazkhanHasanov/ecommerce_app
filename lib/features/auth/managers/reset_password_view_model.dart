@@ -65,16 +65,24 @@ class ResetPasswordViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> resent({required ResetModel resetData}) async {
+  Future<bool> resent({required ResetModel resetData}) async {
     isResentLoading = true;
     notifyListeners();
     var result = await _authRepo.resetPassword(resetData: resetData);
-    result.fold((error) => errorReset = error.toString(), (value) async {
-      await _secureStorage.write(key: 'login', value: resetData.email);
-      await _secureStorage.write(key: 'password', value: resetData.password);
-      return Result.ok(value);
-    });
-    isResentLoading = false;
-    notifyListeners();
+    return result.fold(
+      (error) {
+        errorReset = error.toString();
+        isResentLoading = false;
+        notifyListeners();
+        return false;
+      },
+      (value) async {
+        await _secureStorage.write(key: 'login', value: resetData.email);
+        await _secureStorage.write(key: 'password', value: resetData.password);
+        isResentLoading = false;
+        notifyListeners();
+        return true;
+      },
+    );
   }
 }

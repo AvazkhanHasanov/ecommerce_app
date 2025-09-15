@@ -6,4 +6,5 @@ class Routes{
   static final enterPage='/enterPage';
   static final forgotPassword='/forgotPassword';
   static final resetPassword='/resetPassword';
+  static final homePage='/homePage';
 }

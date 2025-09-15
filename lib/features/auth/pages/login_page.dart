@@ -105,6 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                   text: 'Login',
                   onPressed: isActive
                       ? () async {
+                          FocusScope.of(context).unfocus();
                           if (_formKey.currentState!.validate()) {
                             final viewModel = context.read<LoginViewModel>();
                             LoginModel loginData = LoginModel(

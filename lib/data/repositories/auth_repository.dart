@@ -56,6 +56,6 @@ class AuthRepository {
 
   Future<Result<String>> resetPassword({required ResetModel resetData}) async {
     final response = await _client.post('/auth/reset-password/reset', data: resetData.toJson());
-    return response.fold((error) => Result.error(error), (value) => Result.ok(value));
+    return response.fold((error) => Result.error(error), (value) => Result.ok("Parol muvaffaqiyatli o‘zgartirildi"));
   }
 }

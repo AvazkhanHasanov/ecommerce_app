@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/data/models/auth_model/reset_password_model.dart';
+import 'package:ecommerce_app/features/auth/pages/reset_password/auth_show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -63,7 +64,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
             children: [
               ResetTopText(
                 text: 'Reset Password',
-                subtext: 'Set the new password for your account so you can login and access all the features.',
+                subtext:
+                    'Set the new password for your account so you can login and access all the features.',
               ),
               Form(
                 key: _formKey,
@@ -80,7 +82,8 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     ),
                     AuthTextFormField(
                       isPassword: true,
-                      validator: (value) => Validators.confirmPassword(value, passwordController),
+                      validator: (value) =>
+                          Validators.confirmPassword(value, passwordController),
                       hintText: 'Confirm your new password',
                       label: 'Confirm Password',
                       controller: confirmController,
@@ -95,15 +98,28 @@ class _ResetPasswordPageState extends State<ResetPasswordPage> {
                     ? () async {
                         final email = vm.email!;
                         final code = vm.code!;
-                        final model = ResetModel(email: email, code: code, password: passwordController.text);
-                        await vm.resent(resetData: model);
+                        final model = ResetModel(
+                          email: email,
+                          code: code,
+                          password: passwordController.text,
+                        );
+                        final result = await vm.resent(resetData: model);
+                        if (result) {
+                          await showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AuthShowDialog();
+                            },
+                          );
+                        }
                       }
                     : null,
                 text: 'Continue',
-
                 isLoading: vm.isSentToEmailLoading,
                 textColor: AppColors.primary0,
-                backgroundColor: isActive ? AppColors.primary900 : AppColors.primary200,
+                backgroundColor: isActive
+                    ? AppColors.primary900
+                    : AppColors.primary200,
               ),
               SizedBox(height: 15.h),
             ],

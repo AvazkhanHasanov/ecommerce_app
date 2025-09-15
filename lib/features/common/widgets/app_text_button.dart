@@ -13,6 +13,7 @@ class AppTextButton extends StatelessWidget {
     this.textColor = AppColors.primary900,
     required this.onPressed,
     this.borderColor = AppColors.primary900,
+    this.width = 341,
   });
 
   final bool isLoading;
@@ -20,11 +21,12 @@ class AppTextButton extends StatelessWidget {
   final String text;
   final Color textColor, borderColor;
   final void Function()? onPressed;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 341.w,
+      width: width.w,
       height: 54,
       child: TextButton(
         onPressed: onPressed,
@@ -37,8 +39,8 @@ class AppTextButton extends StatelessWidget {
         ),
         child: isLoading
             ? Center(
-                child: CircularProgressIndicator(color: AppColors.primary500),
-              )
+          child: CircularProgressIndicator(color: AppColors.primary500),
+        )
             : Text(text, style: AppStyle.b1Medium.copyWith(color: textColor)),
       ),
     );
