@@ -62,4 +62,5 @@ class AppIcons {
   static const elementPng = 'assets/Element.png';
   static const element2Png = 'assets/Element2.png';
   static const broPng = 'assets/bro.png';
+  static const imagePng = 'assets/image.png';
 }
