@@ -1,8 +1,8 @@
 import 'package:ecommerce_app/core/routing/router.dart';
 import 'package:ecommerce_app/core/utils/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:provider/provider.dart';
 
 import 'core/dependencies.dart';
 
@@ -15,9 +15,9 @@ class EcommerceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiRepositoryProvider(
       providers: dependencies,
-      builder: (context, child) => ScreenUtilInit(
+      child: ScreenUtilInit(
         designSize: Size(390, 844),
         builder: (context, child) => MaterialApp.router(
           debugShowCheckedModeBanner: false,

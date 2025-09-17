@@ -31,6 +31,8 @@ class AppIcons {
 
   static const headPhones = 'assets/icons/Headphones.svg';
   static const heart = 'assets/icons/Heart.svg';
+  static const heart2 = 'assets/icons/heart2.svg';
+  static const heartF = 'assets/icons/Heart-filled.svg';
   static const heartDuotone = 'assets/icons/Heart-duotone.svg';
   static const home = 'assets/icons/Home.svg';
   static const image = 'assets/icons/Image.svg';
