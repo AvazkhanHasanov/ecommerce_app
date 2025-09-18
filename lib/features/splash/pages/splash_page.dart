@@ -3,6 +3,7 @@ import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
@@ -14,17 +15,24 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  Future<bool> isRegistered() async {
+    final storage = FlutterSecureStorage();
+    final token = await storage.read(key: 'token');
+    return token != null && token.isNotEmpty;
+  }
+
   @override
   void initState() {
     super.initState();
-    _navigate();
-  }
 
-  Future<void> _navigate() async {
-    await Future.delayed(Duration(seconds: 3));
-    if (mounted) {
-      context.go(Routes.onboardingPage);
-    }
+    isRegistered().then((value) async {
+      await Future.delayed(Duration(seconds: 4));
+      if (value) {
+        context.go(Routes.homePage);
+      } else {
+        context.go(Routes.onboardingPage);
+      }
+    });
   }
 
   @override

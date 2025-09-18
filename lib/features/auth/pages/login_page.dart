@@ -115,8 +115,13 @@ class _LoginPageState extends State<LoginPage> {
 
                             final result = await viewModel.login(loginData: loginData);
                             if (result) {
+                              context.go(Routes.homePage);
                               ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Muvaffaqiyatli')));
                               // context.go(context.home);
+                            } else {
+                              ScaffoldMessenger.of(
+                                context,
+                              ).showSnackBar(SnackBar(content: Text('Login yoki parol noto`g`ri')));
                             }
                           }
                         }

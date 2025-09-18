@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/data/models/auth_model/product_model.dart';
+import 'package:ecommerce_app/data/models/product_model.dart';
 import 'package:ecommerce_app/data/models/cateogry_model.dart';
 import 'package:equatable/equatable.dart';
 

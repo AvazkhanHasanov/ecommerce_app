@@ -1,23 +1,35 @@
 import 'package:ecommerce_app/core/routing/routes.dart';
+import 'package:ecommerce_app/features/account/pages/account_page.dart';
 import 'package:ecommerce_app/features/auth/managers/reset_password_view_model.dart';
 import 'package:ecommerce_app/features/auth/pages/login_page.dart';
 import 'package:ecommerce_app/features/auth/pages/reset_password/enter_otp_page.dart';
 import 'package:ecommerce_app/features/auth/pages/reset_password/forgot_password_page.dart';
 import 'package:ecommerce_app/features/auth/pages/reset_password/reset_password_page.dart';
 import 'package:ecommerce_app/features/auth/pages/sign_up_page.dart';
+import 'package:ecommerce_app/features/cart/pages/cart_page.dart';
 import 'package:ecommerce_app/features/home/pages/home_page.dart';
+import 'package:ecommerce_app/features/home/pages/notification_page.dart';
 import 'package:ecommerce_app/features/onboarding/pages/onboarding_page.dart';
+import 'package:ecommerce_app/features/saved/pages/saved_page.dart';
+import 'package:ecommerce_app/features/search/pages/search_page.dart';
 import 'package:ecommerce_app/features/splash/pages/splash_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 final router = GoRouter(
-  initialLocation: Routes.homePage,
+  initialLocation: Routes.splash,
   routes: [
+    GoRoute(path: Routes.account, builder: (context, state) => AccountPage()),
+    GoRoute(path: Routes.cart, builder: (context, state) => CartPage()),
+
     GoRoute(path: Routes.onboardingPage, builder: (context, state) => OnboardingPage()),
+    GoRoute(path: Routes.notification, builder: (context, state) => NotificationPage()),
+
     GoRoute(path: Routes.login, builder: (context, state) => LoginPage()),
     GoRoute(path: Routes.splash, builder: (context, state) => SplashPage()),
     GoRoute(path: Routes.signUpPage, builder: (context, state) => SignUpPage()),
+    GoRoute(path: Routes.search, builder: (context, state) => SearchPage()),
+    GoRoute(path: Routes.saved, builder: (context, state) => SavedPage()),
     GoRoute(path: Routes.homePage, builder: (context, state) => HomePage()),
     ShellRoute(
       builder: (context, state, child) => ChangeNotifierProvider(

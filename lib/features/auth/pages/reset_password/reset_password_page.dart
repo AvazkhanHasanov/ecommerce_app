@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/data/models/auth_model/reset_password_model.dart';
-import 'package:ecommerce_app/features/auth/pages/reset_password/auth_show_dialog.dart';
+import 'package:ecommerce_app/features/auth/widgets/auth_show_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';

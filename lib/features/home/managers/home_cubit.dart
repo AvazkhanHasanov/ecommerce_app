@@ -19,12 +19,8 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state.copyWith(status: Status.loading));
     final result = await _categoryRepo.getAll();
     result.fold(
-      (error) {
-        emit(state.copyWith(status: Status.error, errorMessage: error.toString()));
-      },
-      (value) {
-        emit(state.copyWith(status: Status.success, category: value));
-      },
+      (error) => emit(state.copyWith(status: Status.error, errorMessage: error.toString())),
+      (value) => emit(state.copyWith(status: Status.success, category: value)),
     );
   }
 

@@ -51,11 +51,21 @@ class AuthRepository {
 
   Future<Result<bool>> verifyCode({required EnterModel enterData}) async {
     final response = await _client.post('/auth/reset-password/verify', data: enterData.toJson());
-    return response.fold((error) => Result.error(error), (value) =>Result.ok(value as bool));
+    return response.fold((error) => Result.error(error), (value) => Result.ok(value as bool));
   }
 
   Future<Result<String>> resetPassword({required ResetModel resetData}) async {
     final response = await _client.post('/auth/reset-password/reset', data: resetData.toJson());
     return response.fold((error) => Result.error(error), (value) => Result.ok("Parol muvaffaqiyatli o‘zgartirildi"));
+  }
+
+  Future<Result<String>> save({required int id}) async {
+    final response = await _client.post('/auth/save/$id', data: {});
+    return response.fold((error) => Result.error(error), (value) => Result.ok(value));
+  }
+
+  Future<Result<String>> unsave({required int id}) async {
+    final response = await _client.post('/auth/unsave/$id', data: {});
+    return response.fold((error) => Result.error(error), (value) => Result.ok(value));
   }
 }

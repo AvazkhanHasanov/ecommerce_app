@@ -1,16 +1,18 @@
+import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/features/common/widgets/app_bottom_navigation_bar.dart';
 import 'package:ecommerce_app/features/common/widgets/app_icon_button.dart';
 import 'package:ecommerce_app/features/home/managers/home_cubit.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
-import 'package:ecommerce_app/features/home/pages/category_container.dart';
-import 'package:ecommerce_app/features/home/pages/product.dart';
 import 'package:ecommerce_app/features/home/widgets/app_text_field.dart';
+import 'package:ecommerce_app/features/home/widgets/category_container.dart';
+import 'package:ecommerce_app/features/home/widgets/product.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -38,10 +40,19 @@ class _HomePageState extends State<HomePage> {
                   floating: true,
                   pinned: true,
                   title: Text('Discover', style: AppStyle.h2),
-                  actions: [SvgPicture.asset(AppIcons.bell)],
+                  actions: [
+                    AppIconButton(
+                      icon: AppIcons.bell,
+                      size: Size(24.r, 24.r),
+                      onPressed: () => context.push(Routes.notification),
+                    ),
+                  ],
                 ),
                 SliverPersistentHeader(
-                  delegate: _ItemsDelegate(state: state, controller: controller),
+                  delegate: _ItemsDelegate(
+                    state: state,
+                    controller: controller,
+                  ),
                   pinned: false,
                 ),
                 SliverToBoxAdapter(
@@ -60,11 +71,13 @@ class _HomePageState extends State<HomePage> {
                               backgroundColor: selectedIndex == index ? AppColors.primary900 : AppColors.primary0,
                               border: selectedIndex == index ? AppColors.primary900 : AppColors.primary100,
                               onPressed: () {
-                                if (title!='All') {
-                                  final categoryId=state.category[index-1].id;
-                                  context.read<HomeCubit>().fetchProducts(queryParams: {'CategoryId':categoryId});
+                                if (title != 'All') {
+                                  final categoryId = state.category[index - 1].id;
+                                  context.read<HomeCubit>().fetchProducts(
+                                    queryParams: {'CategoryId': categoryId},
+                                  );
                                   setState(() {});
-                                }  else{
+                                } else {
                                   context.read<HomeCubit>().fetchProducts();
                                 }
                                 setState(() {});
@@ -100,6 +113,7 @@ class _HomePageState extends State<HomePage> {
           );
         },
       ),
+      bottomNavigationBar: AppBottomNavigationBar(),
     );
   }
 }
