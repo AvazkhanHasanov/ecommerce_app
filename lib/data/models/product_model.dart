@@ -41,4 +41,28 @@ class ProductModel {
       discount: json['discount'],
     );
   }
+
+  ProductModel copyWith({
+    int? id,
+    int? categoryId,
+    String? image,
+    String? title,
+    int? price,
+    bool? isLiked,
+    num? discount,
+    List<ProductImagesModel>? productImages,
+    List<ProductSizesModel>? productSizes,
+  }) {
+    return ProductModel(
+      id: id ?? this.id,
+      categoryId: categoryId ?? this.categoryId,
+      productSizes: productSizes ?? this.productSizes,
+      productImages: productImages ?? this.productImages,
+      image: image ?? this.image,
+      title: title ?? this.title,
+      price: price ?? this.price,
+      isLiked: isLiked ?? this.isLiked,
+      discount: discount ?? this.discount,
+    );
+  }
 }

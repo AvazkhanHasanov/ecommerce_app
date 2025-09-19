@@ -8,7 +8,7 @@ import 'package:ecommerce_app/features/auth/pages/reset_password/reset_password_
 import 'package:ecommerce_app/features/auth/pages/sign_up_page.dart';
 import 'package:ecommerce_app/features/cart/pages/cart_page.dart';
 import 'package:ecommerce_app/features/home/pages/home_page.dart';
-import 'package:ecommerce_app/features/home/pages/notification_page.dart';
+import 'package:ecommerce_app/features/notification/pages/notification_page.dart';
 import 'package:ecommerce_app/features/onboarding/pages/onboarding_page.dart';
 import 'package:ecommerce_app/features/saved/pages/saved_page.dart';
 import 'package:ecommerce_app/features/search/pages/search_page.dart';

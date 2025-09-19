@@ -10,12 +10,12 @@ class HeartIcon extends StatelessWidget {
     super.key,
     required this.foregroundColor,
     required this.backgroundColor,
-    required this.onPressed,
+     this.onPressed,
     required this.icon,
   });
 
   final Color foregroundColor, backgroundColor;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String icon;
 
   @override

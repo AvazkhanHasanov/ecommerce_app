@@ -19,6 +19,6 @@ final dependencies = <SingleChildWidget>[
     create: (context) => AuthRepository(secureStorage: context.read(), client: context.read()),
   ),
   BlocProvider(
-    create: (context) => HomeCubit(categoryRepo: context.read(), productRepo: context.read()),
+    create: (context) => HomeCubit(categoryRepo: context.read(), productRepo: context.read(), authRepo: context.read()),
   ),
 ];

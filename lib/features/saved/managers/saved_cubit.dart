@@ -5,7 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class SavedCubit extends Cubit<SavedState> {
   final ProductRepository _productRepo;
 
-  SavedCubit({required ProductRepository productRepo}) : _productRepo = productRepo, super(SavedState.initial());
+  SavedCubit({required ProductRepository productRepo}) : _productRepo = productRepo, super(SavedState.initial()) {
+    fetchSavedProducts();
+  }
 
   Future<void> fetchSavedProducts() async {
     emit(state.copyWith(status: Status.loading));

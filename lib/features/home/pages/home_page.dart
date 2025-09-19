@@ -100,6 +100,8 @@ class _HomePageState extends State<HomePage> {
                     childCount: state.product.length,
                     (context, index) => Center(
                       child: Product(
+                        likePressed: () => context.read<HomeCubit>().toggleLike(state.product[index].id),
+                        isLiked: state.product[index].isLiked,
                         discount: state.product[index].discount,
                         image: state.product[index].image,
                         text: state.product[index].title,
