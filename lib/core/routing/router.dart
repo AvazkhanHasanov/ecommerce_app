@@ -16,9 +16,12 @@ import 'package:ecommerce_app/features/splash/pages/splash_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../features/product_detail/pages/product_detail_pages.dart';
+
 final router = GoRouter(
   initialLocation: Routes.splash,
   routes: [
+    GoRoute(path: Routes.productDetail, builder: (context, state) => ProductDetailPages()),
     GoRoute(path: Routes.account, builder: (context, state) => AccountPage()),
     GoRoute(path: Routes.cart, builder: (context, state) => CartPage()),
 

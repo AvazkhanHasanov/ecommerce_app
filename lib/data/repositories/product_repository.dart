@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:ecommerce_app/core/client.dart';
 import 'package:ecommerce_app/core/utils/result.dart';
 import 'package:ecommerce_app/data/models/product/saved_products_model.dart';
 import 'package:ecommerce_app/data/models/product_model.dart';
 import 'package:ecommerce_app/data/models/product/product_detail_model.dart';
+import 'package:flutter/rendering.dart';
 
 class ProductRepository {
   final ApiClient _client;
@@ -20,7 +23,10 @@ class ProductRepository {
   Future<Result<ProductDetailModel>> getById(int id) async {
     final response = await _client.get('/products/detail/$id');
     return response.fold(
-      (error) => Result.error(error),
+      (error) {
+        debugPrint(error.toString());
+        return Result.error(error);
+      },
       (value) => Result.ok(ProductDetailModel.fromJson(value)),
     );
   }

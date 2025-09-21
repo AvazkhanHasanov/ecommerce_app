@@ -9,12 +9,10 @@ class ProductModel {
   final int price;
   final bool isLiked;
   final num discount;
-  final List<ProductImagesModel> productImages;
-  final List<ProductSizesModel> productSizes;
+
 
   ProductModel({
-    required this.productSizes,
-    required this.productImages,
+
     required this.id,
     required this.categoryId,
     required this.image,
@@ -26,12 +24,7 @@ class ProductModel {
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      productSizes: json['productSizes'] != null
-          ? (json['productSizes'] as List).map((x) => ProductSizesModel.fromJson(x)).toList()
-          : [],
-      productImages: json['productImages'] != null
-          ? (json['productImages'] as List).map((x) => ProductImagesModel.fromJson(x)).toList()
-          : [],
+
       id: json['id'],
       categoryId: json['categoryId'],
       image: json['image'],
@@ -56,8 +49,6 @@ class ProductModel {
     return ProductModel(
       id: id ?? this.id,
       categoryId: categoryId ?? this.categoryId,
-      productSizes: productSizes ?? this.productSizes,
-      productImages: productImages ?? this.productImages,
       image: image ?? this.image,
       title: title ?? this.title,
       price: price ?? this.price,

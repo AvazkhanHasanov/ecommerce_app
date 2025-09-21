@@ -12,4 +12,5 @@ class Routes {
   static final forgotPassword = '/forgotPassword';
   static final resetPassword = '/resetPassword';
   static final homePage = '/homePage';
+  static final productDetail = '/productDetail';
 }

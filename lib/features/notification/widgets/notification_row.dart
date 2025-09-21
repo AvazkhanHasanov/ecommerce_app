@@ -6,7 +6,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class NotificationRow extends StatelessWidget {
   const NotificationRow({
-    super.key, required this.title, required this.content, required this.icon,
+    super.key,
+    required this.title,
+    required this.content,
+    required this.icon,
   });
 
   final String title;
@@ -18,7 +21,11 @@ class NotificationRow extends StatelessWidget {
     return Row(
       spacing: 13.w,
       children: [
-        SvgPicture.asset(icon),
+        SvgPicture.network(
+          icon,
+          width: 24.w,
+          height: 24.h,
+        ),
         Column(
           spacing: 2.h,
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/routing/routes.dart';
+import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/features/common/widgets/app_icon_button.dart';
 import 'package:flutter/material.dart';
@@ -7,36 +8,49 @@ import 'package:go_router/go_router.dart';
 
 class StoreAppBar extends StatelessWidget implements PreferredSizeWidget {
   const StoreAppBar({
+    required this.title,
     super.key,
     this.needAction = true,
     this.centerTitle = true,
+    this.height = 75,
   });
 
   final bool needAction;
   final bool centerTitle;
+  final String title;
+  final double height;
 
   @override
-  Size get preferredSize => Size(double.infinity, 120.h);
+  Size get preferredSize => Size(double.infinity, height.h);
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      leading: AppIconButton(
-        icon: AppIcons.backArrow,
-        onPressed: () => context.pop(),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 24.w),
+      child: Column(
+        children: [
+          AppBar(
+            leadingWidth: 24,
+            leading: AppIconButton(
+              icon: AppIcons.backArrow,
+              onPressed: () => context.pop(),
+            ),
+            title: Text(title),
+            centerTitle: centerTitle,
+            actionsPadding: EdgeInsets.only(right: 24.w),
+            actions: [
+              needAction
+                  ? AppIconButton(
+                      icon: AppIcons.bell,
+                      size: Size(24.r, 24.r),
+                      onPressed: () => context.push(Routes.notification),
+                    )
+                  : SizedBox.shrink(),
+            ],
+          ),
+          Divider(color: AppColors.primary100),
+        ],
       ),
-      title: Text('Notification'),
-      centerTitle: centerTitle,
-      actionsPadding: EdgeInsets.only(right: 24.w),
-      actions: [
-        needAction
-            ? AppIconButton(
-                icon: AppIcons.bell,
-                size: Size(24.r, 24.r),
-                onPressed: () => context.push(Routes.notification),
-              )
-            : SizedBox.shrink(),
-      ],
     );
   }
 }

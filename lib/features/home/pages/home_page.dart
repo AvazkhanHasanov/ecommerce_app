@@ -4,7 +4,7 @@ import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/features/common/widgets/app_bottom_navigation_bar.dart';
 import 'package:ecommerce_app/features/common/widgets/app_icon_button.dart';
-import 'package:ecommerce_app/features/home/managers/home_cubit.dart';
+import 'package:ecommerce_app/features/home/managers/home_bloc.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:ecommerce_app/features/home/widgets/app_text_field.dart';
 import 'package:ecommerce_app/features/home/widgets/category_container.dart';
@@ -28,8 +28,11 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<HomeCubit, HomeState>(
+      body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
+          if (state.status == Status.loading || state.productStatus == Status.loading) {
+            return const Center(child: CircularProgressIndicator());
+          }
           final category = ['All', ...state.category.map((x) => x.title)];
           return Padding(
             padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -73,15 +76,14 @@ class _HomePageState extends State<HomePage> {
                               onPressed: () {
                                 if (title != 'All') {
                                   final categoryId = state.category[index - 1].id;
-                                  context.read<HomeCubit>().fetchProducts(
-                                    queryParams: {'CategoryId': categoryId},
+                                  context.read<HomeBloc>().add(
+                                    FetchProductsEvent(queryParams: {'CategoryId': categoryId}),
                                   );
                                   setState(() {});
                                 } else {
-                                  context.read<HomeCubit>().fetchProducts();
+                                  context.read<HomeBloc>().add(FetchProductsEvent());
                                 }
-                                setState(() {});
-                                selectedIndex = index;
+                                setState(() => selectedIndex = index);
                               },
                             ),
                           );
@@ -100,7 +102,8 @@ class _HomePageState extends State<HomePage> {
                     childCount: state.product.length,
                     (context, index) => Center(
                       child: Product(
-                        likePressed: () => context.read<HomeCubit>().toggleLike(state.product[index].id),
+                        likePressed: () =>
+                            context.read<HomeBloc>().add(LocalToggleLikeEvent(productId: state.product[index].id)),
                         isLiked: state.product[index].isLiked,
                         discount: state.product[index].discount,
                         image: state.product[index].image,

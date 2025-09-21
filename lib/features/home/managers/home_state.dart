@@ -23,7 +23,7 @@ class HomeState extends Equatable {
   });
 
   factory HomeState.initial() => HomeState(
-    status: Status.idle,
+    status: Status.success,
     productStatus: Status.idle,
     errorProduct: null,
     errorMessage: null,

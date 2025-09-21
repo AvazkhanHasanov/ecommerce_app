@@ -3,7 +3,7 @@ class NotificationModel {
   final String title;
   final String icon;
   final String content;
-  final String date;// buni dataTimega o`tkaz
+  final DateTime date;
 
   NotificationModel({
     required this.id,
@@ -19,7 +19,7 @@ class NotificationModel {
       title: json['title'],
       icon: json['icon'],
       content: json['content'],
-      date: json['date'],
+      date: DateTime.parse(json['date']),
     );
   }
 }

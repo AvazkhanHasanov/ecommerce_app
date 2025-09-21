@@ -9,9 +9,9 @@ abstract class NotificationState with _$NotificationState {
   const factory NotificationState({
     required Status status,
     required String? errorNotification,
-    required List<NotificationModel> notification,
+    required Map<String,List<NotificationModel>> grouped,
   }) = _NotificationState;
 
   factory NotificationState.initial() =>
-      NotificationState(status: Status.idle, errorNotification: null, notification: []);
+      NotificationState(status: Status.idle, errorNotification: null, grouped: {});
 }
