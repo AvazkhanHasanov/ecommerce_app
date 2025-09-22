@@ -8,17 +8,19 @@ class AppTextButtonWithRow extends StatelessWidget {
     required this.children,
     required this.onPressed,
     this.borderColor = AppColors.primary900,
+    this.width = 341,
     super.key,
   });
 
   final Color backgroundColor, borderColor;
   final List<Widget> children;
   final VoidCallback onPressed;
+  final double width;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 341.w,
+      width: width.w,
       height: 54,
       child: TextButton(
         onPressed: onPressed,

@@ -4,35 +4,35 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/styles.dart';
 
-class AppTextButton extends StatelessWidget {
-  const AppTextButton({
-    this.isLoading = false,
-    super.key,
+class AppTextButtonWithPadding extends StatelessWidget {
+  const AppTextButtonWithPadding({
     this.backgroundColor = AppColors.primary200,
-    required this.text,
+    this.borderColor = AppColors.primary900,
     this.textColor = AppColors.primary900,
     required this.onPressed,
-    this.borderColor = AppColors.primary900,
-    this.width = 341,
+    this.isLoading = false,
     this.borderWidth = 1,
+    required this.text,
+    this.height = 47,
+    super.key,
   });
 
-  final bool isLoading;
-  final Color backgroundColor;
-  final String text;
   final Color textColor, borderColor;
   final void Function()? onPressed;
-  final double width;
+  final Color backgroundColor;
   final double borderWidth;
+  final bool isLoading;
+  final double height;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width.w,
-      height: 54,
+      height: height,
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
+          
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: borderColor, width: borderWidth),

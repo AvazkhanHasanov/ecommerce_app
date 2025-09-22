@@ -102,6 +102,7 @@ class _HomePageState extends State<HomePage> {
                     childCount: state.product.length,
                     (context, index) => Center(
                       child: Product(
+                        onTap: () => context.push(Routes.getProductDetail(state.product[index].id)),
                         likePressed: () =>
                             context.read<HomeBloc>().add(LocalToggleLikeEvent(productId: state.product[index].id)),
                         isLiked: state.product[index].isLiked,

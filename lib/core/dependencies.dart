@@ -4,6 +4,7 @@ import 'package:ecommerce_app/data/repositories/auth_repository.dart';
 import 'package:ecommerce_app/data/repositories/category_repository.dart';
 import 'package:ecommerce_app/data/repositories/notification_repository.dart';
 import 'package:ecommerce_app/data/repositories/product_repository.dart';
+import 'package:ecommerce_app/data/repositories/reviews_repository.dart';
 import 'package:ecommerce_app/features/home/managers/home_bloc.dart';
 import 'package:ecommerce_app/features/notification/managers/notification_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,14 +19,17 @@ final dependencies = <SingleChildWidget>[
   RepositoryProvider(create: (context) => CategoryRepository(client: context.read())),
   RepositoryProvider(create: (context) => ProductRepository(client: context.read())),
   RepositoryProvider(create: (context) => NotificationRepository(client: context.read())),
+  RepositoryProvider(create: (context) => ReviewsRepository(client: context.read())),
   Provider(
     create: (context) => AuthRepository(secureStorage: context.read(), client: context.read()),
   ),
-  BlocProvider(create: (context) {
-    final cubit= NotificationCubit(notificationRepo: context.read());
-    cubit.fetchNotification();
-    return cubit;
-  }),
+  BlocProvider(
+    create: (context) {
+      final cubit = NotificationCubit(notificationRepo: context.read());
+      cubit.fetchNotification();
+      return cubit;
+    },
+  ),
   BlocProvider(
     create: (context) => HomeBloc(categoryRepo: context.read(), productRepo: context.read(), authRepo: context.read())
       ..add(FetchProductsEvent())

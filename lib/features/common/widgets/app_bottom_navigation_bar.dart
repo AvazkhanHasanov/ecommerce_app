@@ -43,6 +43,7 @@ class _AppBottomNavigationBarState extends State<AppBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
+      backgroundColor: AppColors.primary0,
       selectedIndex: selectedIndex,
       onDestinationSelected: _tapped,
       labelPadding: EdgeInsets.zero,

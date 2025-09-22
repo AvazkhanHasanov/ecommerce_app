@@ -31,6 +31,7 @@ class HeartIcon extends StatelessWidget {
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
+            shadowColor: AppColors.primary100,
             splashFactory: NoSplash.splashFactory,
             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
             backgroundColor: backgroundColor,
