@@ -16,8 +16,7 @@ class ForNoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+    return Center(
         child: SizedBox(
           height: 160.h,
           width: 272.w,
@@ -41,7 +40,6 @@ class ForNoItem extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      );
   }
 }

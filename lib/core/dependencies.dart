@@ -7,6 +7,7 @@ import 'package:ecommerce_app/data/repositories/product_repository.dart';
 import 'package:ecommerce_app/data/repositories/reviews_repository.dart';
 import 'package:ecommerce_app/features/home/managers/home_bloc.dart';
 import 'package:ecommerce_app/features/notification/managers/notification_cubit.dart';
+import 'package:ecommerce_app/features/search/manages/search_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
@@ -35,4 +36,5 @@ final dependencies = <SingleChildWidget>[
       ..add(FetchProductsEvent())
       ..add(FetchCategoryEvent()),
   ),
+  BlocProvider(create: (context) => SearchBloc(productRepo: context.read())),
 ];

@@ -22,7 +22,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
        _authRepo = authRepo,
        super(HomeState.initial()) {
     on<FetchCategoryEvent>(_fetchCategory);
-    on<FetchProductsEvent>(fetchProducts);
+    on<FetchProductsEvent>(_fetchProducts);
     on<LocalToggleLikeEvent>(_onLocalToggleLike);
     on<CommitLikeEvent>(
       _onCommitLike,
@@ -39,10 +39,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     );
   }
 
-  Future<void> fetchProducts(
-    FetchProductsEvent event,
-    Emitter<HomeState> emit,
-  ) async {
+  Future<void> _fetchProducts(FetchProductsEvent event, Emitter<HomeState> emit) async {
     emit(state.copyWith(productStatus: Status.loading));
     final result = await _productRepo.getAll(queryParams: event.queryParams);
     result.fold(

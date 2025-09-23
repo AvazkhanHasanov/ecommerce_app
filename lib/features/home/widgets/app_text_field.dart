@@ -9,13 +9,16 @@ class AppTextField extends StatelessWidget {
   const AppTextField({
     super.key,
     required this.controller,
+    this.onChanged
   });
 
   final TextEditingController controller;
+  final void Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onChanged,
       controller: controller,
       cursorHeight: 25,
       cursorColor: AppColors.primary400,

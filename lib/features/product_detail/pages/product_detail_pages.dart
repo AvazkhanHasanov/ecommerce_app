@@ -5,12 +5,12 @@ import 'package:ecommerce_app/features/common/widgets/store_app_bar.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:ecommerce_app/features/product_detail/managers/product_detail_bloc.dart';
 import 'package:ecommerce_app/features/product_detail/managers/product_detail_state.dart';
+import 'package:ecommerce_app/features/product_detail/widgets/all_reviews.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/description_part.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/price_and_button.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/product_image_stack.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/product_size.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/rating_with_star.dart';
-import 'package:ecommerce_app/features/product_detail/widgets/star_row.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/stats_with_star.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -93,34 +93,19 @@ class ProductDetailPages extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('${state.product!.reviewsCount} Reviews', style: AppStyle.b1SemiBold),
+                        Text(
+                          '${state.product!.reviewsCount} Reviews',
+                          style: AppStyle.b1SemiBold,
+                        ),
                         Text(
                           'Most Relevant',
-                          style: AppStyle.b3Medium.copyWith(color: AppColors.primary500),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        ...List.generate(
-                          state.reviews.length,
-                          (index) => Column(
-                            spacing: 12.h,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              StarRow(rating: state.reviews[index].rating,spacing: 6,s: 16),
-                              Text(state.reviews[index].comment, style: AppStyle.b2Regular),
-                              Row(
-                                children: [Text('${state.reviews[index].userFullName} • ')],
-                              ),
-                              if (index!=state.reviews.length) const Divider()
-
-                            ],
-
+                          style: AppStyle.b3Medium.copyWith(
+                            color: AppColors.primary500,
                           ),
                         ),
                       ],
                     ),
+                    AllReviews(reviews: state.reviews,),
                   ],
                 ),
               ),

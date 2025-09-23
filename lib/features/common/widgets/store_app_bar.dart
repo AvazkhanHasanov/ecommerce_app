@@ -13,12 +13,14 @@ class StoreAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.needAction = true,
     this.centerTitle = true,
     this.height = 75,
+    this.needDivider = true,
   });
 
   final bool needAction;
   final bool centerTitle;
   final String title;
   final double height;
+  final bool needDivider;
 
   @override
   Size get preferredSize => Size(double.infinity, height.h);
@@ -48,7 +50,7 @@ class StoreAppBar extends StatelessWidget implements PreferredSizeWidget {
                   : SizedBox.shrink(),
             ],
           ),
-          Divider(color: AppColors.primary100),
+          needDivider ? Divider(color: AppColors.primary100) : SizedBox.shrink(),
         ],
       ),
     );

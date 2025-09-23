@@ -2,6 +2,8 @@ import 'package:ecommerce_app/data/repositories/product_repository.dart';
 import 'package:ecommerce_app/features/saved/managers/saved_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../home/managers/home_state.dart';
+
 class SavedCubit extends Cubit<SavedState> {
   final ProductRepository _productRepo;
 

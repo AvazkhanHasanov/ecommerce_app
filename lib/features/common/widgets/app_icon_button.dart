@@ -12,6 +12,7 @@ class AppIconButton extends StatelessWidget {
     this.backgroundColor = AppColors.primary0,
     this.foregroundColor = AppColors.primary900,
     this.radius = 10,
+    this.borderColor = Colors.transparent,
     super.key,
   });
 
@@ -19,6 +20,7 @@ class AppIconButton extends StatelessWidget {
   final VoidCallback onPressed;
   final Color backgroundColor;
   final Color foregroundColor;
+  final Color borderColor;
   final Size size;
   final EdgeInsets padding;
 
@@ -32,7 +34,10 @@ class AppIconButton extends StatelessWidget {
         size,
       ),
       style: IconButton.styleFrom(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius.r)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(radius.r),
+          side: BorderSide(color: borderColor),
+        ),
         backgroundColor: backgroundColor,
         padding: padding,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
