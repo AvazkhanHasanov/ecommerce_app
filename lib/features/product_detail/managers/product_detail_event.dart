@@ -18,3 +18,7 @@ class GetReviews extends ProductDetailEvent {
 
   GetReviews({required this.productId});
 }
+class AddItem extends ProductDetailEvent{
+  final AddItemModel item;
+  AddItem({required this.item});
+}

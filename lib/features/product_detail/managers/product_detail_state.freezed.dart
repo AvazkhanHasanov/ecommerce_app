@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ProductDetailState {
 
- Status get productStatus; Status get reviewsStatus; Status get statsStatus; String? get errorProduct; String? get errorReviews; String? get errorStats; ProductDetailModel? get product; List<ReviewsModel> get reviews; ReviewsStatsModel? get stats;
+ Status get productStatus; Status get reviewsStatus; Status get statsStatus; Status get addItemStatus; String? get errorAddItem; String? get errorProduct; String? get errorReviews; String? get errorStats; AddItemModel? get addItem; ProductDetailModel? get product; List<ReviewsModel> get reviews; ReviewsStatsModel? get stats;
 /// Create a copy of ProductDetailState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $ProductDetailStateCopyWith<ProductDetailState> get copyWith => _$ProductDetailS
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductDetailState&&(identical(other.productStatus, productStatus) || other.productStatus == productStatus)&&(identical(other.reviewsStatus, reviewsStatus) || other.reviewsStatus == reviewsStatus)&&(identical(other.statsStatus, statsStatus) || other.statsStatus == statsStatus)&&(identical(other.errorProduct, errorProduct) || other.errorProduct == errorProduct)&&(identical(other.errorReviews, errorReviews) || other.errorReviews == errorReviews)&&(identical(other.errorStats, errorStats) || other.errorStats == errorStats)&&(identical(other.product, product) || other.product == product)&&const DeepCollectionEquality().equals(other.reviews, reviews)&&(identical(other.stats, stats) || other.stats == stats));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ProductDetailState&&(identical(other.productStatus, productStatus) || other.productStatus == productStatus)&&(identical(other.reviewsStatus, reviewsStatus) || other.reviewsStatus == reviewsStatus)&&(identical(other.statsStatus, statsStatus) || other.statsStatus == statsStatus)&&(identical(other.addItemStatus, addItemStatus) || other.addItemStatus == addItemStatus)&&(identical(other.errorAddItem, errorAddItem) || other.errorAddItem == errorAddItem)&&(identical(other.errorProduct, errorProduct) || other.errorProduct == errorProduct)&&(identical(other.errorReviews, errorReviews) || other.errorReviews == errorReviews)&&(identical(other.errorStats, errorStats) || other.errorStats == errorStats)&&(identical(other.addItem, addItem) || other.addItem == addItem)&&(identical(other.product, product) || other.product == product)&&const DeepCollectionEquality().equals(other.reviews, reviews)&&(identical(other.stats, stats) || other.stats == stats));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,productStatus,reviewsStatus,statsStatus,errorProduct,errorReviews,errorStats,product,const DeepCollectionEquality().hash(reviews),stats);
+int get hashCode => Object.hash(runtimeType,productStatus,reviewsStatus,statsStatus,addItemStatus,errorAddItem,errorProduct,errorReviews,errorStats,addItem,product,const DeepCollectionEquality().hash(reviews),stats);
 
 @override
 String toString() {
-  return 'ProductDetailState(productStatus: $productStatus, reviewsStatus: $reviewsStatus, statsStatus: $statsStatus, errorProduct: $errorProduct, errorReviews: $errorReviews, errorStats: $errorStats, product: $product, reviews: $reviews, stats: $stats)';
+  return 'ProductDetailState(productStatus: $productStatus, reviewsStatus: $reviewsStatus, statsStatus: $statsStatus, addItemStatus: $addItemStatus, errorAddItem: $errorAddItem, errorProduct: $errorProduct, errorReviews: $errorReviews, errorStats: $errorStats, addItem: $addItem, product: $product, reviews: $reviews, stats: $stats)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $ProductDetailStateCopyWith<$Res>  {
   factory $ProductDetailStateCopyWith(ProductDetailState value, $Res Function(ProductDetailState) _then) = _$ProductDetailStateCopyWithImpl;
 @useResult
 $Res call({
- Status productStatus, Status reviewsStatus, Status statsStatus, String? errorProduct, String? errorReviews, String? errorStats, ProductDetailModel? product, List<ReviewsModel> reviews, ReviewsStatsModel? stats
+ Status productStatus, Status reviewsStatus, Status statsStatus, Status addItemStatus, String? errorAddItem, String? errorProduct, String? errorReviews, String? errorStats, AddItemModel? addItem, ProductDetailModel? product, List<ReviewsModel> reviews, ReviewsStatsModel? stats
 });
 
 
@@ -62,15 +62,18 @@ class _$ProductDetailStateCopyWithImpl<$Res>
 
 /// Create a copy of ProductDetailState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? productStatus = null,Object? reviewsStatus = null,Object? statsStatus = null,Object? errorProduct = freezed,Object? errorReviews = freezed,Object? errorStats = freezed,Object? product = freezed,Object? reviews = null,Object? stats = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? productStatus = null,Object? reviewsStatus = null,Object? statsStatus = null,Object? addItemStatus = null,Object? errorAddItem = freezed,Object? errorProduct = freezed,Object? errorReviews = freezed,Object? errorStats = freezed,Object? addItem = freezed,Object? product = freezed,Object? reviews = null,Object? stats = freezed,}) {
   return _then(_self.copyWith(
 productStatus: null == productStatus ? _self.productStatus : productStatus // ignore: cast_nullable_to_non_nullable
 as Status,reviewsStatus: null == reviewsStatus ? _self.reviewsStatus : reviewsStatus // ignore: cast_nullable_to_non_nullable
 as Status,statsStatus: null == statsStatus ? _self.statsStatus : statsStatus // ignore: cast_nullable_to_non_nullable
-as Status,errorProduct: freezed == errorProduct ? _self.errorProduct : errorProduct // ignore: cast_nullable_to_non_nullable
+as Status,addItemStatus: null == addItemStatus ? _self.addItemStatus : addItemStatus // ignore: cast_nullable_to_non_nullable
+as Status,errorAddItem: freezed == errorAddItem ? _self.errorAddItem : errorAddItem // ignore: cast_nullable_to_non_nullable
+as String?,errorProduct: freezed == errorProduct ? _self.errorProduct : errorProduct // ignore: cast_nullable_to_non_nullable
 as String?,errorReviews: freezed == errorReviews ? _self.errorReviews : errorReviews // ignore: cast_nullable_to_non_nullable
 as String?,errorStats: freezed == errorStats ? _self.errorStats : errorStats // ignore: cast_nullable_to_non_nullable
-as String?,product: freezed == product ? _self.product : product // ignore: cast_nullable_to_non_nullable
+as String?,addItem: freezed == addItem ? _self.addItem : addItem // ignore: cast_nullable_to_non_nullable
+as AddItemModel?,product: freezed == product ? _self.product : product // ignore: cast_nullable_to_non_nullable
 as ProductDetailModel?,reviews: null == reviews ? _self.reviews : reviews // ignore: cast_nullable_to_non_nullable
 as List<ReviewsModel>,stats: freezed == stats ? _self.stats : stats // ignore: cast_nullable_to_non_nullable
 as ReviewsStatsModel?,
@@ -158,10 +161,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Status productStatus,  Status reviewsStatus,  Status statsStatus,  String? errorProduct,  String? errorReviews,  String? errorStats,  ProductDetailModel? product,  List<ReviewsModel> reviews,  ReviewsStatsModel? stats)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Status productStatus,  Status reviewsStatus,  Status statsStatus,  Status addItemStatus,  String? errorAddItem,  String? errorProduct,  String? errorReviews,  String? errorStats,  AddItemModel? addItem,  ProductDetailModel? product,  List<ReviewsModel> reviews,  ReviewsStatsModel? stats)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _ProductDetailState() when $default != null:
-return $default(_that.productStatus,_that.reviewsStatus,_that.statsStatus,_that.errorProduct,_that.errorReviews,_that.errorStats,_that.product,_that.reviews,_that.stats);case _:
+return $default(_that.productStatus,_that.reviewsStatus,_that.statsStatus,_that.addItemStatus,_that.errorAddItem,_that.errorProduct,_that.errorReviews,_that.errorStats,_that.addItem,_that.product,_that.reviews,_that.stats);case _:
   return orElse();
 
 }
@@ -179,10 +182,10 @@ return $default(_that.productStatus,_that.reviewsStatus,_that.statsStatus,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Status productStatus,  Status reviewsStatus,  Status statsStatus,  String? errorProduct,  String? errorReviews,  String? errorStats,  ProductDetailModel? product,  List<ReviewsModel> reviews,  ReviewsStatsModel? stats)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Status productStatus,  Status reviewsStatus,  Status statsStatus,  Status addItemStatus,  String? errorAddItem,  String? errorProduct,  String? errorReviews,  String? errorStats,  AddItemModel? addItem,  ProductDetailModel? product,  List<ReviewsModel> reviews,  ReviewsStatsModel? stats)  $default,) {final _that = this;
 switch (_that) {
 case _ProductDetailState():
-return $default(_that.productStatus,_that.reviewsStatus,_that.statsStatus,_that.errorProduct,_that.errorReviews,_that.errorStats,_that.product,_that.reviews,_that.stats);case _:
+return $default(_that.productStatus,_that.reviewsStatus,_that.statsStatus,_that.addItemStatus,_that.errorAddItem,_that.errorProduct,_that.errorReviews,_that.errorStats,_that.addItem,_that.product,_that.reviews,_that.stats);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -199,10 +202,10 @@ return $default(_that.productStatus,_that.reviewsStatus,_that.statsStatus,_that.
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Status productStatus,  Status reviewsStatus,  Status statsStatus,  String? errorProduct,  String? errorReviews,  String? errorStats,  ProductDetailModel? product,  List<ReviewsModel> reviews,  ReviewsStatsModel? stats)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Status productStatus,  Status reviewsStatus,  Status statsStatus,  Status addItemStatus,  String? errorAddItem,  String? errorProduct,  String? errorReviews,  String? errorStats,  AddItemModel? addItem,  ProductDetailModel? product,  List<ReviewsModel> reviews,  ReviewsStatsModel? stats)?  $default,) {final _that = this;
 switch (_that) {
 case _ProductDetailState() when $default != null:
-return $default(_that.productStatus,_that.reviewsStatus,_that.statsStatus,_that.errorProduct,_that.errorReviews,_that.errorStats,_that.product,_that.reviews,_that.stats);case _:
+return $default(_that.productStatus,_that.reviewsStatus,_that.statsStatus,_that.addItemStatus,_that.errorAddItem,_that.errorProduct,_that.errorReviews,_that.errorStats,_that.addItem,_that.product,_that.reviews,_that.stats);case _:
   return null;
 
 }
@@ -214,15 +217,18 @@ return $default(_that.productStatus,_that.reviewsStatus,_that.statsStatus,_that.
 
 
 class _ProductDetailState implements ProductDetailState {
-  const _ProductDetailState({required this.productStatus, required this.reviewsStatus, required this.statsStatus, required this.errorProduct, required this.errorReviews, required this.errorStats, required this.product, required final  List<ReviewsModel> reviews, required this.stats}): _reviews = reviews;
+  const _ProductDetailState({required this.productStatus, required this.reviewsStatus, required this.statsStatus, required this.addItemStatus, required this.errorAddItem, required this.errorProduct, required this.errorReviews, required this.errorStats, required this.addItem, required this.product, required final  List<ReviewsModel> reviews, required this.stats}): _reviews = reviews;
   
 
 @override final  Status productStatus;
 @override final  Status reviewsStatus;
 @override final  Status statsStatus;
+@override final  Status addItemStatus;
+@override final  String? errorAddItem;
 @override final  String? errorProduct;
 @override final  String? errorReviews;
 @override final  String? errorStats;
+@override final  AddItemModel? addItem;
 @override final  ProductDetailModel? product;
  final  List<ReviewsModel> _reviews;
 @override List<ReviewsModel> get reviews {
@@ -243,16 +249,16 @@ _$ProductDetailStateCopyWith<_ProductDetailState> get copyWith => __$ProductDeta
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductDetailState&&(identical(other.productStatus, productStatus) || other.productStatus == productStatus)&&(identical(other.reviewsStatus, reviewsStatus) || other.reviewsStatus == reviewsStatus)&&(identical(other.statsStatus, statsStatus) || other.statsStatus == statsStatus)&&(identical(other.errorProduct, errorProduct) || other.errorProduct == errorProduct)&&(identical(other.errorReviews, errorReviews) || other.errorReviews == errorReviews)&&(identical(other.errorStats, errorStats) || other.errorStats == errorStats)&&(identical(other.product, product) || other.product == product)&&const DeepCollectionEquality().equals(other._reviews, _reviews)&&(identical(other.stats, stats) || other.stats == stats));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ProductDetailState&&(identical(other.productStatus, productStatus) || other.productStatus == productStatus)&&(identical(other.reviewsStatus, reviewsStatus) || other.reviewsStatus == reviewsStatus)&&(identical(other.statsStatus, statsStatus) || other.statsStatus == statsStatus)&&(identical(other.addItemStatus, addItemStatus) || other.addItemStatus == addItemStatus)&&(identical(other.errorAddItem, errorAddItem) || other.errorAddItem == errorAddItem)&&(identical(other.errorProduct, errorProduct) || other.errorProduct == errorProduct)&&(identical(other.errorReviews, errorReviews) || other.errorReviews == errorReviews)&&(identical(other.errorStats, errorStats) || other.errorStats == errorStats)&&(identical(other.addItem, addItem) || other.addItem == addItem)&&(identical(other.product, product) || other.product == product)&&const DeepCollectionEquality().equals(other._reviews, _reviews)&&(identical(other.stats, stats) || other.stats == stats));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,productStatus,reviewsStatus,statsStatus,errorProduct,errorReviews,errorStats,product,const DeepCollectionEquality().hash(_reviews),stats);
+int get hashCode => Object.hash(runtimeType,productStatus,reviewsStatus,statsStatus,addItemStatus,errorAddItem,errorProduct,errorReviews,errorStats,addItem,product,const DeepCollectionEquality().hash(_reviews),stats);
 
 @override
 String toString() {
-  return 'ProductDetailState(productStatus: $productStatus, reviewsStatus: $reviewsStatus, statsStatus: $statsStatus, errorProduct: $errorProduct, errorReviews: $errorReviews, errorStats: $errorStats, product: $product, reviews: $reviews, stats: $stats)';
+  return 'ProductDetailState(productStatus: $productStatus, reviewsStatus: $reviewsStatus, statsStatus: $statsStatus, addItemStatus: $addItemStatus, errorAddItem: $errorAddItem, errorProduct: $errorProduct, errorReviews: $errorReviews, errorStats: $errorStats, addItem: $addItem, product: $product, reviews: $reviews, stats: $stats)';
 }
 
 
@@ -263,7 +269,7 @@ abstract mixin class _$ProductDetailStateCopyWith<$Res> implements $ProductDetai
   factory _$ProductDetailStateCopyWith(_ProductDetailState value, $Res Function(_ProductDetailState) _then) = __$ProductDetailStateCopyWithImpl;
 @override @useResult
 $Res call({
- Status productStatus, Status reviewsStatus, Status statsStatus, String? errorProduct, String? errorReviews, String? errorStats, ProductDetailModel? product, List<ReviewsModel> reviews, ReviewsStatsModel? stats
+ Status productStatus, Status reviewsStatus, Status statsStatus, Status addItemStatus, String? errorAddItem, String? errorProduct, String? errorReviews, String? errorStats, AddItemModel? addItem, ProductDetailModel? product, List<ReviewsModel> reviews, ReviewsStatsModel? stats
 });
 
 
@@ -280,15 +286,18 @@ class __$ProductDetailStateCopyWithImpl<$Res>
 
 /// Create a copy of ProductDetailState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? productStatus = null,Object? reviewsStatus = null,Object? statsStatus = null,Object? errorProduct = freezed,Object? errorReviews = freezed,Object? errorStats = freezed,Object? product = freezed,Object? reviews = null,Object? stats = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? productStatus = null,Object? reviewsStatus = null,Object? statsStatus = null,Object? addItemStatus = null,Object? errorAddItem = freezed,Object? errorProduct = freezed,Object? errorReviews = freezed,Object? errorStats = freezed,Object? addItem = freezed,Object? product = freezed,Object? reviews = null,Object? stats = freezed,}) {
   return _then(_ProductDetailState(
 productStatus: null == productStatus ? _self.productStatus : productStatus // ignore: cast_nullable_to_non_nullable
 as Status,reviewsStatus: null == reviewsStatus ? _self.reviewsStatus : reviewsStatus // ignore: cast_nullable_to_non_nullable
 as Status,statsStatus: null == statsStatus ? _self.statsStatus : statsStatus // ignore: cast_nullable_to_non_nullable
-as Status,errorProduct: freezed == errorProduct ? _self.errorProduct : errorProduct // ignore: cast_nullable_to_non_nullable
+as Status,addItemStatus: null == addItemStatus ? _self.addItemStatus : addItemStatus // ignore: cast_nullable_to_non_nullable
+as Status,errorAddItem: freezed == errorAddItem ? _self.errorAddItem : errorAddItem // ignore: cast_nullable_to_non_nullable
+as String?,errorProduct: freezed == errorProduct ? _self.errorProduct : errorProduct // ignore: cast_nullable_to_non_nullable
 as String?,errorReviews: freezed == errorReviews ? _self.errorReviews : errorReviews // ignore: cast_nullable_to_non_nullable
 as String?,errorStats: freezed == errorStats ? _self.errorStats : errorStats // ignore: cast_nullable_to_non_nullable
-as String?,product: freezed == product ? _self.product : product // ignore: cast_nullable_to_non_nullable
+as String?,addItem: freezed == addItem ? _self.addItem : addItem // ignore: cast_nullable_to_non_nullable
+as AddItemModel?,product: freezed == product ? _self.product : product // ignore: cast_nullable_to_non_nullable
 as ProductDetailModel?,reviews: null == reviews ? _self._reviews : reviews // ignore: cast_nullable_to_non_nullable
 as List<ReviewsModel>,stats: freezed == stats ? _self.stats : stats // ignore: cast_nullable_to_non_nullable
 as ReviewsStatsModel?,

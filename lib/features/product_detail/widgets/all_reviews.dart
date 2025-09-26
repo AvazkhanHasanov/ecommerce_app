@@ -1,20 +1,8 @@
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/data/models/reviews_model.dart';
-import 'package:ecommerce_app/data/repositories/product_repository.dart';
-import 'package:ecommerce_app/features/common/widgets/store_app_bar.dart';
-import 'package:ecommerce_app/features/home/managers/home_state.dart';
-import 'package:ecommerce_app/features/product_detail/managers/product_detail_bloc.dart';
-import 'package:ecommerce_app/features/product_detail/managers/product_detail_state.dart';
-import 'package:ecommerce_app/features/product_detail/widgets/description_part.dart';
-import 'package:ecommerce_app/features/product_detail/widgets/price_and_button.dart';
-import 'package:ecommerce_app/features/product_detail/widgets/product_image_stack.dart';
-import 'package:ecommerce_app/features/product_detail/widgets/product_size.dart';
-import 'package:ecommerce_app/features/product_detail/widgets/rating_with_star.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/star_row.dart';
-import 'package:ecommerce_app/features/product_detail/widgets/stats_with_star.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AllReviews extends StatelessWidget {

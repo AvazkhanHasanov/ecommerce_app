@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/data/models/add_item_model.dart';
 import 'package:ecommerce_app/data/models/product/product_detail_model.dart';
 import 'package:ecommerce_app/data/models/reviews_model.dart';
 import 'package:ecommerce_app/data/models/reviews_stats_model.dart';
@@ -12,10 +13,14 @@ abstract class ProductDetailState with _$ProductDetailState {
     required Status productStatus,
     required Status reviewsStatus,
     required Status statsStatus,
+    required Status addItemStatus,
 
+    required String?errorAddItem,
     required String? errorProduct,
     required String? errorReviews,
     required String? errorStats,
+
+    required AddItemModel?addItem,
     required ProductDetailModel? product,
     required List<ReviewsModel> reviews,
     required ReviewsStatsModel? stats,
@@ -25,11 +30,14 @@ abstract class ProductDetailState with _$ProductDetailState {
     productStatus: Status.idle,
     reviewsStatus: Status.idle,
     statsStatus: Status.idle,
+    addItemStatus:Status.idle,
 
+    errorAddItem:null,
     errorProduct: null,
     errorReviews: null,
     errorStats: null,
 
+    addItem:null,
     reviews: [],
     stats: null,
     product: null,

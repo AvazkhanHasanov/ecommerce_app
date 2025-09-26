@@ -32,7 +32,6 @@ class AppTextButtonWithPadding extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
             side: BorderSide(color: borderColor, width: borderWidth),

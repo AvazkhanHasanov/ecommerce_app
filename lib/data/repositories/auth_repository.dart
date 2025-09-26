@@ -6,7 +6,23 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../models/auth_model/login_model.dart';
 
-class AuthRepository {
+abstract interface class IAuthRepository {
+  Future<Result<String>> add({required SignUpModel signUpData});
+
+  Future<Result<String>> login({required LoginModel loginData});
+
+  Future<Result<String>> sendResetEmail({required ResetPasswordModel resetPasswordData});
+
+  Future<Result<bool>> verifyCode({required EnterModel enterData});
+
+  Future<Result<String>> resetPassword({required ResetModel resetData});
+
+  Future<Result<String>> save({required int id});
+
+  Future<Result<String>> unsave({required int id});
+}
+
+class AuthRepository implements IAuthRepository {
   final ApiClient _client;
   final FlutterSecureStorage _secureStorage;
 
@@ -16,6 +32,7 @@ class AuthRepository {
   }) : _client = client,
        _secureStorage = secureStorage;
 
+  @override
   Future<Result<String>> add({required SignUpModel signUpData}) async {
     final response = await _client.post<Map<String, dynamic>>('/auth/register', data: signUpData.toJson());
     return response.fold(
@@ -30,6 +47,7 @@ class AuthRepository {
     );
   }
 
+  @override
   Future<Result<String>> login({required LoginModel loginData}) async {
     final response = await _client.post<Map<String, dynamic>>('/auth/login', data: loginData.toJson());
     return response.fold(
@@ -44,26 +62,31 @@ class AuthRepository {
     );
   }
 
+  @override
   Future<Result<String>> sendResetEmail({required ResetPasswordModel resetPasswordData}) async {
     final response = await _client.post('/auth/reset-password/email', data: resetPasswordData.toJson());
     return response.fold((error) => Result.error(error), (value) => Result.ok(value));
   }
 
+  @override
   Future<Result<bool>> verifyCode({required EnterModel enterData}) async {
     final response = await _client.post('/auth/reset-password/verify', data: enterData.toJson());
     return response.fold((error) => Result.error(error), (value) => Result.ok(value as bool));
   }
 
+  @override
   Future<Result<String>> resetPassword({required ResetModel resetData}) async {
     final response = await _client.post('/auth/reset-password/reset', data: resetData.toJson());
     return response.fold((error) => Result.error(error), (value) => Result.ok("Parol muvaffaqiyatli o‘zgartirildi"));
   }
 
+  @override
   Future<Result<String>> save({required int id}) async {
     final response = await _client.post('/auth/save/$id', data: {});
     return response.fold((error) => Result.error(error), (value) => Result.ok(value));
   }
 
+  @override
   Future<Result<String>> unsave({required int id}) async {
     final response = await _client.post('/auth/unsave/$id', data: {});
     return response.fold((error) => Result.error(error), (value) => Result.ok(value));

@@ -9,7 +9,6 @@ import 'package:ecommerce_app/features/product_detail/widgets/all_reviews.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/description_part.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/price_and_button.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/product_image_stack.dart';
-import 'package:ecommerce_app/features/product_detail/widgets/product_size.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/rating_with_star.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/stats_with_star.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +25,7 @@ class ProductDetailPages extends StatelessWidget {
     return BlocProvider(
       create: (context) {
         final bloc = ProductDetailBloc(
+          cartItem: context.read(),
           reviewsRepo: context.read(),
           productRepo: context.read<ProductRepository>(),
         );
@@ -47,6 +47,10 @@ class ProductDetailPages extends StatelessWidget {
           if (state.product == null) {
             return const Center(child: Text('Maxsulot topilmadi'));
           }
+          if (state.stats == null) {
+            return const Center(child: Text('Statistika mavjud emas'));
+          }
+
           return Scaffold(
             appBar: StoreAppBar(title: 'Details'),
             body: SingleChildScrollView(
@@ -76,8 +80,14 @@ class ProductDetailPages extends StatelessWidget {
                       rating: state.product!.rating,
                       description: state.product!.description,
                     ),
-                    ProductSize(size: state.product!.productSizes),
-                    PriceAndButton(price: state.product!.price),
+
+                    // ProductSize(size: state.product!.productSizes),
+                    SizePriceAndButton(
+                      isAddLoading:state.addItemStatus,
+                      productId:state.product!.id,
+                      size: state.product!.productSizes,
+                      price: state.product!.price,
+                    ),
                     RatingWithStar(
                       reviewsCount: state.product!.reviewsCount,
                       rating: state.product!.rating,
@@ -105,7 +115,9 @@ class ProductDetailPages extends StatelessWidget {
                         ),
                       ],
                     ),
-                    AllReviews(reviews: state.reviews,),
+                    AllReviews(
+                      reviews: state.reviews,
+                    ),
                   ],
                 ),
               ),

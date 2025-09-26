@@ -8,6 +8,7 @@ import 'package:ecommerce_app/features/auth/pages/reset_password/reset_password_
 import 'package:ecommerce_app/features/auth/pages/sign_up_page.dart';
 import 'package:ecommerce_app/features/cart/pages/cart_page.dart';
 import 'package:ecommerce_app/features/home/pages/home_page.dart';
+import 'package:ecommerce_app/features/new_card/pages/new_card_page.dart';
 import 'package:ecommerce_app/features/notification/pages/notification_page.dart';
 import 'package:ecommerce_app/features/onboarding/pages/onboarding_page.dart';
 import 'package:ecommerce_app/features/saved/pages/saved_page.dart';
@@ -16,6 +17,7 @@ import 'package:ecommerce_app/features/splash/pages/splash_page.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
+import '../../features/payment/pages/payment_page.dart';
 import '../../features/product_detail/pages/product_detail_pages.dart';
 
 final router = GoRouter(
@@ -27,6 +29,7 @@ final router = GoRouter(
 
     GoRoute(path: Routes.onboardingPage, builder: (context, state) => OnboardingPage()),
     GoRoute(path: Routes.notification, builder: (context, state) => NotificationPage()),
+    GoRoute(path: Routes.newCard, builder: (context, state) => NewCardPage()),
 
     GoRoute(path: Routes.login, builder: (context, state) => LoginPage()),
     GoRoute(path: Routes.splash, builder: (context, state) => SplashPage()),
@@ -34,6 +37,7 @@ final router = GoRouter(
     GoRoute(path: Routes.search, builder: (context, state) => SearchPage()),
     GoRoute(path: Routes.saved, builder: (context, state) => SavedPage()),
     GoRoute(path: Routes.homePage, builder: (context, state) => HomePage()),
+    GoRoute(path: Routes.payment, builder: (context, state) => PaymentPage()),
     ShellRoute(
       builder: (context, state, child) => ChangeNotifierProvider(
         create: (context) => ResetPasswordViewModel(authRepo: context.read(), secureStorage: context.read()),

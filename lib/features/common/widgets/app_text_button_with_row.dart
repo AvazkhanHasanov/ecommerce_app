@@ -9,6 +9,7 @@ class AppTextButtonWithRow extends StatelessWidget {
     required this.onPressed,
     this.borderColor = AppColors.primary900,
     this.width = 341,
+    this.isLoading = false,
     super.key,
   });
 
@@ -16,6 +17,7 @@ class AppTextButtonWithRow extends StatelessWidget {
   final List<Widget> children;
   final VoidCallback onPressed;
   final double width;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -31,11 +33,13 @@ class AppTextButtonWithRow extends StatelessWidget {
             borderRadius: BorderRadius.circular(10.r),
           ),
         ),
-        child: Row(
-          spacing: 10.w,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: children,
-        ),
+        child: isLoading
+            ? CircularProgressIndicator()
+            : Row(
+                spacing: 10.w,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: children,
+              ),
       ),
     );
   }

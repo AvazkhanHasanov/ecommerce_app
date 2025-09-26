@@ -7,11 +7,14 @@ class Routes {
   static final signUpPage = '/signUpPage';
   static final search = '/search';
   static final notification = '/notification';
+  static final newCard = '/newCard';
   static final login = '/login';
   static final enterPage = '/enterPage';
   static final forgotPassword = '/forgotPassword';
   static final resetPassword = '/resetPassword';
   static final homePage = '/homePage';
+  static final payment = '/payment';
+
   static final productDetail = '/productDetail/:id';
   static String  getProductDetail(int id)=> '/productDetail/$id';
 }

@@ -1,5 +1,4 @@
 import 'package:ecommerce_app/core/utils/colors.dart';
-import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/features/common/widgets/store_app_bar.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
@@ -9,8 +8,6 @@ import 'package:ecommerce_app/features/notification/widgets/notification_row.dar
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});

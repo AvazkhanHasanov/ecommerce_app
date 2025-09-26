@@ -1,3 +1,6 @@
+// hozrcha kerak emassss
+
+/*
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/data/models/product/product_sizes_model.dart';
@@ -5,7 +8,7 @@ import 'package:ecommerce_app/features/product_detail/widgets/app_text_button_wi
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ProductSize extends StatelessWidget {
+ class ProductSize extends StatelessWidget {
   const ProductSize({
     required this.size,
     super.key,
@@ -29,7 +32,6 @@ class ProductSize extends StatelessWidget {
                 (index) => AppTextButtonWithPadding(
                   text: size[index].title,
                   onPressed: () {},
-
                   backgroundColor: AppColors.primary0,
                   borderColor: AppColors.primary100,
                   borderWidth: 1.35.w,
@@ -42,3 +44,4 @@ class ProductSize extends StatelessWidget {
     );
   }
 }
+*/

@@ -18,14 +18,15 @@ class ForNoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: SizedBox(
-          height: 160.h,
           width: 272.w,
           child: Column(
+            spacing: 12.h,
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SvgPicture.asset(
                 icon,
+                width: 64.r,height: 64.r,
                 colorFilter: ColorFilter.mode(
                   AppColors.primary400,
                   BlendMode.srcIn,

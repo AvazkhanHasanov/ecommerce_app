@@ -59,6 +59,7 @@ class AppIcons {
   static const userDuotone = 'assets/icons/User-duotone.svg';
   static const walletDuotone = 'assets/icons/Wallet-duotone.svg';
   static const warningCircle = 'assets/icons/WarningCircle.svg';
+  static const warningCircleBig = 'assets/icons/warningCircleBig.svg';
   static const web = 'assets/icons/Web.svg';
   static const whatsapp = 'assets/icons/Whatsapp.svg';
   static const elementPng = 'assets/Element.png';
