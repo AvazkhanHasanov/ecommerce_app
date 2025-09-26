@@ -18,7 +18,11 @@ class NewCartBloc extends Bloc<NewCardEvent, NewCardState> {
     final result = await _cardRepo.createCards(cardData: event.cardModel);
     result.fold(
       (error) => emit(state.copyWith(statusCardsCreate: Status.error, errorCardsCreate: error.toString())),
-      (value) => emit(state.copyWith(statusCardsCreate: Status.success, )),
+      (value) => emit(
+        state.copyWith(
+          statusCardsCreate: Status.success,
+        ),
+      ),
     );
   }
 }

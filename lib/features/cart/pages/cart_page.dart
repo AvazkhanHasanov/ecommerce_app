@@ -27,7 +27,6 @@ class CartPage extends StatelessWidget {
       appBar: StoreAppBar(title: 'MyCart', needDivider: false),
       body: BlocProvider(
         create: (context) => CartBloc(myCartItemsRepo: context.read())..add(GetMyCartItems()),
-
         child: BlocBuilder<CartBloc, CartState>(
           builder: (context, state) {
             if (state.cartStatus == Status.loading) {

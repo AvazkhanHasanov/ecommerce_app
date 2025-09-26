@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/data/repositories/card_repository.dart';
+import 'package:ecommerce_app/features/payment/managers/payment_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app/core/client.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +16,6 @@ import 'package:ecommerce_app/data/repositories/cart_item_repository.dart';
 import 'package:ecommerce_app/data/repositories/notification_repository.dart';
 import 'package:ecommerce_app/features/notification/managers/notification_cubit.dart';
 
-
 final dependencies = <SingleChildWidget>[
   Provider(create: (context) => FlutterSecureStorage()),
   Provider(create: (context) => AuthInterceptor(secureStorage: context.read())),
@@ -24,6 +25,7 @@ final dependencies = <SingleChildWidget>[
   RepositoryProvider(create: (context) => NotificationRepository(client: context.read())),
   RepositoryProvider(create: (context) => ReviewsRepository(client: context.read())),
   RepositoryProvider(create: (context) => CartItemRepository(client: context.read())),
+  RepositoryProvider(create: (context) => CardRepository(client: context.read())),
   Provider(
     create: (context) => AuthRepository(secureStorage: context.read(), client: context.read()),
   ),
@@ -40,5 +42,5 @@ final dependencies = <SingleChildWidget>[
       ..add(FetchCategoryEvent()),
   ),
   BlocProvider(create: (context) => SearchBloc(productRepo: context.read())),
-
+  BlocProvider(create: (context) => PaymentBloc(cardRepo: context.read())..add(GetCards())),
 ];
