@@ -1,18 +1,19 @@
-import 'package:ecommerce_app/core/auth_interceptor.dart';
-import 'package:ecommerce_app/core/client.dart';
-import 'package:ecommerce_app/data/repositories/auth_repository.dart';
-import 'package:ecommerce_app/data/repositories/cart_item_repository.dart';
-import 'package:ecommerce_app/data/repositories/category_repository.dart';
-import 'package:ecommerce_app/data/repositories/notification_repository.dart';
-import 'package:ecommerce_app/data/repositories/product_repository.dart';
-import 'package:ecommerce_app/data/repositories/reviews_repository.dart';
-import 'package:ecommerce_app/features/home/managers/home_bloc.dart';
-import 'package:ecommerce_app/features/notification/managers/notification_cubit.dart';
-import 'package:ecommerce_app/features/search/manages/search_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:provider/provider.dart';
+import 'package:ecommerce_app/core/client.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/single_child_widget.dart';
+import '../data/repositories/reviews_repository.dart';
+import 'package:ecommerce_app/core/auth_interceptor.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:ecommerce_app/features/home/managers/home_bloc.dart';
+import 'package:ecommerce_app/data/repositories/auth_repository.dart';
+import 'package:ecommerce_app/features/search/manages/search_bloc.dart';
+import 'package:ecommerce_app/data/repositories/product_repository.dart';
+import 'package:ecommerce_app/data/repositories/category_repository.dart';
+import 'package:ecommerce_app/data/repositories/cart_item_repository.dart';
+import 'package:ecommerce_app/data/repositories/notification_repository.dart';
+import 'package:ecommerce_app/features/notification/managers/notification_cubit.dart';
+
 
 final dependencies = <SingleChildWidget>[
   Provider(create: (context) => FlutterSecureStorage()),

@@ -6,7 +6,7 @@ import '../../core/utils/result.dart';
 
 abstract interface class ICardRepository {
 
-  Future<Result<CardsCreateModel>> createCards({required CardsCreateModel card});
+  Future<Result<CardsCreateModel>> createCards({required CardsCreateModel cardData});
   Future<Result<List<CardsListModel>>> getAllCards();
   Future<Result> deleteCard({required int id});
 }
@@ -17,11 +17,11 @@ class CardRepository implements ICardRepository {
   CardRepository({required ApiClient client}) : _client = client;
 
   @override
-  Future<Result<CardsCreateModel>> createCards({required CardsCreateModel card}) async {
-    final response = await _client.post('/cards/create', data: card.toJson());
+  Future<Result<CardsCreateModel>> createCards({required CardsCreateModel cardData}) async {
+    final response = await _client.post('/cards/create', data: cardData.toJson());
     return response.fold(
       (error) => Result.error(error),
-      (value) => Result.ok(card),
+      (value) => Result.ok(value),
     );
   }
 
