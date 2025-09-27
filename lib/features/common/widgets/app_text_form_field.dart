@@ -1,0 +1,74 @@
+import 'package:ecommerce_app/core/utils/icons.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:ecommerce_app/core/utils/colors.dart';
+import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+class AppTextFormField extends StatelessWidget {
+  const AppTextFormField({
+    required this.controller,
+    required this.hintText,
+    required this.label,
+    this.needIcon = false,
+    this.inputFormatter,
+    this.keyboardType,
+    this.width = 341,
+    this.onChanged,
+    this.validator,
+    super.key,
+  });
+
+  final String label;
+  final double width;
+  final bool needIcon;
+  final String hintText;
+  final TextInputType? keyboardType;
+  final void Function(String)? onChanged;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
+  final List<TextInputFormatter>? inputFormatter;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: AppStyle.b1Medium),
+        SizedBox(
+          width: width.w,
+          child: TextFormField(
+            onChanged: onChanged,
+            validator: validator,
+            cursorColor: AppColors.primary900,
+            keyboardType: keyboardType,
+            controller: controller,
+            inputFormatters: inputFormatter,
+            decoration: InputDecoration(
+              suffixIconConstraints: BoxConstraints.tight(Size(36.r, 36.r)),
+              suffixIcon: needIcon ? Padding(
+                padding:  EdgeInsets.only(right: 12),
+                child: SvgPicture.asset(AppIcons.question,width: 24.r,height: 24.r),
+              ) : SizedBox.shrink(),
+              hintStyle: AppStyle.b1Regular.copyWith(color: AppColors.primary400),
+              hintText: hintText,
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: BorderSide(
+                  color: AppColors.primary900,
+                ),
+              ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.r),
+                borderSide: BorderSide(
+                  color: AppColors.primary100,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}

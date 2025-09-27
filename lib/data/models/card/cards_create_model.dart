@@ -1,6 +1,6 @@
 class CardsCreateModel {
   final String cardNumber;
-  final DateTime expiryDate;
+  final String expiryDate;
   final String securityCode;
 
   CardsCreateModel({

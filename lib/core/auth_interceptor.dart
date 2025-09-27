@@ -1,9 +1,9 @@
+import 'routing/routes.dart';
 import 'package:dio/dio.dart';
-import 'package:ecommerce_app/core/routing/router.dart';
 import 'package:flutter/foundation.dart';
+import 'package:ecommerce_app/core/routing/router.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-import 'routing/routes.dart';
 
 
 class AuthInterceptor extends Interceptor {
@@ -14,7 +14,7 @@ class AuthInterceptor extends Interceptor {
   final FlutterSecureStorage secureStorage;
   final dio = Dio(
     BaseOptions(
-      baseUrl: "http://192.168.9.207:8888/api/v1",
+      baseUrl: "http://10.68.132.88:8888/api/v1",
       validateStatus: (status) => true,
     ),
   );

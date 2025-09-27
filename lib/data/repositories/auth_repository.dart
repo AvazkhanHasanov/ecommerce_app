@@ -1,10 +1,10 @@
+import '../models/auth_model/login_model.dart';
 import 'package:ecommerce_app/core/client.dart';
 import 'package:ecommerce_app/core/utils/result.dart';
-import 'package:ecommerce_app/data/models/auth_model/reset_password_model.dart';
-import 'package:ecommerce_app/data/models/auth_model/sign_up_model.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:ecommerce_app/data/models/auth_model/sign_up_model.dart';
+import 'package:ecommerce_app/data/models/auth_model/reset_password_model.dart';
 
-import '../models/auth_model/login_model.dart';
 
 abstract interface class IAuthRepository {
   Future<Result<String>> add({required SignUpModel signUpData});

@@ -27,6 +27,7 @@ class AppTextButtonWithRow extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
+
           backgroundColor: backgroundColor,
           side: BorderSide(color: borderColor),
           shape: RoundedRectangleBorder(

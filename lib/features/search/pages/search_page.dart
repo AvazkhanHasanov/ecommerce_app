@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
+import 'package:provider/provider.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
@@ -19,9 +20,15 @@ class SearchPage extends StatefulWidget {
   State<SearchPage> createState() => _SearchPageState();
 }
 
-final controller = TextEditingController();
-
 class _SearchPageState extends State<SearchPage> {
+
+  final controller = TextEditingController();
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   final searchBox = Hive.box<String>('recentSearches');
   Timer? _debounce;
 
