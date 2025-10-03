@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/features/help_center/pages/help_center_page.dart';
 import 'package:ecommerce_app/features/my_details/pages/my_detail_page.dart';
+import 'package:ecommerce_app/features/question/pages/question_page.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/account_notification/pages/account_notification_page.dart';
@@ -37,6 +38,7 @@ final router = GoRouter(
     GoRoute(path: Routes.notification, builder: (context, state) => NotificationPage()),
 
     GoRoute(path: Routes.login, builder: (context, state) => LoginPage()),
+    GoRoute(path: Routes.question, builder: (context, state) => QuestionPage()),
     GoRoute(path: Routes.splash, builder: (context, state) => SplashPage()),
     GoRoute(path: Routes.signUpPage, builder: (context, state) => SignUpPage()),
     GoRoute(path: Routes.search, builder: (context, state) => SearchPage()),

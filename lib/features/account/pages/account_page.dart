@@ -36,7 +36,7 @@ class AccountPage extends StatelessWidget {
               onTap: () => context.push(Routes.accountNotification),
             ),
             Divider(thickness: 8, color: AppColors.primary100),
-            AccountRow(icon: AppIcons.question, text: 'FAQs'),
+            AccountRow(icon: AppIcons.question, text: 'FAQs',onTap: () => context.push(Routes.question),),
             AccountRow(
               icon: AppIcons.headPhones,
               text: 'Help Center',

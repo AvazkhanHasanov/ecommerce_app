@@ -6,12 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AppTextField extends StatelessWidget {
-  const AppTextField({
-    super.key,
-    required this.controller,
-    this.onChanged
-  });
+  const AppTextField({super.key, required this.hintText, required this.controller, this.onChanged});
 
+  final String hintText;
   final TextEditingController controller;
   final void Function(String)? onChanged;
 
@@ -26,7 +23,7 @@ class AppTextField extends StatelessWidget {
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(vertical: 10),
         hintStyle: AppStyle.b1Regular.copyWith(color: AppColors.primary400),
-        hintText: 'Search for clothes...',
+        hintText: hintText,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide(color: AppColors.primary100),
@@ -35,10 +32,17 @@ class AppTextField extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.r),
           borderSide: BorderSide(color: AppColors.primary100),
         ),
-        suffixIconConstraints: BoxConstraints.tight(Size(24.w, 24.h)),
-        prefixIconConstraints: BoxConstraints.tight(Size(24.w, 24.h)),
-        suffixIcon: SvgPicture.asset(AppIcons.mic, width: 24.w, height: 24.h),
-        prefixIcon: SvgPicture.asset(AppIcons.search, width: 24.w, height: 24.h),
+        suffixIconConstraints: BoxConstraints.loose(Size(double.infinity, double.infinity)),
+        prefixIconConstraints: BoxConstraints.loose(Size(double.infinity, double.infinity)),
+
+        suffixIcon: Padding(
+          padding: EdgeInsets.only(right: 20.w),
+          child: SvgPicture.asset(AppIcons.mic, width: 24.w, height: 24.h),
+        ),
+        prefixIcon: Padding(
+          padding: EdgeInsets.only(left: 20.w),
+          child: SvgPicture.asset(AppIcons.search, width: 24.w, height: 24.h),
+        ),
       ),
     );
   }

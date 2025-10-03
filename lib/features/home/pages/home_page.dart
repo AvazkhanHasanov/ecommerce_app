@@ -152,7 +152,10 @@ class _ItemsDelegate extends SliverPersistentHeaderDelegate {
             spacing: 8.w,
             children: [
               Expanded(
-                child: AppTextField(controller: controller),
+                child: AppTextField(
+                  controller: controller,
+                  hintText: 'Search for clothes...',
+                ),
               ),
 
               AppIconButton(

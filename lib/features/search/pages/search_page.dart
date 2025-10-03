@@ -49,6 +49,7 @@ class _SearchPageState extends State<SearchPage> {
                 spacing: 16.h,
                 children: [
                   AppTextField(
+                    hintText: 'Search for clothes...',
                     controller: controller,
                     onChanged: (value) {
                       if (_debounce?.isActive ?? false) _debounce!.cancel();

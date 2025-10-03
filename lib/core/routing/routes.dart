@@ -13,6 +13,7 @@ class Routes {
   static final onboardingPage = '/onboardingPage';
   static final payment = '/payment';
   static final productDetail = '/productDetail/:id';
+  static final question = '/question';
 
   static String getProductDetail(int id) => '/productDetail/$id';
   static final resetPassword = '/resetPassword';
