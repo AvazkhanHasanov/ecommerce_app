@@ -8,10 +8,10 @@ import 'package:flutter_svg/svg.dart';
 class HeartIcon extends StatelessWidget {
   const HeartIcon({
     super.key,
-    required this.foregroundColor,
-    required this.backgroundColor,
      this.onPressed,
     required this.icon,
+    required this.backgroundColor,
+    required this.foregroundColor,
   });
 
   final Color foregroundColor, backgroundColor;

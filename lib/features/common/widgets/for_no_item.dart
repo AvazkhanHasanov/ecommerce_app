@@ -7,8 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 class ForNoItem extends StatelessWidget {
   const ForNoItem({
     super.key,
-    required this.icon,
     required this.text,
+    required this.icon,
     required this.subtext,
   });
 

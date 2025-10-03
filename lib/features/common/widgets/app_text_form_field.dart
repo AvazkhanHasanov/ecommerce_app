@@ -8,22 +8,30 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class AppTextFormField extends StatelessWidget {
   const AppTextFormField({
+    this.icon = AppIcons.question,
     required this.controller,
     required this.hintText,
-    required this.label,
     this.needIcon = false,
+    required this.label,
+    this.readOnly = false,
     this.inputFormatter,
     this.keyboardType,
     this.width = 341,
     this.onChanged,
+    this.prefix,
     this.validator,
+    this.onTap,
     super.key,
   });
 
+  final Widget? prefix;
+  final String icon;
   final String label;
   final double width;
+  final bool readOnly;
   final bool needIcon;
   final String hintText;
+  final VoidCallback? onTap;
   final TextInputType? keyboardType;
   final void Function(String)? onChanged;
   final TextEditingController controller;
@@ -39,6 +47,8 @@ class AppTextFormField extends StatelessWidget {
         SizedBox(
           width: width.w,
           child: TextFormField(
+            onTap: onTap,
+            readOnly: readOnly,
             onChanged: onChanged,
             validator: validator,
             cursorColor: AppColors.primary900,
@@ -46,11 +56,14 @@ class AppTextFormField extends StatelessWidget {
             controller: controller,
             inputFormatters: inputFormatter,
             decoration: InputDecoration(
+              prefix: prefix,
               suffixIconConstraints: BoxConstraints.tight(Size(36.r, 36.r)),
-              suffixIcon: needIcon ? Padding(
-                padding:  EdgeInsets.only(right: 12),
-                child: SvgPicture.asset(AppIcons.question,width: 24.r,height: 24.r),
-              ) : SizedBox.shrink(),
+              suffixIcon: needIcon
+                  ? Padding(
+                      padding: EdgeInsets.only(right: 12),
+                      child: SvgPicture.asset(icon, width: 24.r, height: 24.r),
+                    )
+                  : SizedBox.shrink(),
               hintStyle: AppStyle.b1Regular.copyWith(color: AppColors.primary400),
               hintText: hintText,
               focusedBorder: OutlineInputBorder(

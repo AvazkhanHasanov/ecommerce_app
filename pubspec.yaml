@@ -47,6 +47,10 @@ dependencies:
   rxdart: ^0.28.0
   hive: ^2.2.3
   path_provider: ^2.1.5
+  flutter_libphonenumber: ^2.5.1
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

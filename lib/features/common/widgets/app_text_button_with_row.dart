@@ -4,12 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextButtonWithRow extends StatelessWidget {
   const AppTextButtonWithRow({
-    this.backgroundColor = AppColors.primary900,
+    this.width = 341,
     required this.children,
+    this.isLoading = false,
     required this.onPressed,
     this.borderColor = AppColors.primary900,
-    this.width = 341,
-    this.isLoading = false,
+    this.backgroundColor = AppColors.primary900,
     super.key,
   });
 

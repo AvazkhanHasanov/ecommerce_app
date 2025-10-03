@@ -69,7 +69,7 @@ class AppStyle {
     fontWeight: FontWeight.w500,
     color: AppColors.primary900,
   );
-  static final b3Regular = TextStyle(
+  static  final  b3Regular = TextStyle(
     fontSize: 12.sp,
     fontFamily: 'General',
     fontWeight: FontWeight.w400,

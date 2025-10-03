@@ -11,6 +11,7 @@ class AppIcons {
   static const box = 'assets/icons/Box.svg';
   static const boxDuotone = 'assets/icons/Box-duotone.svg';
   static const visa = 'assets/icons/bxl-visa.svg';
+  static const calendar = 'assets/icons/Calendar.svg';
   static const cancel = 'assets/icons/Cancel.svg';
   static const cancelCircle = 'assets/icons/Cancel-circle.svg';
   static const cardDuotone = 'assets/icons/Card-duotone.svg';
@@ -18,6 +19,7 @@ class AppIcons {
   static const cartDuotone = 'assets/icons/Cart-Duotone.svg';
   static const cash = 'assets/icons/Cash.svg';
   static const check = 'assets/icons/Check.svg';
+  static const checkDuotone = 'assets/icons/Check-duotone.svg';
   static const chevron = 'assets/icons/Chevron.svg';
   static const correct = 'assets/icons/correct.svg';
   static const details = 'assets/icons/Details.svg';

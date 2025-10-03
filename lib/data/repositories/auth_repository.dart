@@ -1,10 +1,12 @@
+import 'package:ecommerce_app/data/models/auth_me_model.dart';
+import 'package:ecommerce_app/data/models/auth_update_model.dart';
+
 import '../models/auth_model/login_model.dart';
 import 'package:ecommerce_app/core/client.dart';
 import 'package:ecommerce_app/core/utils/result.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:ecommerce_app/data/models/auth_model/sign_up_model.dart';
 import 'package:ecommerce_app/data/models/auth_model/reset_password_model.dart';
-
 
 abstract interface class IAuthRepository {
   Future<Result<String>> add({required SignUpModel signUpData});
@@ -20,6 +22,10 @@ abstract interface class IAuthRepository {
   Future<Result<String>> save({required int id});
 
   Future<Result<String>> unsave({required int id});
+
+  Future<Result<AuthMeModel>> me();
+
+  Future<Result<AuthUpdateModel>> update(AuthUpdateModel data);
 }
 
 class AuthRepository implements IAuthRepository {
@@ -90,5 +96,17 @@ class AuthRepository implements IAuthRepository {
   Future<Result<String>> unsave({required int id}) async {
     final response = await _client.post('/auth/unsave/$id', data: {});
     return response.fold((error) => Result.error(error), (value) => Result.ok(value));
+  }
+
+  @override
+  Future<Result<AuthMeModel>> me() async {
+    final response = await _client.get('/auth/me');
+    return response.fold((error) => Result.error(error), (value) => Result.ok(AuthMeModel.fromJson(value)));
+  }
+
+  @override
+  Future<Result<AuthUpdateModel>> update(AuthUpdateModel data) async {
+    final response = await _client.patch('/auth/update', data: data.toJson());
+    return response.fold((error) => Result.error(error), (value) => Result.ok(AuthUpdateModel.fromJson(value)));
   }
 }

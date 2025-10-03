@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/features/account/widgets/account_row.dart';
@@ -7,6 +8,7 @@ import 'package:ecommerce_app/features/common/widgets/store_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:go_router/go_router.dart';
 
 class AccountPage extends StatelessWidget {
   AccountPage({super.key});
@@ -18,19 +20,29 @@ class AccountPage extends StatelessWidget {
     return Scaffold(
       appBar: StoreAppBar(title: 'Account'),
       body: Padding(
-        padding:  EdgeInsets.only(top: 20.h),
+        padding: EdgeInsets.only(top: 20.h),
         child: Column(
           spacing: 10.h,
           children: [
             AccountRow(icon: AppIcons.box, text: 'My Orders', needDivider: false),
             Divider(thickness: 8, color: AppColors.primary100),
-            AccountRow(icon: AppIcons.details, text: 'My Details'),
+            AccountRow(icon: AppIcons.details, text: 'My Details', onTap: () => context.push(Routes.myDetail)),
             AccountRow(icon: AppIcons.address, text: 'Address Book'),
-            AccountRow(icon: AppIcons.cart, text: 'Payment Methods'),
-            AccountRow(icon: AppIcons.bell, text: 'Notifications', needDivider: false),
+            AccountRow(icon: AppIcons.cart, text: 'Payment Methods',onTap: ()=>context.push(Routes.payment)),
+            AccountRow(
+              icon: AppIcons.bell,
+              text: 'Notifications',
+              needDivider: false,
+              onTap: () => context.push(Routes.accountNotification),
+            ),
             Divider(thickness: 8, color: AppColors.primary100),
             AccountRow(icon: AppIcons.question, text: 'FAQs'),
-            AccountRow(icon: AppIcons.headPhones, text: 'Help Center', needDivider: false),
+            AccountRow(
+              icon: AppIcons.headPhones,
+              text: 'Help Center',
+              needDivider: false,
+              onTap: () => context.push(Routes.helpCenter),
+            ),
             Divider(thickness: 8, color: AppColors.primary100),
             AccountRow(
               icon: AppIcons.logout,

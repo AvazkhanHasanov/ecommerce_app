@@ -1,17 +1,21 @@
+import 'package:ecommerce_app/core/routing/routes.dart';
+import 'package:ecommerce_app/core/utils/icons.dart';
+import 'package:ecommerce_app/core/utils/styles.dart';
+import 'package:ecommerce_app/core/utils/validators.dart';
 import 'package:ecommerce_app/data/models/card/cards_create_model.dart';
+import 'package:ecommerce_app/features/common/widgets/app_text_form_field.dart';
+import 'package:ecommerce_app/features/common/widgets/store_app_bar.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:ecommerce_app/features/new_card/managers/new_card_bloc.dart';
 import 'package:ecommerce_app/features/new_card/managers/new_card_state.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:ecommerce_app/core/utils/input_validators.dart';
-import 'package:ecommerce_app/features/common/widgets/store_app_bar.dart';
-import 'package:ecommerce_app/features/common/widgets/app_text_form_field.dart';
 import 'package:ecommerce_app/features/new_card/widgets/card_number_formatter.dart';
 import 'package:ecommerce_app/features/new_card/widgets/expiry_date_formatter.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../common/widgets/app_text_button.dart';
@@ -39,7 +43,7 @@ class _NewCardPageState extends State<NewCardPage> {
         create: (context) => NewCartBloc(cardRepo: context.read()),
         child: BlocBuilder<NewCartBloc, NewCardState>(
           builder: (context, state) => Padding(
-            padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 20.h,top: 10.h),
+            padding: EdgeInsets.only(left: 24.w, right: 24.w, bottom: 20.h, top: 10.h),
             child: Column(
               spacing: 16.h,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,7 +65,7 @@ class _NewCardPageState extends State<NewCardPage> {
                           CardNumberFormatter(),
                           LengthLimitingTextInputFormatter(19),
                         ],
-                        validator: InputValidators.validateCardNumber,
+                        validator: Validators.validateCardNumber,
                         onChanged: (_) => setState(() => isActive = _formKey.currentState!.validate()),
                       ),
                       Row(
@@ -77,7 +81,7 @@ class _NewCardPageState extends State<NewCardPage> {
                               FilteringTextInputFormatter.digitsOnly,
                               ExpiryDateFormatter(),
                             ],
-                            validator: InputValidators.validateExpiryDate,
+                            validator: Validators.validateExpiryDate,
                             onChanged: (_) => setState(() => isActive = _formKey.currentState!.validate()),
                           ),
                           AppTextFormField(
@@ -91,7 +95,7 @@ class _NewCardPageState extends State<NewCardPage> {
                               FilteringTextInputFormatter.digitsOnly,
                               LengthLimitingTextInputFormatter(3),
                             ],
-                            validator: InputValidators.validateCVV,
+                            validator: Validators.validateCVV,
                             onChanged: (_) => setState(() => isActive = _formKey.currentState!.validate()),
                           ),
                         ],
@@ -101,7 +105,6 @@ class _NewCardPageState extends State<NewCardPage> {
                 ),
                 Spacer(),
                 AppTextButton(
-
                   text: 'Add Card',
                   onPressed: isActive
                       ? () {
@@ -111,9 +114,39 @@ class _NewCardPageState extends State<NewCardPage> {
                             securityCode: cvcController.text,
                           );
                           context.read<NewCartBloc>().add(CreateNewCard(cardModel: data));
+
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.r),
+                              ),
+                              backgroundColor: AppColors.primary0,
+                              content: Container(
+                                width: 341.w,
+                                height: 270.h,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.r)),
+                                child: Column(
+                                  spacing: 10.h,
+                                  children: [
+                                    SvgPicture.asset(AppIcons.checkDuotone),
+                                    Text('Congratulations!', style: AppStyle.h4SemiBold),
+                                    Text('Your order has been placed.', style: AppStyle.b1Regular),
+                                    SizedBox(height: 14.h),
+                                    AppTextButton(
+                                      text: 'Thanks',
+                                      onPressed: () => context.go(Routes.payment),
+                                      backgroundColor: AppColors.primary900,
+                                      textColor: AppColors.primary0,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
                         }
                       : null,
-                  isLoading: state.statusCardsCreate==Status.loading,
+                  isLoading: state.statusCardsCreate == Status.loading,
                   borderColor: isActive ? AppColors.primary900 : AppColors.primary200,
                   backgroundColor: isActive ? AppColors.primary900 : AppColors.primary200,
                   textColor: AppColors.primary0,

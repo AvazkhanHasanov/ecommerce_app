@@ -1,5 +1,8 @@
+import 'package:ecommerce_app/features/help_center/pages/help_center_page.dart';
+import 'package:ecommerce_app/features/my_details/pages/my_detail_page.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/account_notification/pages/account_notification_page.dart';
 import '../../features/payment/pages/payment_page.dart';
 import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/features/home/pages/home_page.dart';
@@ -22,21 +25,27 @@ import 'package:ecommerce_app/features/auth/pages/reset_password/forgot_password
 final router = GoRouter(
   initialLocation: Routes.splash,
   routes: [
-    GoRoute(path: Routes.productDetail, builder: (context, state) => ProductDetailPages(id: int.parse(state.pathParameters['id']!))),
     GoRoute(path: Routes.account, builder: (context, state) => AccountPage()),
+    GoRoute(path: Routes.accountNotification, builder: (context, state) => AccountNotificationPage()),
     GoRoute(path: Routes.cart, builder: (context, state) => CartPage()),
 
+    GoRoute(path: Routes.homePage, builder: (context, state) => HomePage()),
+    GoRoute(path: Routes.helpCenter, builder: (context, state) => HelpCenterPage()),
     GoRoute(path: Routes.onboardingPage, builder: (context, state) => OnboardingPage()),
-    GoRoute(path: Routes.notification, builder: (context, state) => NotificationPage()),
+    GoRoute(path: Routes.myDetail, builder: (context, state) => MyDetailPage()),
     GoRoute(path: Routes.newCard, builder: (context, state) => NewCardPage()),
+    GoRoute(path: Routes.notification, builder: (context, state) => NotificationPage()),
 
     GoRoute(path: Routes.login, builder: (context, state) => LoginPage()),
     GoRoute(path: Routes.splash, builder: (context, state) => SplashPage()),
     GoRoute(path: Routes.signUpPage, builder: (context, state) => SignUpPage()),
     GoRoute(path: Routes.search, builder: (context, state) => SearchPage()),
     GoRoute(path: Routes.saved, builder: (context, state) => SavedPage()),
-    GoRoute(path: Routes.homePage, builder: (context, state) => HomePage()),
     GoRoute(path: Routes.payment, builder: (context, state) => PaymentPage()),
+    GoRoute(
+      path: Routes.productDetail,
+      builder: (context, state) => ProductDetailPages(id: int.parse(state.pathParameters['id']!)),
+    ),
     ShellRoute(
       builder: (context, state, child) => ChangeNotifierProvider(
         create: (context) => ResetPasswordViewModel(authRepo: context.read(), secureStorage: context.read()),

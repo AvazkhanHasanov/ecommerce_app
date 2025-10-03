@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/utils/colors.dart';
 import '../../../core/utils/styles.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextButton extends StatelessWidget {
   const AppTextButton({
-    this.isLoading = false,
-    super.key,
-    this.backgroundColor = AppColors.primary200,
-    required this.text,
-    this.textColor = AppColors.primary900,
-    required this.onPressed,
-    this.borderColor = AppColors.primary900,
     this.width = 341,
+    required this.text,
     this.borderWidth = 1,
+    this.isLoading = false,
+    required this.onPressed,
+    this.textColor = AppColors.primary900,
+    this.borderColor = AppColors.primary900,
+    this.backgroundColor = AppColors.primary200,
+    super.key,
   });
 
   final bool isLoading;
@@ -41,8 +41,8 @@ class AppTextButton extends StatelessWidget {
         ),
         child: isLoading
             ? Center(
-                child: CircularProgressIndicator(color: AppColors.primary500),
-              )
+          child: CircularProgressIndicator(color: AppColors.primary500),
+        )
             : Text(text, style: AppStyle.b1Medium.copyWith(color: textColor)),
       ),
     );

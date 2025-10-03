@@ -3,13 +3,15 @@ import 'package:ecommerce_app/core/utils/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:flutter_libphonenumber/flutter_libphonenumber.dart';
 import 'core/dependencies.dart';
 import 'core/hive_service.dart';
 
 void main()async {
   WidgetsFlutterBinding.ensureInitialized();
   await initHive();
+  await init();
+
   runApp(EcommerceApp());
 }
 

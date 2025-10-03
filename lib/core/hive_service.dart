@@ -5,4 +5,5 @@ Future<void> initHive() async {
   var dir = await getTemporaryDirectory();
   Hive.init(dir.path);
   await Hive.openBox<String>('recentSearches');
+  await Hive.openBox('Settings');
 }

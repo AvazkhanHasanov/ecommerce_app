@@ -8,19 +8,19 @@ import 'package:go_router/go_router.dart';
 
 class StoreAppBar extends StatelessWidget implements PreferredSizeWidget {
   const StoreAppBar({
+    this.height = 75,
     required this.title,
-    super.key,
     this.needAction = true,
     this.centerTitle = true,
-    this.height = 75,
     this.needDivider = true,
+    super.key,
   });
 
-  final bool needAction;
-  final bool centerTitle;
   final String title;
   final double height;
+  final bool needAction;
   final bool needDivider;
+  final bool centerTitle;
 
   @override
   Size get preferredSize => Size(double.infinity, height.h);

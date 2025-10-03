@@ -5,14 +5,14 @@ import 'package:flutter_svg/svg.dart';
 
 class AppIconButton extends StatelessWidget {
   const AppIconButton({
-    this.padding = EdgeInsets.zero,
-    this.size = const Size(10, 10),
+    this.radius = 10,
     required this.icon,
     required this.onPressed,
-    this.backgroundColor = AppColors.primary0,
-    this.foregroundColor = AppColors.primary900,
-    this.radius = 10,
+    this.padding = EdgeInsets.zero,
     this.borderColor = Colors.transparent,
+    this.backgroundColor = AppColors.primary0,
+    this.size = const Size(10, 10),
+    this.foregroundColor = AppColors.primary900,
     super.key,
   });
 
