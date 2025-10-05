@@ -11,25 +11,27 @@ class AppTextFormField extends StatelessWidget {
     this.icon = AppIcons.question,
     required this.controller,
     required this.hintText,
+    this.needLabel = true,
     this.needIcon = false,
-    required this.label,
     this.readOnly = false,
     this.inputFormatter,
+    required this.label,
     this.keyboardType,
     this.width = 341,
+    this.validator,
     this.onChanged,
     this.prefix,
-    this.validator,
     this.onTap,
     super.key,
   });
 
-  final Widget? prefix;
   final String icon;
   final String label;
   final double width;
   final bool readOnly;
   final bool needIcon;
+  final bool needLabel;
+  final Widget? prefix;
   final String hintText;
   final VoidCallback? onTap;
   final TextInputType? keyboardType;
@@ -43,7 +45,7 @@ class AppTextFormField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: AppStyle.b1Medium),
+        needLabel ? Text(label, style: AppStyle.b1Medium) : SizedBox.shrink(),
         SizedBox(
           width: width.w,
           child: TextFormField(
@@ -57,7 +59,8 @@ class AppTextFormField extends StatelessWidget {
             inputFormatters: inputFormatter,
             decoration: InputDecoration(
               prefix: prefix,
-              suffixIconConstraints: BoxConstraints.tight(Size(36.r, 36.r)),
+              prefixIconConstraints: BoxConstraints.loose(Size(double.infinity, double.infinity)),
+              suffixIconConstraints: BoxConstraints.loose(Size(double.infinity, double.infinity)),
               suffixIcon: needIcon
                   ? Padding(
                       padding: EdgeInsets.only(right: 12),

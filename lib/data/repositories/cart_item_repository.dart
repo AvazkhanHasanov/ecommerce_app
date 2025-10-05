@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_app/core/client.dart';
 import 'package:ecommerce_app/core/utils/result.dart';
 import 'package:ecommerce_app/data/models/add_item_model.dart';
@@ -14,16 +13,14 @@ abstract interface class ICartItemRepository {
 
 class CartItemRepository implements ICartItemRepository {
   final ApiClient _client;
-
   CartItemRepository({required ApiClient client}) : _client = client;
-
   @override
   Future<Result<AddItemModel>> addItem({required AddItemModel itemModel}) async {
     final response = await _client.post('/my-cart/add-item', data: itemModel.toJson());
 
     return response.fold(
-          (error) => Result.error(error),
-          (value) => Result.ok(itemModel),
+      (error) => Result.error(error),
+      (value) => Result.ok(itemModel),
     );
   }
 
@@ -31,8 +28,8 @@ class CartItemRepository implements ICartItemRepository {
   Future<Result<MyCartItemsModel>> getMyCartItems() async {
     final response = await _client.get('/my-cart/my-cart-items');
     return response.fold(
-          (error) => Result.error(error),
-          (value) => Result.ok(MyCartItemsModel.fromJson(value)),
+      (error) => Result.error(error),
+      (value) => Result.ok(MyCartItemsModel.fromJson(value)),
     );
   }
 

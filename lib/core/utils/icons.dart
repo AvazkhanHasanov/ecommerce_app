@@ -23,7 +23,7 @@ class AppIcons {
   static const chevron = 'assets/icons/Chevron.svg';
   static const correct = 'assets/icons/correct.svg';
   static const details = 'assets/icons/Details.svg';
-  static const disCountDuotone = 'assets/icons/Discount-duotone.svg';
+  static const disCount = 'assets/icons/Discount.svg';
   static const edit = 'assets/icons/Edit.svg';
   static const eye = 'assets/icons/Eye.svg';
   static const eyeOff = 'assets/icons/eye-off.svg';

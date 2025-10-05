@@ -6,6 +6,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextButton extends StatelessWidget {
   const AppTextButton({
+    this.height = 54,
+    this.fontSize = 16,
     this.width = 341,
     required this.text,
     this.borderWidth = 1,
@@ -17,19 +19,21 @@ class AppTextButton extends StatelessWidget {
     super.key,
   });
 
-  final bool isLoading;
-  final Color backgroundColor;
   final String text;
-  final Color textColor, borderColor;
-  final void Function()? onPressed;
   final double width;
+  final double height;
+  final bool isLoading;
+  final double fontSize;
   final double borderWidth;
+  final Color backgroundColor;
+  final void Function()? onPressed;
+  final Color textColor, borderColor;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width.w,
-      height: 54,
+      height: height.h,
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
@@ -41,9 +45,12 @@ class AppTextButton extends StatelessWidget {
         ),
         child: isLoading
             ? Center(
-          child: CircularProgressIndicator(color: AppColors.primary500),
-        )
-            : Text(text, style: AppStyle.b1Medium.copyWith(color: textColor)),
+                child: CircularProgressIndicator(color: AppColors.primary500),
+              )
+            : Text(
+                text,
+                style: AppStyle.b1Medium.copyWith(color: textColor, fontSize: fontSize.sp),
+              ),
       ),
     );
   }

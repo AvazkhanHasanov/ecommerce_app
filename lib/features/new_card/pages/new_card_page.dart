@@ -131,7 +131,7 @@ class _NewCardPageState extends State<NewCardPage> {
                                   children: [
                                     SvgPicture.asset(AppIcons.checkDuotone),
                                     Text('Congratulations!', style: AppStyle.h4SemiBold),
-                                    Text('Your order has been placed.', style: AppStyle.b1Regular),
+                                    Text('Your new card has been added.', style: AppStyle.b1Regular),
                                     SizedBox(height: 14.h),
                                     AppTextButton(
                                       text: 'Thanks',

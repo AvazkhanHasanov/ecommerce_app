@@ -4,32 +4,35 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppTextButtonWithRow extends StatelessWidget {
   const AppTextButtonWithRow({
+    super.key,
+    this.height = 54,
     this.width = 341,
-    required this.children,
     this.isLoading = false,
     required this.onPressed,
+    required this.children,
     this.borderColor = AppColors.primary900,
     this.backgroundColor = AppColors.primary900,
-    super.key,
   });
 
-  final Color backgroundColor, borderColor;
-  final List<Widget> children;
-  final VoidCallback onPressed;
   final double width;
+  final double height;
   final bool isLoading;
+  final List<Widget> children;
+  final VoidCallback? onPressed;
+  final Color backgroundColor, borderColor;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width.w,
-      height: 54,
+      height: height.h,
       child: TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
+          disabledBackgroundColor: AppColors.primary500,
 
           backgroundColor: backgroundColor,
-          side: BorderSide(color: borderColor),
+          side: BorderSide(color: onPressed != null ? borderColor : AppColors.primary500),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.r),
           ),

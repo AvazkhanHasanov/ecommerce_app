@@ -24,11 +24,16 @@ class AccountPage extends StatelessWidget {
         child: Column(
           spacing: 10.h,
           children: [
-            AccountRow(icon: AppIcons.box, text: 'My Orders', needDivider: false),
+            AccountRow(
+              icon: AppIcons.box,
+              text: 'My Orders',
+              needDivider: false,
+              onTap: () => context.push(Routes.order),
+            ),
             Divider(thickness: 8, color: AppColors.primary100),
             AccountRow(icon: AppIcons.details, text: 'My Details', onTap: () => context.push(Routes.myDetail)),
             AccountRow(icon: AppIcons.address, text: 'Address Book'),
-            AccountRow(icon: AppIcons.cart, text: 'Payment Methods',onTap: ()=>context.push(Routes.payment)),
+            AccountRow(icon: AppIcons.cart, text: 'Payment Methods', onTap: () => context.push(Routes.payment)),
             AccountRow(
               icon: AppIcons.bell,
               text: 'Notifications',
@@ -36,7 +41,11 @@ class AccountPage extends StatelessWidget {
               onTap: () => context.push(Routes.accountNotification),
             ),
             Divider(thickness: 8, color: AppColors.primary100),
-            AccountRow(icon: AppIcons.question, text: 'FAQs',onTap: () => context.push(Routes.question),),
+            AccountRow(
+              icon: AppIcons.question,
+              text: 'FAQs',
+              onTap: () => context.push(Routes.question),
+            ),
             AccountRow(
               icon: AppIcons.headPhones,
               text: 'Help Center',

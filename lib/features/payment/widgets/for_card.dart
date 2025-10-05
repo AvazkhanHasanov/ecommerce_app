@@ -33,7 +33,7 @@ class ForCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(yuldizli(code), style: AppStyle.b2SemiBold),
+            Text(spoilerCardNumber(code), style: AppStyle.b2SemiBold),
             Radio<int>(
               fillColor: WidgetStateColor.resolveWith(
                 (states) {
@@ -54,7 +54,7 @@ class ForCard extends StatelessWidget {
   }
 }
 
-String yuldizli(String fullCode) {
+String spoilerCardNumber(String fullCode) {
   if (fullCode.length != 16) return fullCode;
   final last4 = fullCode.substring(12);
   return '**** **** **** $last4';

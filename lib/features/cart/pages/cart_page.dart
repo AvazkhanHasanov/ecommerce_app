@@ -25,78 +25,77 @@ class CartPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: StoreAppBar(title: 'MyCart', needDivider: false),
-      body: BlocProvider(
-        create: (context) => CartBloc(myCartItemsRepo: context.read())..add(GetMyCartItems()),
-        child: BlocBuilder<CartBloc, CartState>(
-          builder: (context, state) {
-            if (state.cartStatus == Status.loading) {
-              return Center(child: CircularProgressIndicator());
-            }
+      body: BlocBuilder<CartBloc, CartState>(
+        builder: (context, state) {
+          if (state.cartStatus == Status.loading) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (state.cartStatus == Status.error && state.errorCart != null) {
+            return Center(child: Text('Xatolik yuz berdi: ${state.errorCart}'));
+          }
 
-            if (state.cartStatus == Status.error && state.errorCart != null) {
-              return Center(child: Text('Xatolik yuz berdi: ${state.errorCart}'));
-            }
+          if (state.cartStatus == Status.success && (state.myCartItems == null || state.myCartItems!.items.isEmpty)) {
+            return ForNoItem(
+              icon: AppIcons.cart,
+              text: 'Your Cart Is Empty!',
+              subtext: 'When you add products, they’ll appear here.',
+            );
+          }
 
-            if (state.cartStatus == Status.success && (state.myCartItems == null || state.myCartItems!.items.isEmpty)) {
-              return ForNoItem(
-                icon: AppIcons.cart,
-                text: 'Your Cart Is Empty!',
-                subtext: 'When you add products, they’ll appear here.',
-              );
-            }
-
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: RefreshIndicator(
-                onRefresh: () async {
-                  context.read<CartBloc>().add(GetMyCartItems());
-                  Future.delayed(Duration(milliseconds: 500));
-                },
-                child: SingleChildScrollView(
-                  child: Column(
-                    spacing: 14.h,
-                    children: [
-                      ListView.builder(
-                        physics: NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: state.myCartItems!.items.length,
-                        itemBuilder: (context, index) {
-                          if (state.myCartItems == null || state.myCartItems!.items.isEmpty) {
-                            return Center(child: Text('Savat bo‘sh'));
-                          }
-                          final items = state.myCartItems!.items[index];
-                          return CartContainer(
-                            id: items.id,
-                            price: items.price,
-                            count: items.quantity,
-                            title: items.title,
-                            size: items.size,
-                            image: items.image,
-                          );
-                        },
-                      ),
-                      SubtotalAndFee(
-                        subTotal: state.myCartItems!.subTotal,
-                        vat: state.myCartItems!.vat,
-                        shippingFee: state.myCartItems!.shippingFee,
-                      ),
-                      SizedBox(height: 50),
-                      AppTextButtonWithRow(
-                        onPressed: () {
-                          context.push(Routes.payment);
-                        },
-                        children: [
-                          Text('Go To Checkout', style: AppStyle.b1Medium.copyWith(color: AppColors.primary0)),
-                          SvgPicture.asset(AppIcons.arrowRight),
-                        ],
-                      ),
-                    ],
-                  ),
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
+            child: RefreshIndicator(
+              onRefresh: () async {
+                context.read<CartBloc>().add(GetMyCartItems());
+                Future.delayed(Duration(milliseconds: 500));
+              },
+              child: SingleChildScrollView(
+                child: Column(
+                  spacing: 14.h,
+                  children: [
+                    ListView.builder(
+                      physics: NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: state.myCartItems!.items.length,
+                      itemBuilder: (context, index) {
+                        if (state.myCartItems == null || state.myCartItems!.items.isEmpty) {
+                          return Center(child: Text('Savat bo‘sh'));
+                        }
+                        final items = state.myCartItems!.items[index];
+                        return CartContainer(
+                          id: items.id,
+                          price: items.price,
+                          count: items.quantity,
+                          title: items.title,
+                          size: items.size,
+                          image: items.image,
+                        );
+                      },
+                    ),
+                    SubtotalAndFee(
+                      total: state.myCartItems!.total,
+                      subTotal: state.myCartItems!.subTotal,
+                      vat: state.myCartItems!.vat,
+                      shippingFee: state.myCartItems!.shippingFee,
+                    ),
+                    SizedBox(height: 50),
+                    AppTextButtonWithRow(
+                      onPressed: state.myCartItems != null
+                          ? () {
+                              context.push(Routes.checkout);
+                            }
+                          : null,
+                      children: [
+                        Text('Go To Checkout', style: AppStyle.b1Medium.copyWith(color: AppColors.primary0)),
+                        SvgPicture.asset(AppIcons.arrowRight),
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            );
-          },
-        ),
+            ),
+          );
+        },
       ),
 
       bottomNavigationBar: AppBottomNavigationBar(),

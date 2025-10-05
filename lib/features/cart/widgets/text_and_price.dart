@@ -7,10 +7,12 @@ class TextAndPrice extends StatelessWidget {
     super.key,
     required this.text,
     required this.price,
+    this.isTotal=false,
   });
 
   final String text;
   final int price;
+  final bool isTotal;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +21,7 @@ class TextAndPrice extends StatelessWidget {
       children: [
         Text(
           text,
-          style: AppStyle.b1Regular.copyWith(color: AppColors.primary500),
+          style: AppStyle.b1Regular.copyWith(color:isTotal?AppColors.primary900: AppColors.primary500),
         ),
         Text('\$ $price', style: AppStyle.b1Medium),
       ],

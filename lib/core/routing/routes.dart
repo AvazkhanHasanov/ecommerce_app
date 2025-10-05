@@ -1,7 +1,9 @@
 class Routes {
   static final account = '/account';
   static final accountNotification = '/accountNotification';
+  static final address = '/address';
   static final cart = '/cart';
+  static final checkout = '/checkout';
   static final enterPage = '/enterPage';
   static final forgotPassword = '/forgotPassword';
   static final helpCenter = '/helpCenter';
@@ -11,6 +13,7 @@ class Routes {
   static final newCard = '/newCard';
   static final notification = '/notification';
   static final onboardingPage = '/onboardingPage';
+  static final order = '/order';
   static final payment = '/payment';
   static final productDetail = '/productDetail/:id';
   static final question = '/question';
