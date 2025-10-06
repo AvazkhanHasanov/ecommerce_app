@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/data/models/reviews_model.dart';
+import 'package:ecommerce_app/data/models/review/reviews_model.dart';
 import 'package:ecommerce_app/features/product_detail/widgets/star_row.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

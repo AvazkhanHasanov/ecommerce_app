@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/data/models/add_item_model.dart';
 import 'package:ecommerce_app/data/models/product/product_detail_model.dart';
-import 'package:ecommerce_app/data/models/reviews_model.dart';
-import 'package:ecommerce_app/data/models/reviews_stats_model.dart';
+import 'package:ecommerce_app/data/models/review/reviews_model.dart';
+import 'package:ecommerce_app/data/models/review/reviews_stats_model.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

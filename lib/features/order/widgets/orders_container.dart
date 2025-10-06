@@ -7,13 +7,14 @@ import 'package:ecommerce_app/features/order/widgets/title_size_status.dart';
 class OrdersContainer extends StatelessWidget {
   const OrdersContainer({
     super.key,
-    required this.status,
+    required this.size,
     required this.image,
     required this.title,
     required this.price,
-    required this.size,
+    required this.status,
+    required this.productId,
   });
-
+final int productId;
   final String status;
   final String title;
   final String image;
@@ -50,6 +51,7 @@ class OrdersContainer extends StatelessWidget {
               children: [
                 TitleSizeStatus(title: title, size: size, status: status),
                 PriceTrack(
+                  productId:productId,
                   price: price,
                 ),
               ],

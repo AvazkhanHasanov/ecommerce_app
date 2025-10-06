@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OrderState {
 
- Status get ordersStatus; String? get orderError; List<OrdersModel> get orders;
+ Status get ordersStatus; Status get reviewStatus; String? get reviewError; String? get orderError; List<OrdersModel> get orders;
 /// Create a copy of OrderState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $OrderStateCopyWith<OrderState> get copyWith => _$OrderStateCopyWithImpl<OrderSt
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderState&&(identical(other.ordersStatus, ordersStatus) || other.ordersStatus == ordersStatus)&&(identical(other.orderError, orderError) || other.orderError == orderError)&&const DeepCollectionEquality().equals(other.orders, orders));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is OrderState&&(identical(other.ordersStatus, ordersStatus) || other.ordersStatus == ordersStatus)&&(identical(other.reviewStatus, reviewStatus) || other.reviewStatus == reviewStatus)&&(identical(other.reviewError, reviewError) || other.reviewError == reviewError)&&(identical(other.orderError, orderError) || other.orderError == orderError)&&const DeepCollectionEquality().equals(other.orders, orders));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ordersStatus,orderError,const DeepCollectionEquality().hash(orders));
+int get hashCode => Object.hash(runtimeType,ordersStatus,reviewStatus,reviewError,orderError,const DeepCollectionEquality().hash(orders));
 
 @override
 String toString() {
-  return 'OrderState(ordersStatus: $ordersStatus, orderError: $orderError, orders: $orders)';
+  return 'OrderState(ordersStatus: $ordersStatus, reviewStatus: $reviewStatus, reviewError: $reviewError, orderError: $orderError, orders: $orders)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $OrderStateCopyWith<$Res>  {
   factory $OrderStateCopyWith(OrderState value, $Res Function(OrderState) _then) = _$OrderStateCopyWithImpl;
 @useResult
 $Res call({
- Status ordersStatus, String? orderError, List<OrdersModel> orders
+ Status ordersStatus, Status reviewStatus, String? reviewError, String? orderError, List<OrdersModel> orders
 });
 
 
@@ -62,10 +62,12 @@ class _$OrderStateCopyWithImpl<$Res>
 
 /// Create a copy of OrderState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? ordersStatus = null,Object? orderError = freezed,Object? orders = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? ordersStatus = null,Object? reviewStatus = null,Object? reviewError = freezed,Object? orderError = freezed,Object? orders = null,}) {
   return _then(_self.copyWith(
 ordersStatus: null == ordersStatus ? _self.ordersStatus : ordersStatus // ignore: cast_nullable_to_non_nullable
-as Status,orderError: freezed == orderError ? _self.orderError : orderError // ignore: cast_nullable_to_non_nullable
+as Status,reviewStatus: null == reviewStatus ? _self.reviewStatus : reviewStatus // ignore: cast_nullable_to_non_nullable
+as Status,reviewError: freezed == reviewError ? _self.reviewError : reviewError // ignore: cast_nullable_to_non_nullable
+as String?,orderError: freezed == orderError ? _self.orderError : orderError // ignore: cast_nullable_to_non_nullable
 as String?,orders: null == orders ? _self.orders : orders // ignore: cast_nullable_to_non_nullable
 as List<OrdersModel>,
   ));
@@ -152,10 +154,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Status ordersStatus,  String? orderError,  List<OrdersModel> orders)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Status ordersStatus,  Status reviewStatus,  String? reviewError,  String? orderError,  List<OrdersModel> orders)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OrderState() when $default != null:
-return $default(_that.ordersStatus,_that.orderError,_that.orders);case _:
+return $default(_that.ordersStatus,_that.reviewStatus,_that.reviewError,_that.orderError,_that.orders);case _:
   return orElse();
 
 }
@@ -173,10 +175,10 @@ return $default(_that.ordersStatus,_that.orderError,_that.orders);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Status ordersStatus,  String? orderError,  List<OrdersModel> orders)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Status ordersStatus,  Status reviewStatus,  String? reviewError,  String? orderError,  List<OrdersModel> orders)  $default,) {final _that = this;
 switch (_that) {
 case _OrderState():
-return $default(_that.ordersStatus,_that.orderError,_that.orders);case _:
+return $default(_that.ordersStatus,_that.reviewStatus,_that.reviewError,_that.orderError,_that.orders);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,10 +195,10 @@ return $default(_that.ordersStatus,_that.orderError,_that.orders);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Status ordersStatus,  String? orderError,  List<OrdersModel> orders)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Status ordersStatus,  Status reviewStatus,  String? reviewError,  String? orderError,  List<OrdersModel> orders)?  $default,) {final _that = this;
 switch (_that) {
 case _OrderState() when $default != null:
-return $default(_that.ordersStatus,_that.orderError,_that.orders);case _:
+return $default(_that.ordersStatus,_that.reviewStatus,_that.reviewError,_that.orderError,_that.orders);case _:
   return null;
 
 }
@@ -208,10 +210,12 @@ return $default(_that.ordersStatus,_that.orderError,_that.orders);case _:
 
 
 class _OrderState implements OrderState {
-  const _OrderState({required this.ordersStatus, required this.orderError, required final  List<OrdersModel> orders}): _orders = orders;
+  const _OrderState({required this.ordersStatus, required this.reviewStatus, required this.reviewError, required this.orderError, required final  List<OrdersModel> orders}): _orders = orders;
   
 
 @override final  Status ordersStatus;
+@override final  Status reviewStatus;
+@override final  String? reviewError;
 @override final  String? orderError;
  final  List<OrdersModel> _orders;
 @override List<OrdersModel> get orders {
@@ -231,16 +235,16 @@ _$OrderStateCopyWith<_OrderState> get copyWith => __$OrderStateCopyWithImpl<_Ord
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderState&&(identical(other.ordersStatus, ordersStatus) || other.ordersStatus == ordersStatus)&&(identical(other.orderError, orderError) || other.orderError == orderError)&&const DeepCollectionEquality().equals(other._orders, _orders));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OrderState&&(identical(other.ordersStatus, ordersStatus) || other.ordersStatus == ordersStatus)&&(identical(other.reviewStatus, reviewStatus) || other.reviewStatus == reviewStatus)&&(identical(other.reviewError, reviewError) || other.reviewError == reviewError)&&(identical(other.orderError, orderError) || other.orderError == orderError)&&const DeepCollectionEquality().equals(other._orders, _orders));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,ordersStatus,orderError,const DeepCollectionEquality().hash(_orders));
+int get hashCode => Object.hash(runtimeType,ordersStatus,reviewStatus,reviewError,orderError,const DeepCollectionEquality().hash(_orders));
 
 @override
 String toString() {
-  return 'OrderState(ordersStatus: $ordersStatus, orderError: $orderError, orders: $orders)';
+  return 'OrderState(ordersStatus: $ordersStatus, reviewStatus: $reviewStatus, reviewError: $reviewError, orderError: $orderError, orders: $orders)';
 }
 
 
@@ -251,7 +255,7 @@ abstract mixin class _$OrderStateCopyWith<$Res> implements $OrderStateCopyWith<$
   factory _$OrderStateCopyWith(_OrderState value, $Res Function(_OrderState) _then) = __$OrderStateCopyWithImpl;
 @override @useResult
 $Res call({
- Status ordersStatus, String? orderError, List<OrdersModel> orders
+ Status ordersStatus, Status reviewStatus, String? reviewError, String? orderError, List<OrdersModel> orders
 });
 
 
@@ -268,10 +272,12 @@ class __$OrderStateCopyWithImpl<$Res>
 
 /// Create a copy of OrderState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? ordersStatus = null,Object? orderError = freezed,Object? orders = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? ordersStatus = null,Object? reviewStatus = null,Object? reviewError = freezed,Object? orderError = freezed,Object? orders = null,}) {
   return _then(_OrderState(
 ordersStatus: null == ordersStatus ? _self.ordersStatus : ordersStatus // ignore: cast_nullable_to_non_nullable
-as Status,orderError: freezed == orderError ? _self.orderError : orderError // ignore: cast_nullable_to_non_nullable
+as Status,reviewStatus: null == reviewStatus ? _self.reviewStatus : reviewStatus // ignore: cast_nullable_to_non_nullable
+as Status,reviewError: freezed == reviewError ? _self.reviewError : reviewError // ignore: cast_nullable_to_non_nullable
+as String?,orderError: freezed == orderError ? _self.orderError : orderError // ignore: cast_nullable_to_non_nullable
 as String?,orders: null == orders ? _self._orders : orders // ignore: cast_nullable_to_non_nullable
 as List<OrdersModel>,
   ));

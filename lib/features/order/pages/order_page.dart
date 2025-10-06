@@ -42,7 +42,7 @@ class _OrderPageState extends State<OrderPage> with SingleTickerProviderStateMix
       appBar: StoreAppBar(title: 'My Orders'),
       body: BlocProvider(
         create: (context) {
-          final cubit = OrderCubit(orderRepo: context.read());
+          final cubit = OrderCubit(orderRepo: context.read(), reviewsRepo: context.read());
           cubit.fetchOrder();
           return cubit;
         },
@@ -110,6 +110,7 @@ class _OrderPageState extends State<OrderPage> with SingleTickerProviderStateMix
                                     itemBuilder: (context, index) {
                                       final order = state.orders[index];
                                       return OrdersContainer(
+                                        productId: order.id,
                                         title: order.title,
                                         size: order.size,
                                         status: order.status,
@@ -129,6 +130,7 @@ class _OrderPageState extends State<OrderPage> with SingleTickerProviderStateMix
                                     separatorBuilder: (context, index) => SizedBox(height: 14.h),
                                     itemCount: state.orders.length,
                                     itemBuilder: (context, index) => OrdersContainer(
+                                      productId: state.orders[index].id,
                                       title: 'Regular Fit Slogan',
                                       size: 'X',
                                       status: 'Picked',

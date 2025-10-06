@@ -1,7 +1,8 @@
 import 'package:ecommerce_app/core/client.dart';
 import 'package:ecommerce_app/core/utils/result.dart';
-import 'package:ecommerce_app/data/models/reviews_model.dart';
-import 'package:ecommerce_app/data/models/reviews_stats_model.dart';
+import 'package:ecommerce_app/data/models/review/reviews_create_model.dart';
+import 'package:ecommerce_app/data/models/review/reviews_model.dart';
+import 'package:ecommerce_app/data/models/review/reviews_stats_model.dart';
 
 abstract interface class IReviewsRepository {
   Future<Result<List<ReviewsModel>>> getAll(int productId);
@@ -27,5 +28,10 @@ class ReviewsRepository implements IReviewsRepository {
   Future<Result<ReviewsStatsModel>> getStats(int productId) async {
     final response = await _client.get('/reviews/stats/$productId');
     return response.fold((error) => Result.error(error), (value) => Result.ok(ReviewsStatsModel.toJson(value)));
+  }
+
+  Future<Result> createReviews({required ReviewsCreateModel data}) async {
+    final response = await _client.post('/reviews/create', data: data.toJson());
+    return response.fold((error) => Result.error(error), (value) => Result.ok(value));
   }
 }

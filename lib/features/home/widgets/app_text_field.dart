@@ -9,11 +9,12 @@ class AppTextField extends StatelessWidget {
   const AppTextField({
     super.key,
     this.onChanged,
+    this.controller,
     this.width = 341,
+    this.maxLines = 1,
     this.needSuffix = true,
     this.needPrefix = true,
     required this.hintText,
-    required this.controller,
     this.suffix = AppIcons.mic,
     this.prefix = AppIcons.search,
   });
@@ -24,8 +25,9 @@ class AppTextField extends StatelessWidget {
   final String hintText;
   final bool needPrefix;
   final bool needSuffix;
+  final int maxLines;
   final void Function(String)? onChanged;
-  final TextEditingController controller;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class AppTextField extends StatelessWidget {
         controller: controller,
         cursorHeight: 25,
         cursorColor: AppColors.primary400,
+        maxLines: maxLines,
         // style: AppStyle.b1Medium,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 10),
@@ -47,7 +50,7 @@ class AppTextField extends StatelessWidget {
           ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),
-            borderSide: BorderSide(color: AppColors.primary500),
+            borderSide: BorderSide(color: AppColors.primary100),
           ),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.r),
