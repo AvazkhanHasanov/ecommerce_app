@@ -3,7 +3,7 @@ class AddressModel {
   final String title;
   final String fullAddress;
   final num lat;
-  final num ing;
+  final num lng;
   final bool isDefault;
 
   AddressModel({
@@ -11,7 +11,7 @@ class AddressModel {
     required this.title,
     required this.fullAddress,
     required this.lat,
-    required this.ing,
+    required this.lng,
     required this.isDefault,
   });
 
@@ -21,7 +21,7 @@ class AddressModel {
       title: json['title'],
       fullAddress: json['fullAddress'],
       lat: json['lat'],
-      ing: json['ing'],
+      lng: json['lng'],
       isDefault: json['isDefault'],
     );
   }

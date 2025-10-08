@@ -11,16 +11,26 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   CartBloc({required CartItemRepository myCartItemsRepo})
     : _myCartItemsRepo = myCartItemsRepo,
       super(CartState.initial()) {
+    print('CartBloc created');
     on<GetMyCartItems>(_fetchMyCartItems);
     on<DeleteMyCart>(_deleteMyCart);
   }
 
   Future<void> _fetchMyCartItems(GetMyCartItems event, Emitter<CartState> emit) async {
+    print('GetMyCartItems handler called');
     emit(state.copyWith(cartStatus: Status.loading));
     final result = await _myCartItemsRepo.getMyCartItems();
+    print('repo returned: $result');
     result.fold(
-      (error) => emit(state.copyWith(cartStatus: Status.error, errorCart: error.toString())),
-      (value) => emit(state.copyWith(cartStatus: Status.success, myCartItems: value, errorCart: null)),
+      (error) {
+        emit(state.copyWith(cartStatus: Status.error, errorCart: error.toString()));
+        print('repo error: $error');
+      },
+      (value) {
+        print('repo returned: $value');
+        emit(state.copyWith(cartStatus: Status.success, myCartItems: value, errorCart: null));
+
+      },
     );
   }
 

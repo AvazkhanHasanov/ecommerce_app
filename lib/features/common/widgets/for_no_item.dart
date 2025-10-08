@@ -17,30 +17,27 @@ class ForNoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: SizedBox(
-          width: 272.w,
-          child: Column(
-            spacing: 12.h,
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SvgPicture.asset(
-                icon,
-                width: 64.r,height: 64.r,
-                colorFilter: ColorFilter.mode(
-                  AppColors.primary400,
-                  BlendMode.srcIn,
-                ),
+      child: SizedBox(
+        width: 272.w,
+        child: Column(
+          spacing: 12.h,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SvgPicture.asset(
+              icon,
+              width: 64.r,
+              height: 64.r,
+              colorFilter: ColorFilter.mode(
+                AppColors.primary400,
+                BlendMode.srcIn,
               ),
-              Text(text, style: AppStyle.h4SemiBold),
-              Text(
-                subtext,
-                style: AppStyle.b1Regular,
-                textAlign: TextAlign.center,
-              ),
-            ],
-          ),
+            ),
+            Text(text, style: AppStyle.h4SemiBold, textAlign: TextAlign.center),
+            Text(subtext, style: AppStyle.b1Regular, textAlign: TextAlign.center),
+          ],
         ),
-      );
+      ),
+    );
   }
 }

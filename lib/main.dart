@@ -22,13 +22,16 @@ class EcommerceApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
       providers: dependencies,
-      child: ScreenUtilInit(
-        designSize: Size(390, 844),
-        builder: (context, child) => MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: AppTheme().lightTheme,
-          themeMode: ThemeMode.light,
-          routerConfig: router,
+      child: MultiBlocProvider(
+        providers:blocDependencies ,
+        child: ScreenUtilInit(
+          designSize: Size(390, 844),
+          builder: (context, child) => MaterialApp.router(
+            debugShowCheckedModeBanner: false,
+            theme: AppTheme().lightTheme,
+            themeMode: ThemeMode.light,
+            routerConfig: router,
+          ),
         ),
       ),
     );

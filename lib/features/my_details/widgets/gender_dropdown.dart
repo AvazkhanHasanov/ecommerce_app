@@ -9,12 +9,18 @@ final String? initialValue;
 final void Function(String?)?onChanged;
   @override
   Widget build(BuildContext context) {
+    String? normalizedValue;
+    if (initialValue != null && initialValue!.isNotEmpty) {
+      final val = initialValue!.toLowerCase();
+      if (val == 'male' || val == 'm') normalizedValue = 'Male';
+      if (val == 'female' || val == 'f') normalizedValue = 'Female';
+    }
     return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text('Gender', style: AppStyle.b1Medium),
         DropdownButtonFormField<String>(
-          initialValue: initialValue,
+          initialValue: normalizedValue,
           decoration: InputDecoration(
             hint: Padding(
               padding: EdgeInsets.only(bottom: 8),
@@ -36,12 +42,16 @@ final void Function(String?)?onChanged;
               borderSide: BorderSide(color: AppColors.primary900),
             ),
           ),
-          items: ["Male", "Female"].map((gender) {
-            return DropdownMenuItem(value: gender, child: Text(gender));
-          }).toList(),
+          items:const [
+            DropdownMenuItem(value: "Male", child: Text("Male")),
+            DropdownMenuItem(value: "Female", child: Text("Female")),
+          ],
           onChanged:onChanged
         ),
       ],
     );
   }
 }
+// ["Male", "Female"].map((gender) {
+// return DropdownMenuItem(value: gender, child: Text(gender));
+// }).toList(),

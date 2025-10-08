@@ -32,7 +32,7 @@ class AccountPage extends StatelessWidget {
             ),
             Divider(thickness: 8, color: AppColors.primary100),
             AccountRow(icon: AppIcons.details, text: 'My Details', onTap: () => context.push(Routes.myDetail)),
-            AccountRow(icon: AppIcons.address, text: 'Address Book'),
+            AccountRow(icon: AppIcons.address, text: 'Address Book',onTap: () => context.push(Routes.address)),
             AccountRow(icon: AppIcons.cart, text: 'Payment Methods', onTap: () => context.push(Routes.payment)),
             AccountRow(
               icon: AppIcons.bell,

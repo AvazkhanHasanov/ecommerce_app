@@ -1,10 +1,11 @@
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ecommerce_app/core/routing/routes.dart';
-import '../../features/address/pages/address_page.dart';
 import '../../features/order/pages/order_page.dart';
 import '../../features/payment/pages/payment_page.dart';
+import 'package:ecommerce_app/core/routing/routes.dart';
+import '../../features/address/pages/address_page.dart';
 import '../../features/checkout/pages/checkout_page.dart';
+import '../../features/new_address/pages/new_address_page.dart';
 import '../../features/help_center/pages/help_center_page.dart';
 import 'package:ecommerce_app/features/home/pages/home_page.dart';
 import '../../features/notification/pages/notification_page.dart';
@@ -40,6 +41,7 @@ final router = GoRouter(
     GoRoute(path: Routes.onboardingPage, builder: (context, state) => OnboardingPage()),
     GoRoute(path: Routes.order, builder: (context, state) => OrderPage()),
     GoRoute(path: Routes.myDetail, builder: (context, state) => MyDetailPage()),
+    GoRoute(path: Routes.newAddress, builder: (context, state) => NewAddressPage()),
     GoRoute(path: Routes.newCard, builder: (context, state) => NewCardPage()),
     GoRoute(path: Routes.notification, builder: (context, state) => NotificationPage()),
 

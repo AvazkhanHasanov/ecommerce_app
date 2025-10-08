@@ -2,14 +2,14 @@ class AddressCreateModel {
   final String title;
   final String fullAddress;
   final num lat;
-  final num ing;
+  final num lng;
   final bool isDefault;
 
   AddressCreateModel({
     required this.title,
     required this.fullAddress,
     required this.lat,
-    required this.ing,
+    required this.lng,
     required this.isDefault,
   });
 
@@ -18,7 +18,7 @@ class AddressCreateModel {
       title: json['title'],
       fullAddress: json['fullAddress'],
       lat: json['lat'],
-      ing: json['ing'],
+      lng: json['lng'],
       isDefault: json['isDefault'],
     );
   }
@@ -28,7 +28,7 @@ class AddressCreateModel {
       'title': title,
       'fullAddress': fullAddress,
       'lat': lat,
-      'ing': ing,
+      'lng': lng,
       'isDefault': isDefault,
     };
   }

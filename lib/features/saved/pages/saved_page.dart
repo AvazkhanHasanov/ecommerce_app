@@ -22,33 +22,46 @@ class SavedPage extends StatelessWidget {
         child: BlocBuilder<SavedCubit, SavedState>(
           builder: (context, state) {
             if (state.savedProducts.isEmpty) {
-              return ForNoItem(
-                icon: AppIcons.heartDuotone,
-                text: 'No Saved Items!',
-                subtext: 'You don’t have any saved items. Go to home and add some.',
+              return RefreshIndicator(
+                onRefresh: () => context.read<SavedCubit>().fetchSavedProducts(),
+                child: SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                  child: Padding(
+                    padding: EdgeInsets.only(top: MediaQuery.of(context).size.height / 4),
+                    child: ForNoItem(
+                      icon: AppIcons.heartDuotone,
+                      text: 'No Saved Items!',
+                      subtext: 'You don’t have any saved items. Go to home and add some.',
+                    ),
+                  ),
+                ),
               );
             }
-            return GridView.builder(
-              itemCount: state.savedProducts.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 161 / 172,
+            return RefreshIndicator(
+              onRefresh: () => context.read<SavedCubit>().fetchSavedProducts(),
+              child: GridView.builder(
+                physics: AlwaysScrollableScrollPhysics(),
+                itemCount: state.savedProducts.length,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 161 / 172,
+                ),
+                itemBuilder: (context, index) {
+                  return Center(
+                    child: Product(
+                      likePressed: () {},
+                      dy: 20,
+                      scale: 1.4,
+                      imageHeight: 152.h,
+                      isLiked: state.savedProducts[index].isLiked,
+                      discount: state.savedProducts[index].discount,
+                      image: state.savedProducts[index].image,
+                      text: state.savedProducts[index].title,
+                      price: state.savedProducts[index].price,
+                    ),
+                  );
+                },
               ),
-              itemBuilder: (context, index) {
-                return Center(
-                  child: Product(
-                    likePressed: () {},
-                    dy: 20,
-                    scale: 1.4,
-                    imageHeight: 152.h,
-                    isLiked: state.savedProducts[index].isLiked,
-                    discount: state.savedProducts[index].discount,
-                    image: state.savedProducts[index].image,
-                    text: state.savedProducts[index].title,
-                    price: state.savedProducts[index].price,
-                  ),
-                );
-              },
             );
           },
         ),

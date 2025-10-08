@@ -50,6 +50,7 @@ class CartPage extends StatelessWidget {
                 Future.delayed(Duration(milliseconds: 500));
               },
               child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
                 child: Column(
                   spacing: 14.h,
                   children: [

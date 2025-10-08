@@ -10,6 +10,7 @@ class Routes {
   static final homePage = '/homePage';
   static final login = '/login';
   static final myDetail = '/myDetail';
+  static final newAddress = '/newAddress';
   static final newCard = '/newCard';
   static final notification = '/notification';
   static final onboardingPage = '/onboardingPage';

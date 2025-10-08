@@ -2,9 +2,10 @@ import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:ecommerce_app/features/cart/managers/cart_bloc.dart';
-import 'package:ecommerce_app/features/checkout/widgets/with_card.dart';
+import 'package:ecommerce_app/features/common/widgets/for_address.dart';
 import 'package:ecommerce_app/features/checkout/widgets/addres_change.dart';
 import 'package:ecommerce_app/features/checkout/widgets/card_item.dart';
+import 'package:ecommerce_app/features/checkout/widgets/with_card.dart';
 import 'package:ecommerce_app/features/common/widgets/app_text_button.dart';
 import 'package:ecommerce_app/features/common/widgets/store_app_bar.dart';
 import 'package:ecommerce_app/features/home/widgets/app_text_field.dart';
@@ -47,25 +48,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AddresChange(),
-              Row(
-                spacing: 8.w,
-                children: [
-                  SvgPicture.asset(AppIcons.location),
-                  Column(
-                    spacing: 4,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('title', style: AppStyle.b2SemiBold),
-                      Text(
-                        'fullAddress',
-                        style: AppStyle.b2Regular.copyWith(
-                          color: AppColors.primary500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+              ForAddress(title: 'title', fullAddress: 'fullAddress'),
               Divider(color: AppColors.primary100),
               Text('Payment Method', style: AppStyle.b1SemiBold),
               Row(
@@ -128,13 +111,21 @@ class _CheckoutPageState extends State<CheckoutPage> {
                       content: Container(
                         width: 341.w,
                         height: 270.h,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(20.r)),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.r),
+                        ),
                         child: Column(
                           spacing: 10.h,
                           children: [
                             SvgPicture.asset(AppIcons.checkDuotone),
-                            Text('Congratulations!', style: AppStyle.h4SemiBold),
-                            Text('Your order has been placed.', style: AppStyle.b1Regular),
+                            Text(
+                              'Congratulations!',
+                              style: AppStyle.h4SemiBold,
+                            ),
+                            Text(
+                              'Your order has been placed.',
+                              style: AppStyle.b1Regular,
+                            ),
                             SizedBox(height: 14.h),
                             AppTextButton(
                               text: 'Track Your Order',

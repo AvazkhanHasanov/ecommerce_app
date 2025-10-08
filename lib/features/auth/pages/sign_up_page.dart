@@ -107,6 +107,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const AuthRichText(),
                     AppTextButton(
+                      isLoading: context.read<SignUpViewModel>().isSignLoading,
                       text: 'Create an Account',
                       onPressed: isActive
                           ? () async {
@@ -117,10 +118,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                   email: emailController.text,
                                   password: passwordController.text,
                                 );
-
                                 final result = await viewModel.signUp(signData: data);
                                 if (result) {
                                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Muvaffaqiyatli')));
+                                  context.go(Routes.login);
                                 }
                               }
                             }
