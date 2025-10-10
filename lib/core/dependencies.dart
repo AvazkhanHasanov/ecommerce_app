@@ -1,3 +1,5 @@
+import 'package:ecommerce_app/data/repositories/size_repository.dart';
+import 'package:ecommerce_app/features/customer_service/managers/chat_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerce_app/core/client.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +37,7 @@ final dependencies = <SingleChildWidget>[
   RepositoryProvider(create: (context) => CardRepository(client: context.read())),
   RepositoryProvider(create: (context) => OrderRepository(client: context.read())),
   RepositoryProvider(create: (context) => AddressRepository(client: context.read())),
+  RepositoryProvider(create: (context) => SizeRepository(client: context.read())),
 ];
 final blocDependencies = <SingleChildWidget>[
   BlocProvider(
@@ -46,11 +49,18 @@ final blocDependencies = <SingleChildWidget>[
   ),
 
   BlocProvider(
-    create: (context) => HomeBloc(categoryRepo: context.read(), productRepo: context.read(), authRepo: context.read())
-      ..add(FetchProductsEvent())
-      ..add(FetchCategoryEvent()),
+    create: (context) =>
+        HomeBloc(
+            categoryRepo: context.read(),
+            productRepo: context.read(),
+            authRepo: context.read(),
+            sizeRepo: context.read(),
+          )
+          ..add(FetchProductsEvent())
+          ..add(FetchCategoryEvent()),
   ),
   BlocProvider(create: (context) => SearchBloc(productRepo: context.read())),
   BlocProvider(create: (context) => CartBloc(myCartItemsRepo: context.read())..add(GetMyCartItems())),
   BlocProvider(create: (context) => NewAddressBloc(addressRepo: context.read())),
+  BlocProvider(create: (context) => ChatBloc()),
 ];

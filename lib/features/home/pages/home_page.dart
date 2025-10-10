@@ -6,6 +6,7 @@ import 'package:ecommerce_app/features/common/widgets/app_bottom_navigation_bar.
 import 'package:ecommerce_app/features/common/widgets/app_icon_button.dart';
 import 'package:ecommerce_app/features/home/managers/home_bloc.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
+import 'package:ecommerce_app/features/home/widgets/home_page_bottom_sheet.dart';
 import 'package:ecommerce_app/features/home/widgets/app_text_field.dart';
 import 'package:ecommerce_app/features/home/widgets/category_container.dart';
 import 'package:ecommerce_app/features/home/widgets/product.dart';
@@ -30,7 +31,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          if (state.status == Status.loading || state.productStatus == Status.loading) {
+          if (state.status == Status.loading ||
+              state.productStatus == Status.loading) {
             return const Center(child: CircularProgressIndicator());
           }
           final category = ['All', ...state.category.map((x) => x.title)];
@@ -70,18 +72,29 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.only(right: 10.w),
                             child: CategoryTextButton(
                               title: title,
-                              textColor: selectedIndex == index ? AppColors.primary0 : AppColors.primary900,
-                              backgroundColor: selectedIndex == index ? AppColors.primary900 : AppColors.primary0,
-                              border: selectedIndex == index ? AppColors.primary900 : AppColors.primary100,
+                              textColor: selectedIndex == index
+                                  ? AppColors.primary0
+                                  : AppColors.primary900,
+                              backgroundColor: selectedIndex == index
+                                  ? AppColors.primary900
+                                  : AppColors.primary0,
+                              border: selectedIndex == index
+                                  ? AppColors.primary900
+                                  : AppColors.primary100,
                               onPressed: () {
                                 if (title != 'All') {
-                                  final categoryId = state.category[index - 1].id;
+                                  final categoryId =
+                                      state.category[index - 1].id;
                                   context.read<HomeBloc>().add(
-                                    FetchProductsEvent(queryParams: {'CategoryId': categoryId}),
+                                    FetchProductsEvent(
+                                      queryParams: {'CategoryId': categoryId},
+                                    ),
                                   );
                                   setState(() {});
                                 } else {
-                                  context.read<HomeBloc>().add(FetchProductsEvent());
+                                  context.read<HomeBloc>().add(
+                                    FetchProductsEvent(),
+                                  );
                                 }
                                 setState(() => selectedIndex = index);
                               },
@@ -102,9 +115,14 @@ class _HomePageState extends State<HomePage> {
                     childCount: state.product.length,
                     (context, index) => Center(
                       child: Product(
-                        onTap: () => context.push(Routes.getProductDetail(state.product[index].id)),
-                        likePressed: () =>
-                            context.read<HomeBloc>().add(LocalToggleLikeEvent(productId: state.product[index].id)),
+                        onTap: () => context.push(
+                          Routes.getProductDetail(state.product[index].id),
+                        ),
+                        likePressed: () => context.read<HomeBloc>().add(
+                          LocalToggleLikeEvent(
+                            productId: state.product[index].id,
+                          ),
+                        ),
                         isLiked: state.product[index].isLiked,
                         discount: state.product[index].discount,
                         image: state.product[index].image,
@@ -160,7 +178,22 @@ class _ItemsDelegate extends SliverPersistentHeaderDelegate {
 
               AppIconButton(
                 icon: AppIcons.filter,
-                onPressed: () {},
+                onPressed: () {
+                  showModalBottomSheet(
+
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: AppColors.primary0,
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.vertical(
+                        top: Radius.circular(24),
+                      ),
+                    ),
+                    builder: (context) {
+                      return HomePageBottomSheet();
+                    },
+                  );
+                },
                 backgroundColor: AppColors.primary900,
                 foregroundColor: AppColors.primary0,
                 size: Size(52.r, 52.r),
@@ -173,5 +206,6 @@ class _ItemsDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => true;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
+      true;
 }

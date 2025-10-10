@@ -27,3 +27,5 @@ final class CommitLikeEvent extends HomeEvent {
 
   CommitLikeEvent({required this.productId, required this.isLiked});
 }
+
+final class FetchSize extends HomeEvent {}

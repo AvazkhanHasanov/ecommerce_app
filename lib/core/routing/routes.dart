@@ -3,6 +3,7 @@ class Routes {
   static final accountNotification = '/accountNotification';
   static final address = '/address';
   static final cart = '/cart';
+  static final chat = '/chat';
   static final checkout = '/checkout';
   static final enterPage = '/enterPage';
   static final forgotPassword = '/forgotPassword';

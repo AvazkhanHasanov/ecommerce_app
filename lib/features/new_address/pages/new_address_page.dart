@@ -21,15 +21,56 @@ class NewAddressPage extends StatefulWidget {
   State<NewAddressPage> createState() => _NewAddressPageState();
 }
 
-class _NewAddressPageState extends State<NewAddressPage> {
+class _NewAddressPageState extends State<NewAddressPage> with TickerProviderStateMixin {
   final addressController = TextEditingController();
   final fullAddressController = TextEditingController();
-  bool isDefault = false;
+  late final AnimationController transformationController;
   final mapController = MapController();
+  bool isDefault = false;
   bool isLoading = false;
 
+  Future<void> _animateToPoint(LatLng dest, double destZoom) async {
+    final startCenter = mapController.camera.center;
+    final startZoom = mapController.camera.zoom;
+
+    final latTween = Tween<double>(
+      begin: startCenter.latitude,
+      end: dest.latitude,
+    );
+    final lngTween = Tween<double>(
+      begin: startCenter.longitude,
+      end: dest.longitude,
+    );
+    final zoomTween = Tween<double>(begin: startZoom, end: destZoom);
+
+    final controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 700),
+    );
+
+    final animation = CurvedAnimation(
+      parent: controller,
+      curve: Curves.easeInOut,
+    );
+
+    controller.addListener(() {
+      final lat = latTween.evaluate(animation);
+      final lng = lngTween.evaluate(animation);
+      final zoom = zoomTween.evaluate(animation);
+      mapController.move(LatLng(lat, lng), zoom);
+    });
+
+    animation.addStatusListener((status) {
+      if (status == AnimationStatus.completed || status == AnimationStatus.dismissed) {
+        controller.dispose();
+      }
+    });
+
+    controller.forward();
+  }
+
   Future _initLocation() async {
-  await   Geolocator.requestPermission();
+    await Geolocator.requestPermission();
   }
 
   LatLng? selectedPoint;
@@ -39,14 +80,24 @@ class _NewAddressPageState extends State<NewAddressPage> {
   @override
   void initState() {
     super.initState();
+    transformationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
+
     _initLocation();
+  }
+
+  @override
+  void dispose() {
+    addressController.dispose();
+    fullAddressController.dispose();
+    // transformationController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: StoreAppBar(title: 'NewAppBar'),
-      body: BlocBuilder<NewAddressBloc,NewAddressState>(
+      body: BlocBuilder<NewAddressBloc, NewAddressState>(
         builder: (context, state) => Column(
           children: [
             Expanded(
@@ -58,7 +109,7 @@ class _NewAddressPageState extends State<NewAddressPage> {
                       initialCenter: LatLng(41.285902, 69.203651),
                       onTap: (tapPosition, point) async {
                         setState(() => selectedPoint = point);
-
+                        await _animateToPoint(point, 15);
                         mapController.move(point, mapController.camera.zoom);
                         final placemarks = await getPlaceName(
                           latitude: point.latitude,
@@ -77,8 +128,9 @@ class _NewAddressPageState extends State<NewAddressPage> {
                         }
                         showModalBottomSheet(
                           barrierColor: Colors.transparent,
-
                           context: context,
+
+                          transitionAnimationController: transformationController,
                           isScrollControlled: true,
                           backgroundColor: AppColors.primary0,
                           shape: const RoundedRectangleBorder(
@@ -87,7 +139,7 @@ class _NewAddressPageState extends State<NewAddressPage> {
                           builder: (context) {
                             return AddressBottomSheet(
                               lat: selectedPoint!.latitude,
-                              lng: selectedPoint!.latitude,
+                              lng: selectedPoint!.longitude,
                               fullAddress: locationName,
                             );
                           },
@@ -114,18 +166,31 @@ class _NewAddressPageState extends State<NewAddressPage> {
                       onPressed: () async {
                         setState(() => isLoading = true);
                         try {
+                          LocationPermission permission = await Geolocator.checkPermission();
+                          if (permission == LocationPermission.denied) {
+                            permission = await Geolocator.requestPermission();
+                            if (permission == LocationPermission.denied) {
+                              throw Exception('Permission denied');
+                            }
+                          }
+                          if (permission == LocationPermission.deniedForever) {
+                            await Geolocator.openAppSettings();
+                            return;
+                          }
+                          if (!await Geolocator.isLocationServiceEnabled()) {
+                            await Geolocator.openLocationSettings();
+                          }
+
                           final selectedPoint = await Geolocator.getCurrentPosition();
 
                           mapController.move(
                             LatLng(selectedPoint.latitude, selectedPoint.longitude),
                             min(mapController.camera.zoom + 5, 18.0),
                           );
-
                           final placemarks = await getPlaceName(
                             latitude: selectedPoint.latitude,
                             longitude: selectedPoint.longitude,
                           );
-
                           if (placemarks.isNotEmpty) {
                             final place = placemarks.first;
                             setState(() {
@@ -136,12 +201,16 @@ class _NewAddressPageState extends State<NewAddressPage> {
                                 place.country,
                               ].where((e) => e != null && e!.isNotEmpty).join(', ');
                             });
-
                             debugPrint('Siz hozir: $locationName');
                           }
                         } catch (e) {
+                          await _initLocation();
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Nimadur hato ketdi internetni tekshirib qayta urinib koring')),
+                            SnackBar(
+                              content: Text(
+                                'Error: ${e.toString()}',
+                              ),
+                            ),
                           );
                         } finally {
                           setState(() => isLoading = false);
@@ -152,7 +221,7 @@ class _NewAddressPageState extends State<NewAddressPage> {
                           : Icon(Icons.my_location, color: AppColors.primary0),
                     ),
                   ),
-                  Text('$locationName')
+                  Text('$locationName'),
                 ],
               ),
             ),

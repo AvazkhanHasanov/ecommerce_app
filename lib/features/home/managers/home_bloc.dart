@@ -1,6 +1,7 @@
 import 'package:ecommerce_app/data/repositories/auth_repository.dart';
 import 'package:ecommerce_app/data/repositories/category_repository.dart';
 import 'package:ecommerce_app/data/repositories/product_repository.dart';
+import 'package:ecommerce_app/data/repositories/size_repository.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
@@ -10,16 +11,18 @@ part 'home_event.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final CategoryRepository _categoryRepo;
   final ProductRepository _productRepo;
-
+  final SizeRepository _sizeRepo;
   final AuthRepository _authRepo;
 
   HomeBloc({
     required CategoryRepository categoryRepo,
     required ProductRepository productRepo,
     required AuthRepository authRepo,
+    required SizeRepository sizeRepo,
   }) : _categoryRepo = categoryRepo,
        _productRepo = productRepo,
        _authRepo = authRepo,
+       _sizeRepo = sizeRepo,
        super(HomeState.initial()) {
     on<FetchCategoryEvent>(_fetchCategory);
     on<FetchProductsEvent>(_fetchProducts);
@@ -28,8 +31,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       _onCommitLike,
       transformer: (events, mapper) => events.debounceTime(Duration(milliseconds: 1000)).switchMap(mapper),
     );
+    // on<FetchSize>(handler);
   }
-
+Future<void> _fetchSize(FetchSize event,Emitter<HomeState>emit)async{
+    
+}
   Future<void> _fetchCategory(FetchCategoryEvent event, Emitter<HomeState> emit) async {
     emit(state.copyWith(status: Status.loading));
     final result = await _categoryRepo.getAll();

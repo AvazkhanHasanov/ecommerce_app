@@ -1,5 +1,6 @@
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
+import '../../features/customer_service/pages/chat_page.dart';
 import '../../features/order/pages/order_page.dart';
 import '../../features/payment/pages/payment_page.dart';
 import 'package:ecommerce_app/core/routing/routes.dart';
@@ -29,11 +30,13 @@ import '../../features/account_notification/pages/account_notification_page.dart
 
 final router = GoRouter(
   initialLocation: Routes.splash,
+  // redirect: (context, state) => ,
   routes: [
     GoRoute(path: Routes.account, builder: (context, state) => AccountPage()),
     GoRoute(path: Routes.accountNotification, builder: (context, state) => AccountNotificationPage()),
     GoRoute(path: Routes.address, builder: (context, state) => AddressPage()),
     GoRoute(path: Routes.cart, builder: (context, state) => CartPage()),
+    GoRoute(path: Routes.chat, builder: (context, state) => ChatPage()),
     GoRoute(path: Routes.checkout, builder: (context, state) => CheckoutPage()),
 
     GoRoute(path: Routes.homePage, builder: (context, state) => HomePage()),

@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/data/models/product_model.dart';
 import 'package:ecommerce_app/data/models/cateogry_model.dart';
+import 'package:ecommerce_app/data/models/size_model.dart';
 import 'package:equatable/equatable.dart';
 
 enum Status { idle, loading, success, error }
@@ -7,12 +8,15 @@ enum Status { idle, loading, success, error }
 class HomeState extends Equatable {
   final Status status;
   final Status productStatus;
+  // final Status sizeStatus;
   final String? errorMessage;
   final String? errorProduct;
+  // final String? sizeError;
+
 
   final List<CategoryModel> category;
   final List<ProductModel> product;
-
+// final List<SizeModel> sizeList;
   const HomeState({
     required this.status,
     required this.errorMessage,
@@ -24,6 +28,7 @@ class HomeState extends Equatable {
 
   factory HomeState.initial() => HomeState(
     status: Status.success,
+
     productStatus: Status.idle,
     errorProduct: null,
     errorMessage: null,

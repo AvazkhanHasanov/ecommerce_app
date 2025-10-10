@@ -39,7 +39,6 @@ class StoreAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
             title: Text(title),
             centerTitle: centerTitle,
-            actionsPadding: EdgeInsets.only(right: 24.w),
             actions: [
               needAction
                   ? AppIconButton(
