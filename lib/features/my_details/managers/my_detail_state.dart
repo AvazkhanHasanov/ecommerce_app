@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/data/models/auth_me_model.dart';
+import 'package:ecommerce_app/data/models/auth_model/auth_me_model.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';

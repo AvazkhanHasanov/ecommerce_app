@@ -21,12 +21,14 @@ class TitleSizeStatus extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: AppStyle.b2SemiBold),
-            Text('Size $size', style: AppStyle.b3Regular.copyWith(color: AppColors.primary500)),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: AppStyle.b2SemiBold,overflow: TextOverflow.ellipsis),
+              Text('Size $size', style: AppStyle.b3Regular.copyWith(color: AppColors.primary500)),
+            ],
+          ),
         ),
         Container(
           alignment: Alignment.center,

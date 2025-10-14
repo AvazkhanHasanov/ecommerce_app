@@ -3,8 +3,8 @@ import 'package:ecommerce_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class AddresChange extends StatelessWidget {
-  const AddresChange({
+class AddressChange extends StatelessWidget {
+  const AddressChange({
     super.key,
   });
 

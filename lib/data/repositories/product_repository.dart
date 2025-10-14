@@ -2,7 +2,7 @@ import 'package:ecommerce_app/core/client.dart';
 import 'package:ecommerce_app/core/utils/result.dart';
 import 'package:ecommerce_app/data/models/product/product_detail_model.dart';
 import 'package:ecommerce_app/data/models/product/saved_products_model.dart';
-import 'package:ecommerce_app/data/models/product_model.dart';
+import 'package:ecommerce_app/data/models/product/product_model.dart';
 import 'package:flutter/rendering.dart';
 
 abstract interface class IProductRepository {

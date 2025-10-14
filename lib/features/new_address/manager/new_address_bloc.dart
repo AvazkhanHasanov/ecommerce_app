@@ -1,6 +1,6 @@
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../data/models/address_create_model.dart';
+import '../../../data/models/address_model/address_create_model.dart';
 import 'package:ecommerce_app/data/repositories/address_repository.dart';
 import 'package:ecommerce_app/features/new_address/manager/new_address_state.dart';
 

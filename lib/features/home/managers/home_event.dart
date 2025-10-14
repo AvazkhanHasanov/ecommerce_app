@@ -29,3 +29,4 @@ final class CommitLikeEvent extends HomeEvent {
 }
 
 final class FetchSize extends HomeEvent {}
+

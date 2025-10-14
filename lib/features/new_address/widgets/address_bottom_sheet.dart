@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/data/models/address_create_model.dart';
+import 'package:ecommerce_app/data/models/address_model/address_create_model.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:ecommerce_app/features/new_address/manager/new_address_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -104,7 +104,7 @@ class _AddressBottomSheetState extends State<AddressBottomSheet> {
             onPressed: isEnable
                 ? () {
                     final data = AddressCreateModel(
-                      title: addressController.text,
+                      nickname: addressController.text,
                       fullAddress: fullAddressController.text,
                       lat: widget.lat,
                       lng: widget.lng,

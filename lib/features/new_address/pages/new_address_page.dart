@@ -80,7 +80,7 @@ class _NewAddressPageState extends State<NewAddressPage> with TickerProviderStat
   @override
   void initState() {
     super.initState();
-    transformationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    transformationController = AnimationController(vsync: this, duration: Duration(milliseconds: 500));
 
     _initLocation();
   }
@@ -89,7 +89,7 @@ class _NewAddressPageState extends State<NewAddressPage> with TickerProviderStat
   void dispose() {
     addressController.dispose();
     fullAddressController.dispose();
-    // transformationController.dispose();
+    transformationController.dispose();
     super.dispose();
   }
 

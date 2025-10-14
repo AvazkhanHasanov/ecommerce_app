@@ -41,11 +41,8 @@ class _OrderPageState extends State<OrderPage> with SingleTickerProviderStateMix
     return Scaffold(
       appBar: StoreAppBar(title: 'My Orders'),
       body: BlocProvider(
-        create: (context) {
-          final cubit = OrderCubit(orderRepo: context.read(), reviewsRepo: context.read());
-          cubit.fetchOrder();
-          return cubit;
-        },
+        create: (context) => OrderCubit(orderRepo: context.read(), reviewsRepo: context.read()),
+
         child: BlocBuilder<OrderCubit, OrderState>(
           builder: (context, state) {
             if (state.ordersStatus == Status.loading) {
@@ -110,12 +107,14 @@ class _OrderPageState extends State<OrderPage> with SingleTickerProviderStateMix
                                     itemBuilder: (context, index) {
                                       final order = state.orders[index];
                                       return OrdersContainer(
+                                        rating: order.rating,
                                         productId: order.id,
                                         title: order.title,
                                         size: order.size,
                                         status: order.status,
                                         image: order.image,
                                         price: order.price,
+                                        isLoading: state.ordersStatus == Status.loading,
                                       );
                                     },
                                   ),
@@ -136,6 +135,8 @@ class _OrderPageState extends State<OrderPage> with SingleTickerProviderStateMix
                                       status: 'Picked',
                                       image: state.orders[index].image,
                                       price: 1222,
+                                      isLoading: state.ordersStatus == Status.loading,
+                                      rating: state.orders[index].rating,
                                     ),
                                   ),
                           ],

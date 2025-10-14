@@ -2,19 +2,15 @@ import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/features/payment/widgets/for_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 
-class WithCard extends StatelessWidget {
-  const WithCard({
+class ForNoCard extends StatelessWidget {
+  const ForNoCard({
     super.key,
-    required this.cardNumber,
   });
-
-  final String cardNumber;
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +26,8 @@ class WithCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              spoilerCardNumber(cardNumber),
-              style: AppStyle.b1Medium.copyWith(
-                color: AppColors.primary900,
-              ),
+              'carta qo`shing --->',
+              style: AppStyle.b1Medium.copyWith(color: AppColors.primary500),
             ),
             SizedBox(width: 14),
             IconButton(onPressed: () => context.push(Routes.payment), icon: SvgPicture.asset(AppIcons.edit)),

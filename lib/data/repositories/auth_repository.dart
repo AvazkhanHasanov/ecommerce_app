@@ -1,5 +1,5 @@
-import 'package:ecommerce_app/data/models/auth_me_model.dart';
-import 'package:ecommerce_app/data/models/auth_update_model.dart';
+import 'package:ecommerce_app/data/models/auth_model/auth_me_model.dart';
+import 'package:ecommerce_app/data/models/auth_model/auth_update_model.dart';
 
 import '../models/auth_model/login_model.dart';
 import 'package:ecommerce_app/core/client.dart';

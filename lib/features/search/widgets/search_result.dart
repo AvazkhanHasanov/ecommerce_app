@@ -2,7 +2,7 @@ import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/data/models/product_model.dart';
+import 'package:ecommerce_app/data/models/product/product_model.dart';
 import 'package:ecommerce_app/features/search/widgets/price_and_discount.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

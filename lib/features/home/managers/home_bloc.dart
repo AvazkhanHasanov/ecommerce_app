@@ -31,11 +31,18 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       _onCommitLike,
       transformer: (events, mapper) => events.debounceTime(Duration(milliseconds: 1000)).switchMap(mapper),
     );
-    // on<FetchSize>(handler);
+    on<FetchSize>(_fetchSize);
   }
-Future<void> _fetchSize(FetchSize event,Emitter<HomeState>emit)async{
-    
-}
+
+  Future<void> _fetchSize(FetchSize event, Emitter<HomeState> emit) async {
+    emit(state.copyWith(sizeStatus: Status.loading));
+    final result = await _sizeRepo.getAll();
+    result.fold(
+      (error) => emit(state.copyWith(sizeStatus: Status.error, sizeError: error.toString())),
+      (value) => emit(state.copyWith(sizeStatus: Status.success, sizeList: value)),
+    );
+  }
+
   Future<void> _fetchCategory(FetchCategoryEvent event, Emitter<HomeState> emit) async {
     emit(state.copyWith(status: Status.loading));
     final result = await _categoryRepo.getAll();

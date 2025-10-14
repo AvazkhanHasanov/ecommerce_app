@@ -1,8 +1,9 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../home/managers/home_state.dart';
+
 part 'chat_state.freezed.dart';
 
-enum Status { initial, loading, success, error }
 
 @freezed
 abstract class ChatState with _$ChatState {
@@ -12,6 +13,6 @@ abstract class ChatState with _$ChatState {
   }) = _ChatState;
 
   factory ChatState.initial() {
-    return ChatState(status: Status.initial, messages: []);
+    return ChatState(status: Status.idle, messages: []);
   }
 }

@@ -23,13 +23,10 @@ class NotificationCubit extends Cubit<NotificationState> {
         final today = DateTime(now.year, now.month, now.day);
         final yesterday = today.subtract(Duration(days: 1));
 
-
         for (var item in value) {
-
           final itemDate = DateTime(item.date.year, item.date.month, item.date.day);
           String key;
           if (isSameDay(itemDate, today)) {
-
             key = 'Today';
           } else if (isSameDay(itemDate, yesterday)) {
             key = "Yesterday";
@@ -49,6 +46,7 @@ class NotificationCubit extends Cubit<NotificationState> {
     );
   }
 }
+
 bool isSameDay(DateTime a, DateTime b) {
   return a.year == b.year && a.month == b.month && a.day == b.day;
 }

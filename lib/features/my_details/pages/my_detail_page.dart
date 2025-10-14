@@ -1,7 +1,7 @@
 
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
-import 'package:ecommerce_app/data/models/auth_update_model.dart';
+import 'package:ecommerce_app/data/models/auth_model/auth_update_model.dart';
 import 'package:ecommerce_app/features/common/widgets/app_text_button.dart';
 import 'package:ecommerce_app/features/common/widgets/app_text_form_field.dart';
 import 'package:ecommerce_app/features/common/widgets/store_app_bar.dart';

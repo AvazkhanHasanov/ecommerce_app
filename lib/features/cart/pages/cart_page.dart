@@ -33,12 +33,24 @@ class CartPage extends StatelessWidget {
           if (state.cartStatus == Status.error && state.errorCart != null) {
             return Center(child: Text('Xatolik yuz berdi: ${state.errorCart}'));
           }
-
           if (state.cartStatus == Status.success && (state.myCartItems == null || state.myCartItems!.items.isEmpty)) {
-            return ForNoItem(
-              icon: AppIcons.cart,
-              text: 'Your Cart Is Empty!',
-              subtext: 'When you add products, they’ll appear here.',
+            return RefreshIndicator(
+              onRefresh: () async {
+                await Future.delayed(Duration(milliseconds: 500));
+                context.read<CartBloc>().add(GetMyCartItems());
+              },
+
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 200),
+                  child: ForNoItem(
+                    icon: AppIcons.cart,
+                    text: 'Your Cart Is Empty!',
+                    subtext: 'When you add products, they’ll appear here.',
+                  ),
+                ),
+              ),
             );
           }
 

@@ -69,7 +69,7 @@ class _AddressPageState extends State<AddressPage> {
                               ...List.generate(
                                 state.address.length,
                                 (index) => AddressContainer(
-                                  title: state.address[index].title,
+                                  title: state.address[index].nickname,
                                   fullAddress: state.address[index].fullAddress,
                                   groupRegistry: RadioGroup.maybeOf<int>(context),
                                   addressId: state.address[index].id,

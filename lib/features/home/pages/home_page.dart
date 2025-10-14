@@ -15,6 +15,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../data/models/size_model.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -31,8 +33,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: BlocBuilder<HomeBloc, HomeState>(
         builder: (context, state) {
-          if (state.status == Status.loading ||
-              state.productStatus == Status.loading) {
+          if (state.status == Status.loading || state.productStatus == Status.loading) {
             return const Center(child: CircularProgressIndicator());
           }
           final category = ['All', ...state.category.map((x) => x.title)];
@@ -55,6 +56,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 SliverPersistentHeader(
                   delegate: _ItemsDelegate(
+                    size: state.sizeList,
                     state: state,
                     controller: controller,
                   ),
@@ -72,19 +74,12 @@ class _HomePageState extends State<HomePage> {
                             padding: EdgeInsets.only(right: 10.w),
                             child: CategoryTextButton(
                               title: title,
-                              textColor: selectedIndex == index
-                                  ? AppColors.primary0
-                                  : AppColors.primary900,
-                              backgroundColor: selectedIndex == index
-                                  ? AppColors.primary900
-                                  : AppColors.primary0,
-                              border: selectedIndex == index
-                                  ? AppColors.primary900
-                                  : AppColors.primary100,
+                              textColor: selectedIndex == index ? AppColors.primary0 : AppColors.primary900,
+                              backgroundColor: selectedIndex == index ? AppColors.primary900 : AppColors.primary0,
+                              border: selectedIndex == index ? AppColors.primary900 : AppColors.primary100,
                               onPressed: () {
                                 if (title != 'All') {
-                                  final categoryId =
-                                      state.category[index - 1].id;
+                                  final categoryId = state.category[index - 1].id;
                                   context.read<HomeBloc>().add(
                                     FetchProductsEvent(
                                       queryParams: {'CategoryId': categoryId},
@@ -143,10 +138,11 @@ class _HomePageState extends State<HomePage> {
 }
 
 class _ItemsDelegate extends SliverPersistentHeaderDelegate {
+  final List<SizeModel> size;
   final HomeState state;
   final TextEditingController controller;
 
-  _ItemsDelegate({required this.state, required this.controller});
+  _ItemsDelegate({required this.state, required this.controller, required this.size});
 
   @override
   double get minExtent => 0; // scroll qilganda yo‘qoladi
@@ -180,7 +176,6 @@ class _ItemsDelegate extends SliverPersistentHeaderDelegate {
                 icon: AppIcons.filter,
                 onPressed: () {
                   showModalBottomSheet(
-
                     context: context,
                     isScrollControlled: true,
                     backgroundColor: AppColors.primary0,
@@ -190,9 +185,12 @@ class _ItemsDelegate extends SliverPersistentHeaderDelegate {
                       ),
                     ),
                     builder: (context) {
-                      return HomePageBottomSheet();
+                      return HomePageBottomSheet(
+                        size: state.sizeList,
+                      );
                     },
                   );
+
                 },
                 backgroundColor: AppColors.primary900,
                 foregroundColor: AppColors.primary0,
@@ -206,6 +204,5 @@ class _ItemsDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) =>
-      true;
+  bool shouldRebuild(covariant SliverPersistentHeaderDelegate oldDelegate) => true;
 }

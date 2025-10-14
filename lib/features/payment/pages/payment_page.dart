@@ -48,6 +48,7 @@ class _PaymentPageState extends State<PaymentPage> {
             }
             double baseHeight = MediaQuery.of(context).size.height / 1.9;
             double reducedHeight = baseHeight - ((state.cards.length) * 52.h);
+
             return Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
               child: RefreshIndicator(
@@ -107,7 +108,11 @@ class _PaymentPageState extends State<PaymentPage> {
                       state.cards.isNotEmpty
                           ? AppTextButton(
                               text: 'Apply',
-                              onPressed: () {},
+                              onPressed: () {
+                                if (selectedCardId != null) {
+                                  context.push(Routes.checkout, extra: {'cartId': selectedCardId});
+                                }
+                              },
                               backgroundColor: AppColors.primary900,
                               textColor: AppColors.primary0,
                             )

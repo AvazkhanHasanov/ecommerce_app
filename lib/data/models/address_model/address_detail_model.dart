@@ -1,21 +1,24 @@
-class AddressCreateModel {
-  final String title;
+class AddressDetailMode {
+  final int id;
+  final String nickname;
   final String fullAddress;
   final num lat;
   final num lng;
   final bool isDefault;
 
-  AddressCreateModel({
-    required this.title,
+  AddressDetailMode({
+    required this.id,
+    required this.nickname,
     required this.fullAddress,
     required this.lat,
     required this.lng,
     required this.isDefault,
   });
 
-  factory AddressCreateModel.fromJson(Map<String, dynamic> json) {
-    return AddressCreateModel(
-      title: json['title'],
+  factory AddressDetailMode.fromJson(Map<String, dynamic> json) {
+    return AddressDetailMode(
+      id: json['id'],
+      nickname: json['nickname'],
       fullAddress: json['fullAddress'],
       lat: json['lat'],
       lng: json['lng'],
@@ -25,7 +28,8 @@ class AddressCreateModel {
 
   Map<String, dynamic> toJson() {
     return {
-      'title': title,
+      'id': id,
+      'nickname': nickname,
       'fullAddress': fullAddress,
       'lat': lat,
       'lng': lng,

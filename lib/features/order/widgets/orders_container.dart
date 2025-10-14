@@ -12,14 +12,19 @@ class OrdersContainer extends StatelessWidget {
     required this.title,
     required this.price,
     required this.status,
+    required this.rating,
     required this.productId,
+    required this.isLoading,
   });
-final int productId;
+
+  final int productId;
   final String status;
   final String title;
   final String image;
   final String size;
   final int price;
+  final bool isLoading;
+  final num rating;
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +56,10 @@ final int productId;
               children: [
                 TitleSizeStatus(title: title, size: size, status: status),
                 PriceTrack(
-                  productId:productId,
+                  rating: rating,
+                  productId: productId,
                   price: price,
+                  isLoading: isLoading,
                 ),
               ],
             ),

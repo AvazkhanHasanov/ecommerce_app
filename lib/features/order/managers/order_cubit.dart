@@ -12,7 +12,9 @@ class OrderCubit extends Cubit<OrderState> {
   OrderCubit({required OrderRepository orderRepo, required ReviewsRepository reviewsRepo})
     : _reviewsRepo = reviewsRepo,
       _orderRepo = orderRepo,
-      super(OrderState.initial());
+      super(OrderState.initial()) {
+    fetchOrder();
+  }
 
   Future<void> fetchOrder() async {
     emit(state.copyWith(ordersStatus: Status.loading));

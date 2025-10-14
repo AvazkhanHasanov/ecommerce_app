@@ -37,7 +37,6 @@ final router = GoRouter(
     GoRoute(path: Routes.address, builder: (context, state) => AddressPage()),
     GoRoute(path: Routes.cart, builder: (context, state) => CartPage()),
     GoRoute(path: Routes.chat, builder: (context, state) => ChatPage()),
-    GoRoute(path: Routes.checkout, builder: (context, state) => CheckoutPage()),
 
     GoRoute(path: Routes.homePage, builder: (context, state) => HomePage()),
     GoRoute(path: Routes.helpCenter, builder: (context, state) => HelpCenterPage()),
@@ -59,6 +58,14 @@ final router = GoRouter(
       path: Routes.productDetail,
       builder: (context, state) => ProductDetailPages(id: int.parse(state.pathParameters['id']!)),
     ),
+    GoRoute(
+      path: Routes.checkout,
+      builder: (context, state) {
+        final data = state.extra as Map<String, dynamic>? ?? {};
+        return CheckoutPage(cartId: data['cartId']);
+      },
+    ),
+
     ShellRoute(
       builder: (context, state, child) => ChangeNotifierProvider(
         create: (context) => ResetPasswordViewModel(authRepo: context.read(), secureStorage: context.read()),

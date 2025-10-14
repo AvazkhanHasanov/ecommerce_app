@@ -1,3 +1,6 @@
+import 'package:ecommerce_app/data/repositories/device_repository.dart';
+import 'package:ecommerce_app/data/repositories/question_category_repository.dart';
+import 'package:ecommerce_app/data/repositories/question_repository.dart';
 import 'package:ecommerce_app/data/repositories/size_repository.dart';
 import 'package:ecommerce_app/features/customer_service/managers/chat_bloc.dart';
 import 'package:provider/provider.dart';
@@ -26,19 +29,24 @@ final dependencies = <SingleChildWidget>[
   Provider(create: (context) => FlutterSecureStorage()),
   Provider(create: (context) => AuthInterceptor(secureStorage: context.read())),
   Provider(create: (context) => ApiClient(interceptor: context.read())),
+  RepositoryProvider(create: (context) => AddressRepository(client: context.read())),
   Provider(
     create: (context) => AuthRepository(secureStorage: context.read(), client: context.read()),
   ),
-  RepositoryProvider(create: (context) => CategoryRepository(client: context.read())),
-  RepositoryProvider(create: (context) => ProductRepository(client: context.read())),
-  RepositoryProvider(create: (context) => NotificationRepository(client: context.read())),
-  RepositoryProvider(create: (context) => ReviewsRepository(client: context.read())),
   RepositoryProvider(create: (context) => CartItemRepository(client: context.read())),
   RepositoryProvider(create: (context) => CardRepository(client: context.read())),
+  RepositoryProvider(create: (context) => CategoryRepository(client: context.read())),
+  RepositoryProvider(create: (context) => DeviceRepository(client: context.read())),
+  RepositoryProvider(create: (context) => NotificationRepository(client: context.read())),
   RepositoryProvider(create: (context) => OrderRepository(client: context.read())),
-  RepositoryProvider(create: (context) => AddressRepository(client: context.read())),
+  RepositoryProvider(create: (context) => ProductRepository(client: context.read())),
+  RepositoryProvider(create: (context) => QuestionCategoryRepository(client: context.read())),
+  RepositoryProvider(create: (context) => QuestionRepository(client: context.read())),
+  RepositoryProvider(create: (context) => ReviewsRepository(client: context.read())),
   RepositoryProvider(create: (context) => SizeRepository(client: context.read())),
 ];
+
+
 final blocDependencies = <SingleChildWidget>[
   BlocProvider(
     create: (context) {
@@ -57,7 +65,7 @@ final blocDependencies = <SingleChildWidget>[
             sizeRepo: context.read(),
           )
           ..add(FetchProductsEvent())
-          ..add(FetchCategoryEvent()),
+          ..add(FetchCategoryEvent())..add(FetchSize()),
   ),
   BlocProvider(create: (context) => SearchBloc(productRepo: context.read())),
   BlocProvider(create: (context) => CartBloc(myCartItemsRepo: context.read())..add(GetMyCartItems())),

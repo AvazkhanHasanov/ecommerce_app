@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CheckoutState {
 
- Status get checkStatus; Status get cardStatus; String? get cardError; String? get checkError; List<CardsListModel>? get cardList;
+ Status get addressStatus; Status get orderStatus; Status get cardStatus; String? get addressError; String? get cardError; String? get orderError; List<AddressModel>? get addressList; List<CardsListModel>? get cardList;
 /// Create a copy of CheckoutState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $CheckoutStateCopyWith<CheckoutState> get copyWith => _$CheckoutStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckoutState&&(identical(other.checkStatus, checkStatus) || other.checkStatus == checkStatus)&&(identical(other.cardStatus, cardStatus) || other.cardStatus == cardStatus)&&(identical(other.cardError, cardError) || other.cardError == cardError)&&(identical(other.checkError, checkError) || other.checkError == checkError)&&const DeepCollectionEquality().equals(other.cardList, cardList));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CheckoutState&&(identical(other.addressStatus, addressStatus) || other.addressStatus == addressStatus)&&(identical(other.orderStatus, orderStatus) || other.orderStatus == orderStatus)&&(identical(other.cardStatus, cardStatus) || other.cardStatus == cardStatus)&&(identical(other.addressError, addressError) || other.addressError == addressError)&&(identical(other.cardError, cardError) || other.cardError == cardError)&&(identical(other.orderError, orderError) || other.orderError == orderError)&&const DeepCollectionEquality().equals(other.addressList, addressList)&&const DeepCollectionEquality().equals(other.cardList, cardList));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,checkStatus,cardStatus,cardError,checkError,const DeepCollectionEquality().hash(cardList));
+int get hashCode => Object.hash(runtimeType,addressStatus,orderStatus,cardStatus,addressError,cardError,orderError,const DeepCollectionEquality().hash(addressList),const DeepCollectionEquality().hash(cardList));
 
 @override
 String toString() {
-  return 'CheckoutState(checkStatus: $checkStatus, cardStatus: $cardStatus, cardError: $cardError, checkError: $checkError, cardList: $cardList)';
+  return 'CheckoutState(addressStatus: $addressStatus, orderStatus: $orderStatus, cardStatus: $cardStatus, addressError: $addressError, cardError: $cardError, orderError: $orderError, addressList: $addressList, cardList: $cardList)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $CheckoutStateCopyWith<$Res>  {
   factory $CheckoutStateCopyWith(CheckoutState value, $Res Function(CheckoutState) _then) = _$CheckoutStateCopyWithImpl;
 @useResult
 $Res call({
- Status checkStatus, Status cardStatus, String? cardError, String? checkError, List<CardsListModel>? cardList
+ Status addressStatus, Status orderStatus, Status cardStatus, String? addressError, String? cardError, String? orderError, List<AddressModel>? addressList, List<CardsListModel>? cardList
 });
 
 
@@ -62,13 +62,16 @@ class _$CheckoutStateCopyWithImpl<$Res>
 
 /// Create a copy of CheckoutState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? checkStatus = null,Object? cardStatus = null,Object? cardError = freezed,Object? checkError = freezed,Object? cardList = freezed,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? addressStatus = null,Object? orderStatus = null,Object? cardStatus = null,Object? addressError = freezed,Object? cardError = freezed,Object? orderError = freezed,Object? addressList = freezed,Object? cardList = freezed,}) {
   return _then(_self.copyWith(
-checkStatus: null == checkStatus ? _self.checkStatus : checkStatus // ignore: cast_nullable_to_non_nullable
+addressStatus: null == addressStatus ? _self.addressStatus : addressStatus // ignore: cast_nullable_to_non_nullable
+as Status,orderStatus: null == orderStatus ? _self.orderStatus : orderStatus // ignore: cast_nullable_to_non_nullable
 as Status,cardStatus: null == cardStatus ? _self.cardStatus : cardStatus // ignore: cast_nullable_to_non_nullable
-as Status,cardError: freezed == cardError ? _self.cardError : cardError // ignore: cast_nullable_to_non_nullable
-as String?,checkError: freezed == checkError ? _self.checkError : checkError // ignore: cast_nullable_to_non_nullable
-as String?,cardList: freezed == cardList ? _self.cardList : cardList // ignore: cast_nullable_to_non_nullable
+as Status,addressError: freezed == addressError ? _self.addressError : addressError // ignore: cast_nullable_to_non_nullable
+as String?,cardError: freezed == cardError ? _self.cardError : cardError // ignore: cast_nullable_to_non_nullable
+as String?,orderError: freezed == orderError ? _self.orderError : orderError // ignore: cast_nullable_to_non_nullable
+as String?,addressList: freezed == addressList ? _self.addressList : addressList // ignore: cast_nullable_to_non_nullable
+as List<AddressModel>?,cardList: freezed == cardList ? _self.cardList : cardList // ignore: cast_nullable_to_non_nullable
 as List<CardsListModel>?,
   ));
 }
@@ -154,10 +157,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Status checkStatus,  Status cardStatus,  String? cardError,  String? checkError,  List<CardsListModel>? cardList)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Status addressStatus,  Status orderStatus,  Status cardStatus,  String? addressError,  String? cardError,  String? orderError,  List<AddressModel>? addressList,  List<CardsListModel>? cardList)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CheckoutState() when $default != null:
-return $default(_that.checkStatus,_that.cardStatus,_that.cardError,_that.checkError,_that.cardList);case _:
+return $default(_that.addressStatus,_that.orderStatus,_that.cardStatus,_that.addressError,_that.cardError,_that.orderError,_that.addressList,_that.cardList);case _:
   return orElse();
 
 }
@@ -175,10 +178,10 @@ return $default(_that.checkStatus,_that.cardStatus,_that.cardError,_that.checkEr
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Status checkStatus,  Status cardStatus,  String? cardError,  String? checkError,  List<CardsListModel>? cardList)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Status addressStatus,  Status orderStatus,  Status cardStatus,  String? addressError,  String? cardError,  String? orderError,  List<AddressModel>? addressList,  List<CardsListModel>? cardList)  $default,) {final _that = this;
 switch (_that) {
 case _CheckoutState():
-return $default(_that.checkStatus,_that.cardStatus,_that.cardError,_that.checkError,_that.cardList);case _:
+return $default(_that.addressStatus,_that.orderStatus,_that.cardStatus,_that.addressError,_that.cardError,_that.orderError,_that.addressList,_that.cardList);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,10 +198,10 @@ return $default(_that.checkStatus,_that.cardStatus,_that.cardError,_that.checkEr
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Status checkStatus,  Status cardStatus,  String? cardError,  String? checkError,  List<CardsListModel>? cardList)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Status addressStatus,  Status orderStatus,  Status cardStatus,  String? addressError,  String? cardError,  String? orderError,  List<AddressModel>? addressList,  List<CardsListModel>? cardList)?  $default,) {final _that = this;
 switch (_that) {
 case _CheckoutState() when $default != null:
-return $default(_that.checkStatus,_that.cardStatus,_that.cardError,_that.checkError,_that.cardList);case _:
+return $default(_that.addressStatus,_that.orderStatus,_that.cardStatus,_that.addressError,_that.cardError,_that.orderError,_that.addressList,_that.cardList);case _:
   return null;
 
 }
@@ -210,13 +213,24 @@ return $default(_that.checkStatus,_that.cardStatus,_that.cardError,_that.checkEr
 
 
 class _CheckoutState implements CheckoutState {
-  const _CheckoutState({required this.checkStatus, required this.cardStatus, required this.cardError, required this.checkError, required final  List<CardsListModel>? cardList}): _cardList = cardList;
+  const _CheckoutState({required this.addressStatus, required this.orderStatus, required this.cardStatus, required this.addressError, required this.cardError, required this.orderError, required final  List<AddressModel>? addressList, required final  List<CardsListModel>? cardList}): _addressList = addressList,_cardList = cardList;
   
 
-@override final  Status checkStatus;
+@override final  Status addressStatus;
+@override final  Status orderStatus;
 @override final  Status cardStatus;
+@override final  String? addressError;
 @override final  String? cardError;
-@override final  String? checkError;
+@override final  String? orderError;
+ final  List<AddressModel>? _addressList;
+@override List<AddressModel>? get addressList {
+  final value = _addressList;
+  if (value == null) return null;
+  if (_addressList is EqualUnmodifiableListView) return _addressList;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(value);
+}
+
  final  List<CardsListModel>? _cardList;
 @override List<CardsListModel>? get cardList {
   final value = _cardList;
@@ -237,16 +251,16 @@ _$CheckoutStateCopyWith<_CheckoutState> get copyWith => __$CheckoutStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckoutState&&(identical(other.checkStatus, checkStatus) || other.checkStatus == checkStatus)&&(identical(other.cardStatus, cardStatus) || other.cardStatus == cardStatus)&&(identical(other.cardError, cardError) || other.cardError == cardError)&&(identical(other.checkError, checkError) || other.checkError == checkError)&&const DeepCollectionEquality().equals(other._cardList, _cardList));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CheckoutState&&(identical(other.addressStatus, addressStatus) || other.addressStatus == addressStatus)&&(identical(other.orderStatus, orderStatus) || other.orderStatus == orderStatus)&&(identical(other.cardStatus, cardStatus) || other.cardStatus == cardStatus)&&(identical(other.addressError, addressError) || other.addressError == addressError)&&(identical(other.cardError, cardError) || other.cardError == cardError)&&(identical(other.orderError, orderError) || other.orderError == orderError)&&const DeepCollectionEquality().equals(other._addressList, _addressList)&&const DeepCollectionEquality().equals(other._cardList, _cardList));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,checkStatus,cardStatus,cardError,checkError,const DeepCollectionEquality().hash(_cardList));
+int get hashCode => Object.hash(runtimeType,addressStatus,orderStatus,cardStatus,addressError,cardError,orderError,const DeepCollectionEquality().hash(_addressList),const DeepCollectionEquality().hash(_cardList));
 
 @override
 String toString() {
-  return 'CheckoutState(checkStatus: $checkStatus, cardStatus: $cardStatus, cardError: $cardError, checkError: $checkError, cardList: $cardList)';
+  return 'CheckoutState(addressStatus: $addressStatus, orderStatus: $orderStatus, cardStatus: $cardStatus, addressError: $addressError, cardError: $cardError, orderError: $orderError, addressList: $addressList, cardList: $cardList)';
 }
 
 
@@ -257,7 +271,7 @@ abstract mixin class _$CheckoutStateCopyWith<$Res> implements $CheckoutStateCopy
   factory _$CheckoutStateCopyWith(_CheckoutState value, $Res Function(_CheckoutState) _then) = __$CheckoutStateCopyWithImpl;
 @override @useResult
 $Res call({
- Status checkStatus, Status cardStatus, String? cardError, String? checkError, List<CardsListModel>? cardList
+ Status addressStatus, Status orderStatus, Status cardStatus, String? addressError, String? cardError, String? orderError, List<AddressModel>? addressList, List<CardsListModel>? cardList
 });
 
 
@@ -274,13 +288,16 @@ class __$CheckoutStateCopyWithImpl<$Res>
 
 /// Create a copy of CheckoutState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? checkStatus = null,Object? cardStatus = null,Object? cardError = freezed,Object? checkError = freezed,Object? cardList = freezed,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? addressStatus = null,Object? orderStatus = null,Object? cardStatus = null,Object? addressError = freezed,Object? cardError = freezed,Object? orderError = freezed,Object? addressList = freezed,Object? cardList = freezed,}) {
   return _then(_CheckoutState(
-checkStatus: null == checkStatus ? _self.checkStatus : checkStatus // ignore: cast_nullable_to_non_nullable
+addressStatus: null == addressStatus ? _self.addressStatus : addressStatus // ignore: cast_nullable_to_non_nullable
+as Status,orderStatus: null == orderStatus ? _self.orderStatus : orderStatus // ignore: cast_nullable_to_non_nullable
 as Status,cardStatus: null == cardStatus ? _self.cardStatus : cardStatus // ignore: cast_nullable_to_non_nullable
-as Status,cardError: freezed == cardError ? _self.cardError : cardError // ignore: cast_nullable_to_non_nullable
-as String?,checkError: freezed == checkError ? _self.checkError : checkError // ignore: cast_nullable_to_non_nullable
-as String?,cardList: freezed == cardList ? _self._cardList : cardList // ignore: cast_nullable_to_non_nullable
+as Status,addressError: freezed == addressError ? _self.addressError : addressError // ignore: cast_nullable_to_non_nullable
+as String?,cardError: freezed == cardError ? _self.cardError : cardError // ignore: cast_nullable_to_non_nullable
+as String?,orderError: freezed == orderError ? _self.orderError : orderError // ignore: cast_nullable_to_non_nullable
+as String?,addressList: freezed == addressList ? _self._addressList : addressList // ignore: cast_nullable_to_non_nullable
+as List<AddressModel>?,cardList: freezed == cardList ? _self._cardList : cardList // ignore: cast_nullable_to_non_nullable
 as List<CardsListModel>?,
   ));
 }

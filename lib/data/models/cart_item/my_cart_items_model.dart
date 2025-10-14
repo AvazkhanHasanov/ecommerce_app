@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/data/models/items_model.dart';
+import 'package:ecommerce_app/data/models/cart_item/items_model.dart';
 
 class MyCartItemsModel {
   final List<ItemsModel> items;

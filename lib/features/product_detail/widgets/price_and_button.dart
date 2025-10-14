@@ -1,7 +1,7 @@
 import 'package:ecommerce_app/core/utils/colors.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/core/utils/styles.dart';
-import 'package:ecommerce_app/data/models/add_item_model.dart';
+import 'package:ecommerce_app/data/models/cart_item/add_item_model.dart';
 import 'package:ecommerce_app/features/common/widgets/app_text_button_with_row.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:flutter/material.dart';

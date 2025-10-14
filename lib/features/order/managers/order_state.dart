@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/data/models/orders_model.dart';
+import 'package:ecommerce_app/data/models/order_model/orders_model.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

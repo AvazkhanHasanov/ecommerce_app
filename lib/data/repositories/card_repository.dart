@@ -18,7 +18,7 @@ class CardRepository implements ICardRepository {
 
   @override
   Future<Result<String>> createCards({required CardsCreateModel cardData}) async {
-    final response = await _client.post('/cards/create', data: cardData.toJson());
+    final response = await _client.post('/cards', data: cardData.toJson());
     return response.fold(
       (error) => Result.error(error),
       (value) => Result.ok(value),
@@ -27,7 +27,7 @@ class CardRepository implements ICardRepository {
 
   @override
   Future<Result<List<CardsListModel>>> getAllCards() async {
-    final response = await _client.get<List>('/cards/list');
+    final response = await _client.get<List>('/cards');
     return response.fold(
       (error) => Result.error(error),
       (value) => Result.ok(value.map((x) => CardsListModel.fromJson(x)).toList()),
@@ -36,7 +36,7 @@ class CardRepository implements ICardRepository {
 
   @override
   Future<Result> deleteCard({required int id}) async {
-    final response = await _client.delete('/cards/delete/$id');
+    final response = await _client.delete('/cards/$id');
     return response.fold((error) => Result.error(error), (value) => Result.ok(value));
   }
 }

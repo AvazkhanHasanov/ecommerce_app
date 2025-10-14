@@ -1,4 +1,4 @@
-import 'package:ecommerce_app/data/models/auth_update_model.dart';
+import 'package:ecommerce_app/data/models/auth_model/auth_update_model.dart';
 import 'package:ecommerce_app/data/repositories/auth_repository.dart';
 import 'package:ecommerce_app/features/home/managers/home_state.dart';
 import 'package:ecommerce_app/features/my_details/managers/my_detail_state.dart';

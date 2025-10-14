@@ -24,15 +24,18 @@ final int id;
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(title, style: AppStyle.b2SemiBold),
-            Text('Size $size', style: AppStyle.b3Regular.copyWith(color: AppColors.primary500)),
-          ],
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: AppStyle.b2SemiBold,overflow: TextOverflow.ellipsis),
+              Text('Size $size', style: AppStyle.b3Regular.copyWith(color: AppColors.primary500)),
+            ],
+          ),
         ),
 
         AppIconButton(
+          padding: EdgeInsets.zero,
           foregroundColor: AppColors.red,
           size: Size(24.r, 24.r),
           icon: AppIcons.trash,
