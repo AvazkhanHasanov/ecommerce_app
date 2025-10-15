@@ -17,7 +17,7 @@ class AppIconButton extends StatelessWidget {
   });
 
   final String icon;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color backgroundColor;
   final Color foregroundColor;
   final Color borderColor;

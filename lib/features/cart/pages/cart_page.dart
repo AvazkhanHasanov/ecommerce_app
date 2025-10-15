@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/context_extensions.dart';
 import 'package:ecommerce_app/core/routing/routes.dart';
 import 'package:ecommerce_app/core/utils/icons.dart';
 import 'package:ecommerce_app/features/cart/managers/cart_bloc.dart';
@@ -26,6 +27,7 @@ class CartPage extends StatelessWidget {
     return Scaffold(
       appBar: StoreAppBar(title: 'MyCart', needDivider: false),
       body: BlocBuilder<CartBloc, CartState>(
+        buildWhen: (prev, curr) => prev.myCartItems != curr.myCartItems,
         builder: (context, state) {
           if (state.cartStatus == Status.loading) {
             return Center(child: CircularProgressIndicator());
@@ -66,7 +68,8 @@ class CartPage extends StatelessWidget {
                 child: Column(
                   spacing: 14.h,
                   children: [
-                    ListView.builder(
+                    ListView.separated(
+                      separatorBuilder: (context, index) => 12.height,
                       physics: NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
                       itemCount: state.myCartItems!.items.length,
@@ -78,10 +81,11 @@ class CartPage extends StatelessWidget {
                         return CartContainer(
                           id: items.id,
                           price: items.price,
-                          count: items.quantity,
+
                           title: items.title,
                           size: items.size,
                           image: items.image,
+                          quantity: items.quantity,
                         );
                       },
                     ),

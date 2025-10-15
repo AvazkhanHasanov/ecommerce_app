@@ -10,6 +10,6 @@ class GetMe extends MyDetailEvent {}
 
 class UpdateMe extends MyDetailEvent {
   final AuthUpdateModel updateModel;
-
   UpdateMe({required this.updateModel});
 }
+

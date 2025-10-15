@@ -9,17 +9,18 @@ class CartContainer extends StatelessWidget {
     super.key,
     required this.id,
     required this.price,
-    required this.count,
     required this.title,
     required this.size,
-    required this.image
+    required this.image,
+    required this.quantity,
   });
-final int id;
+
+  final int id;
   final int price;
-  final int count;
   final String title;
   final String size;
   final String image;
+  final int quantity;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +29,7 @@ final int id;
       width: 342.w,
       height: 107.h,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10.r),
         border: BoxBorder.all(color: AppColors.primary100),
       ),
       child: Row(
@@ -43,7 +45,7 @@ final int id;
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TitleAndSize(title: title, size: size, id: id),
-                PriceAndCount(price: price, count: count),
+                PriceAndCount(id: id, price: price, quantity: quantity),
               ],
             ),
           ),

@@ -9,16 +9,22 @@ abstract class CartState with _$CartState {
   const factory CartState({
     required Status deleteStatus,
     required Status cartStatus,
-    required String?errorDelete,
+    required Status updateCartStatus,
+    required String? errorDelete,
     required String? errorCart,
+    required String? updateCartError,
     required MyCartItemsModel? myCartItems,
   }) = _CartState;
 
   factory CartState.initial() => CartState(
     deleteStatus: Status.idle,
+
     cartStatus: Status.loading,
+    updateCartStatus: Status.idle,
+
     errorDelete: null,
     errorCart: null,
+    updateCartError: null,
     myCartItems: null,
   );
 }

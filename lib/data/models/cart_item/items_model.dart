@@ -4,7 +4,6 @@ class ItemsModel {
   final String title;
   final String size;
   final int price;
-
   final String image;
   final int quantity;
 
